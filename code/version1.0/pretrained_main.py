@@ -78,7 +78,7 @@ parser.add_argument('--multiprocessing-distributed', action='store_true',
                          'fastest way to use PyTorch for either single node or '
                          'multi node data parallel training')
 ###############################################################################
-parser.add_argument("--log", default = None, type=str, help="saving path of the model checkpoints and the best")
+parser.add_argument("--log", default='', type=str, help="saving path of the model checkpoints and the best")
 parser.add_argument("-atfn","--alter-trainingfile-name", default=None, type = str)
 parser.add_argument("-avfn","--alter-validationfile-name", default=None, type=str)
 ###############################################################################
@@ -276,6 +276,7 @@ def main_worker(gpu, ngpus_per_node, args):
         is_best = acc1 > best_acc1
         best_acc1 = max(acc1, best_acc1)
 
+        #  Adjusting the saving location of checkpoints and best models
         if not args.multiprocessing_distributed or (args.multiprocessing_distributed
                 and args.rank % ngpus_per_node == 0):
             save_checkpoint({
@@ -284,7 +285,7 @@ def main_worker(gpu, ngpus_per_node, args):
                 'state_dict': model.state_dict(),
                 'best_acc1': best_acc1,
                 'optimizer' : optimizer.state_dict(),
-            }, is_best)
+            }, is_best, saving_dir = args.log)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
@@ -377,16 +378,22 @@ def validate(val_loader, model, criterion, args):
     return top1.avg
 
 
-def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
-    torch.save(state, filename)
+##################################################################
+#  Adjusting the saving location of checkpoints and best models
+
+def save_checkpoint(state, is_best, filename='checkpoint.pth.tar', saving_dir = ''):
+    torch.save(state, saving_dir + filename)
     if is_best:
-        shutil.copyfile(filename, 'model_best.pth.tar')
+        shutil.copyfile(filename, saving_dir + 'model_best.pth.tar')
+
+##################################################################
 
 class Summary(Enum):
     NONE = 0
     AVERAGE = 1
     SUM = 2
     COUNT = 3
+
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""

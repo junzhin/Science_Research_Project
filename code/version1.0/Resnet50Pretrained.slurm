@@ -5,8 +5,8 @@
 #SBATCH --qos="gpgpuresplat"
 #SBATCH --partition gpgpu
 #SBATCH --nodes=1
-#SBATCH --ntasks=2
-#SBATCH --cpus-per-task=2
+#SBATCH --ntasks=4
+#SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:4
 #SBATCH --time=0-24:00:00
 
@@ -22,5 +22,5 @@
 source activate base 
 
 
-python3 main.py -a resnet50 -b 512  --dist-url tcp://127.0.0.1:8080 --dist-backend nccl --rank 0 --world-size 1 --multiprocessing-distributed  /home/junzhin/Project/datasets/tiny-imagenet-200
+python3 pretrained_main.py -a resnet50 -b 512  --dist-url tcp://127.0.0.1:8080 --dist-backend nccl --rank 0 --world-size 1 --epochs 100 --multiprocessing-distributed -atfn train_blurred  -avfn val_blurred /data/gpfs/datasets/Imagenet
 
