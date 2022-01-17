@@ -6,7 +6,6 @@ import shutil
 from termios import PARENB
 import time
 import warnings
-import torchvision.datasets.folder
 from enum import Enum
 
 import torch

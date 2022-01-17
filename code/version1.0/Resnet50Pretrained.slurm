@@ -24,3 +24,5 @@ source activate base
 
 python3 pretrained_main.py -a resnet50 -b 512  --dist-url tcp://127.0.0.1:8080 --dist-backend nccl --rank 0 --world-size 1 --epochs 100 --multiprocessing-distributed --log pretrained_model_results/Resnet50 -atfn train_blurred  -avfn val_blurred /data/gpfs/datasets/Imagenet
 
+
+ 
