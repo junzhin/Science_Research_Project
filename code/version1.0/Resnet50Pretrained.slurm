@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name="Resnet50Tinydataset"
+#SBATCH --job-name="Resnet50"
 #SBATCH --account punim1006
 #SBATCH --qos="gpgpuresplat"
 #SBATCH --partition gpgpu
