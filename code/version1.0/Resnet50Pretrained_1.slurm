@@ -13,13 +13,7 @@
 #SBATCH --gres=gpu:4
 #SBATCH --hint=nomultithread
 
-#SBATCH --nodes=N            # total number of nodes (N to be defined)
-#SBATCH --ntasks-per-node=4  # number of tasks per node (here 4 tasks, or 1 task per GPU)
-#SBATCH --gres=gpu:4         # number of GPUs reserved per node (here 4, or all the GPUs)
-#SBATCH --cpus-per-task=10   # number of cores per task (4x10 = 40 cores, or all the cores)
-
-
-
+ 
 #SBATCH -o slurm.%N.%j.out # STDOUT 
 #SBATCH -e slurm.%N.%j.err # STDERR
 
