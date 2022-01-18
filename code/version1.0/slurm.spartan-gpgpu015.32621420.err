@@ -1,2 +1,7 @@
 srun: Warning: can't run 1 processes on 2 nodes, setting nnodes to 1
 srun: Warning: can't run 1 processes on 2 nodes, setting nnodes to 1
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 32621420.1 ON spartan-gpgpu022 CANCELLED AT 2022-01-19T02:28:15 ***
+slurmstepd: error: *** JOB 32621420 ON spartan-gpgpu015 CANCELLED AT 2022-01-19T02:28:15 ***
+slurmstepd: error: *** STEP 32621420.0 ON spartan-gpgpu015 CANCELLED AT 2022-01-19T02:28:15 ***
