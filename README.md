@@ -15,7 +15,7 @@
 
 # Datasets
 - External dataset 1: 
-- External dataset 2: 
+- External dataset 2: Face-blurred ILSVRC2012–2017 classification: https://image-net.org/download-images.php
 ### PS: Some datasets are not used in the report.
 
 # Directory
