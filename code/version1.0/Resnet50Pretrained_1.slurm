@@ -11,7 +11,6 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --time=0-01:00:00
 #SBATCH --gres=gpu:4
-#SBATCH --hint=nomultithread
 
  
 #SBATCH -o slurm.%N.%j.out # STDOUT 
