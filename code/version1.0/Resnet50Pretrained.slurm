@@ -8,7 +8,7 @@
 #SBATCH --ntasks=4
 #SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:4
-#SBATCH --time=0-24:00:00
+#SBATCH --time=0-72:00:00
 
 
 #SBATCH -o slurm.%N.%j.out # STDOUT 
