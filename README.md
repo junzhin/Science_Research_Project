@@ -22,16 +22,12 @@
 - `data`: Contain All preprocessed files and small external datasets supporting the analysis.
 - `plots_results`: All plots and ouputresults both for model training and reporting writting.
 - `code`: 
-
+- `pytorch_imagenet_example`:
 
 
 # Other Descriptions:
-- Run notebooks in the listed order above and ensure you have run the notebook 0 to download the raw data beforehand.
-- Make sure to change the filepath to your local machine if you intend to run the codes above under a different environment.
-- Changing filepath is just to chang first disk name,and the rest are the same.
-- To sucessfully run the notebooks,you must change all filepaths in notebooks
-- Some plots are not saved by notebook auto-generation and they are saved through manual screenshot, but they are all there, if you are in doubt, check them out!
-
+-     
+-  
 
 
 # References:
