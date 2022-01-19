@@ -87,7 +87,7 @@ best_acc1 = 0
 
 def main():
     args = parser.parse_args()
-
+    
     if args.seed is not None:
         random.seed(args.seed)
         torch.manual_seed(args.seed)
@@ -136,6 +136,8 @@ def main_worker(gpu, ngpus_per_node, args):
             args.rank = args.rank * ngpus_per_node + gpu
         dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
                                 world_size=args.world_size, rank=args.rank)
+
+    print("Pass4!!\n")
     #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
     # create model
     if args.pretrained:
@@ -179,6 +181,7 @@ def main_worker(gpu, ngpus_per_node, args):
             # model = torch.nn.DataParallel(model)
             model = torch.nn.DataParallel(model).cuda()
             #model = torch.nn.DataParallel(model,device_ids=range(torch.cuda.device_count()))
+
 
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
@@ -260,13 +263,19 @@ def main_worker(gpu, ngpus_per_node, args):
         validate(val_loader, model, criterion, args)
         return
 
+
+    
+
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             train_sampler.set_epoch(epoch)
         adjust_learning_rate(optimizer, epoch, args)
 
+
         # train for one epoch
         train(train_loader, model, criterion, optimizer, epoch, args)
+
+
 
         # evaluate on validation set
         acc1 = validate(val_loader, model, criterion, args)
@@ -285,6 +294,7 @@ def main_worker(gpu, ngpus_per_node, args):
                 'best_acc1': best_acc1,
                 'optimizer' : optimizer.state_dict(),
             }, is_best, saving_dir = args.log)
+
 
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
@@ -306,6 +316,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         # measure data loading time
         data_time.update(time.time() - end)
 
+
         if args.gpu is not None:
             images = images.cuda(args.gpu, non_blocking=True)
         if torch.cuda.is_available():
@@ -320,8 +331,8 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         losses.update(loss.item(), images.size(0))
         top1.update(acc1[0], images.size(0))
         top5.update(acc5[0], images.size(0))
-
         # compute gradient and do SGD step
+    
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()

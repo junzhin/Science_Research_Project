@@ -2,15 +2,15 @@ Use GPU: 0 for training
 => creating model 'resnet50'
 => loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
 => loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
-Use GPU: 2 for training
-=> creating model 'resnet50'
-=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
-=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
 Use GPU: 1 for training
 => creating model 'resnet50'
 => loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
 => loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
 Use GPU: 3 for training
+=> creating model 'resnet50'
+=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
+=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
+Use GPU: 2 for training
 => creating model 'resnet50'
 => loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
 => loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
