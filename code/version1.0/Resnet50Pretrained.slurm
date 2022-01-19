@@ -21,7 +21,7 @@
 
 source activate base 
 
-python3 pretrained_main.py -a resnet50 -b 512  --dist-url tcp://127.0.0.1:8080 --dist-backend nccl --rank 0 --world-size 1 --epochs 85 --multiprocessing-distributed --resume /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar  --log pretrained_model_results/Resnet50 -atfn train_blurred  -avfn val_blurred /data/gpfs/datasets/Imagenet
+python3 pretrained_main.py -a resnet50 -b 256 --dist-url tcp://127.0.0.1:8080 --dist-backend nccl --rank 0 --world-size 1 --epochs 85 --multiprocessing-distributed --resume /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar  --log pretrained_model_results/Resnet50 -atfn train_blurred  -avfn val_blurred /data/gpfs/datasets/Imagenet
 
 
  
