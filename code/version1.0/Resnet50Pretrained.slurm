@@ -6,9 +6,9 @@
 #SBATCH --partition gpgpu
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=8
 #SBATCH --gres=gpu:4
-#SBATCH --time=0-72:00:00
+#SBATCH --time=0-96:00:00
 #SBATCH --mem=16G
 
 
