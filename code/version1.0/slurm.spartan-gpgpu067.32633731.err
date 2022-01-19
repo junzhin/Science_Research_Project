@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "pretrained_main.py", line 486, in <module>
+    main()
+  File "pretrained_main.py", line 119, in main
+    mp.spawn(main_worker, nprocs=ngpus_per_node, args=(ngpus_per_node, args))
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 230, in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method='spawn')
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 188, in start_processes
+    while not context.join():
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 150, in join
+    raise ProcessRaisedException(msg, error_index, failed_process.pid)
+torch.multiprocessing.spawn.ProcessRaisedException: 
+
+-- Process 0 terminated with the following error:
+Traceback (most recent call last):
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 59, in _wrap
+    fn(i, *args)
+  File "/home/junzhin/Project/Summer_project/code/version1.0/pretrained_main.py", line 239, in main_worker
+    normalize,
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torchvision/datasets/folder.py", line 313, in __init__
+    is_valid_file=is_valid_file)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torchvision/datasets/folder.py", line 145, in __init__
+    classes, class_to_idx = self.find_classes(self.root)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torchvision/datasets/folder.py", line 221, in find_classes
+    return find_classes(directory)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torchvision/datasets/folder.py", line 40, in find_classes
+    classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
+FileNotFoundError: [Errno 2] No such file or directory: '/data/gpfs/datasets/Imagene/train_blurred'
+

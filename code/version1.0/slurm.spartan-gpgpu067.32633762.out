@@ -1,0 +1,19 @@
+Use GPU: 3 for training
+=> creating model 'resnet50'
+=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
+=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
+Use GPU: 2 for training
+=> creating model 'resnet50'
+=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
+=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
+Use GPU: 0 for training
+=> creating model 'resnet50'
+=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
+=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
+Use GPU: 1 for training
+=> creating model 'resnet50'
+=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar'
+=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet50checkpoint.pth.tar' (epoch 15)
+Epoch: [15][   0/2503]	Time 11.449 (11.449)	Data  7.178 ( 7.178)	Loss 1.9788e+00 (1.9788e+00)	Acc@1  51.56 ( 51.56)	Acc@5  77.34 ( 77.34)
+Epoch: [15][   0/2503]	Time 11.483 (11.483)	Data  7.100 ( 7.100)	Loss 1.9565e+00 (1.9565e+00)	Acc@1  59.38 ( 59.38)	Acc@5  81.25 ( 81.25)
+Epoch: [15][   0/2503]	Time 11.403 (11.403)	Data  7.379 ( 7.379)	Loss 1.8135e+00 (1.8135e+00)	Acc@1  57.03 ( 57.03)	Acc@5  82.03 ( 82.03)
