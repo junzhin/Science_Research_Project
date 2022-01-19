@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name="Resnet50"
+#SBATCH --job-name="Resnet50Epoch85"
 #SBATCH --account punim1006
 #SBATCH --qos="gpgpuresplat"
 #SBATCH --partition gpgpu
