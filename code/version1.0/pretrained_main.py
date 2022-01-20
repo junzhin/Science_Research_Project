@@ -228,6 +228,8 @@ def main_worker(gpu, ngpus_per_node, args):
 
     traindir = os.path.join(args.data, training_filename)
     valdir = os.path.join(args.data, valid_filename)
+    print(traindir + "\n")
+    print(valdir + "\n")
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
 
