@@ -9,20 +9,32 @@
 
 
 # Dependencies:
-- Language: i.e
+- Language: i.e Python 3.7.11
 - Packages / Libraries:
+  - pandas
+  - torch>=1.7.0
+  - torchvision
+  - qpsolvers
+  - numpy
+  - prettytable
+  - tqdm
+  - scikit-learn
+  - webcolors  
 
 
 # Datasets
-- External dataset 1: 
-- External dataset 2: Face-blurred ILSVRC2012–2017 classification: https://image-net.org/download-images.php
+- External dataset 1: Face-blurred ILSVRC2012–2017 classification -> https://image-net.org/download-images.php
+- External dataset 2: Office31 Dataset -> https://faculty.cc.gatech.edu/~judy/domainadapt/#datasets_code
+- External dataset 3: OfficeHome Dataset -> https://www.hemanthdv.org/officeHomeDataset.html
 ### PS: Some datasets are not used in the report.
 
 # Directory
 - `data`: Contain All preprocessed files and small external datasets supporting the analysis.
 - `plots_results`: All plots and ouputresults both for model training and reporting writting.
-- `code`: 
-- `pytorch_imagenet_example`:
+- `code`: Contain all code implementations in this project
+  - `testing`: for initial debugging purposes
+  -  `version1.0`: 
+- `pytorch_imagenet_example`: copied from https://github.com/pytorch/examples/tree/master/imagenet
 
 
 # Other Descriptions:
