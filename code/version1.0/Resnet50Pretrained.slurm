@@ -7,13 +7,13 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --gres=gpu:4
-#SBATCH --time=72:00:00
+#SBATCH --gres=gpu:2
+#SBATCH --time=96:00:00
 #SBATCH --mem=16G
 
 
-#SBATCH -o slurm.%N.%j.out # STDOUT 
-#SBATCH -e slurm.%N.%j.err # STDERR
+#SBATCH -o Pretrained_Resnet50full.%N.%j.out # STDOUT 
+#SBATCH -e Pretrained_Resnet50full.%N.%j.err # STDERR
 
 
 #SBATCH --mail-type=ALL

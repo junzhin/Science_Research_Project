@@ -268,12 +268,16 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.subset:
         if args.subsetpath is not None:
             masked_label_list= pd.read_csv(args.subsetpath, header = None)
+            masked_classes = [train_dataset_initial.class_to_idx[c] for c in list(masked_label_list[0])]
             print(masked_label_list)
+            print(masked_classes)
             print("--"*20)
-            chosen_index_train = [train_dataset_initial.class_to_idx[i] for i in train_dataset_initial.classes if i not in list(masked_label_list[0])]
-            chosen_index_valid = [valid_dataset_initial.class_to_idx[i] for i in valid_dataset_initial.classes if i not in list(masked_label_list[0])]
+            chosen_index_train = [ index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
+            chosen_index_valid = [ index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
             train_dataset = torch.utils.data.Subset(train_dataset_initial, chosen_index_train)
             valid_dataset = torch.utils.data.Subset(valid_dataset_initial, chosen_index_valid)
+            print(len(chosen_index_train))
+            print(len(train_dataset))
 
         else:
             warnings.warn('Since you do not specify the csv file for the class labels you are going to mask, so no subset model training will be used in this case!')
