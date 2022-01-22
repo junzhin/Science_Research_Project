@@ -21,6 +21,8 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
+from torch.utils.tensorboard import SummaryWriter
+
 
 model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
@@ -315,12 +317,12 @@ def main_worker(gpu, ngpus_per_node, args):
 
 
         # train for one epoch
-        train(train_loader, model, criterion, optimizer, epoch, args)
+        train(train_loader, model, criterion, optimizer, epoch, args, epoch)
 
 
 
         # evaluate on validation set
-        acc1 = validate(val_loader, model, criterion, args)
+        acc1 = validate(val_loader, model, criterion, args, epoch)
 
         # remember best acc@1 and save checkpoint
         is_best = acc1 > best_acc1
@@ -339,7 +341,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
 
 
-def train(train_loader, model, criterion, optimizer, epoch, args):
+def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
     batch_time = AverageMeter('Time', ':6.3f')
     data_time = AverageMeter('Data', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')
@@ -350,8 +352,13 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         [batch_time, data_time, losses, top1, top5],
         prefix="Epoch: [{}]".format(epoch))
 
+    writer = SummaryWriter(log_dir = args.log + "/runs/",coment = 'training')
+
     # switch to train mode
     model.train()
+    total_losses = 0.0
+    total_correct_count_top1= 0
+    total_correct_count_top5= 0
 
     end = time.time()
     for i, (images, target) in enumerate(train_loader):
@@ -371,6 +378,9 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         # measure accuracy and record loss
         acc1, acc5 = accuracy(output, target, topk=(1, 5))
         losses.update(loss.item(), images.size(0))
+        total_losses += loss
+        total_correct_count_top1 += acc1 * target.size(0)/100
+        total_correct_count_top5 += acc5 * target.size(0)/100
         top1.update(acc1[0], images.size(0))
         top5.update(acc5[0], images.size(0))
         # compute gradient and do SGD step
@@ -387,7 +397,13 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
             progress.display(i)
 
 
-def validate(val_loader, model, criterion, args):
+        writer.add_scalar('Loss/train',total_losses, epoch_num)
+        writer.add_scalar('Accuracy/top1/train', total_correct_count_top1/len(train_loader), epoch_num)
+        writer.add_scalar('Accuracy/top5/train',total_correct_count_top5/len(train_loader) , epoch_num)
+        writer.flush()
+        writer.close()
+
+def validate(val_loader, model, criterion, args,epoch_num = 0):
     batch_time = AverageMeter('Time', ':6.3f', Summary.NONE)
     losses = AverageMeter('Loss', ':.4e', Summary.NONE)
     top1 = AverageMeter('Acc@1', ':6.2f', Summary.AVERAGE)
@@ -396,10 +412,13 @@ def validate(val_loader, model, criterion, args):
         len(val_loader),
         [batch_time, losses, top1, top5],
         prefix='Test: ')
-
+    
+    writer = SummaryWriter(log_dir = args.log + "/runs/",coment = 'validating')
     # switch to evaluate mode
     model.eval()
-
+    total_losses = 0.0
+    total_correct_count_top1= 0
+    total_correct_count_top5= 0
     with torch.no_grad():
         end = time.time()
         for i, (images, target) in enumerate(val_loader):
@@ -414,6 +433,9 @@ def validate(val_loader, model, criterion, args):
 
             # measure accuracy and record loss
             acc1, acc5 = accuracy(output, target, topk=(1, 5))
+            total_losses += loss
+            total_correct_count_top1 += acc1 * target.size(0)/100
+            total_correct_count_top5 += acc5 * target.size(0)/100
             losses.update(loss.item(), images.size(0))
             top1.update(acc1[0], images.size(0))
             top5.update(acc5[0], images.size(0))
@@ -426,6 +448,12 @@ def validate(val_loader, model, criterion, args):
                 progress.display(i)
 
         progress.display_summary()
+        writer.add_scalar('Loss/test',total_losses, epoch_num)
+        writer.add_scalar('Accuracy/top1/test', total_correct_count_top1/len(val_loader), epoch_num)
+        writer.add_scalar('Accuracy/top5/test',total_correct_count_top5/len(val_loader) , epoch_num)
+        writer.flush()
+        writer.close()
+
 
     return top1.avg
 
