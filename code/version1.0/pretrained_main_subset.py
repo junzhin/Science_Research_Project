@@ -352,7 +352,10 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
         [batch_time, data_time, losses, top1, top5],
         prefix="Epoch: [{}]".format(epoch))
 
-    writer = SummaryWriter(log_dir = args.log + "/runs/",coment = 'training')
+    if args.log == '':
+        writer = SummaryWriter(log_dir = args.log, comment = 'training')
+    else:
+        writer = SummaryWriter(comment = 'training')
 
     # switch to train mode
     model.train()
@@ -412,8 +415,13 @@ def validate(val_loader, model, criterion, args,epoch_num = 0):
         len(val_loader),
         [batch_time, losses, top1, top5],
         prefix='Test: ')
-    
-    writer = SummaryWriter(log_dir = args.log + "/runs/",coment = 'validating')
+
+
+
+    if args.log == '':
+        writer = SummaryWriter(log_dir = args.log, comment = 'validating')
+    else:
+        writer = SummaryWriter(comment = 'validating')
     # switch to evaluate mode
     model.eval()
     total_losses = 0.0
