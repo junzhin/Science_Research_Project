@@ -470,10 +470,10 @@ def validate(val_loader, model, criterion, args,epoch_num = 0):
 ##################################################################
 #  Adjusting the saving location of checkpoints and best models
 
-def save_checkpoint(state, is_best, filename='checkpoint.pth.tar', saving_dir = ''):
+def save_checkpoint(state, is_best, filename='/checkpoint.pth.tar', saving_dir = ''):
     torch.save(state, saving_dir + filename)
     if is_best:
-        shutil.copyfile(saving_dir + filename, saving_dir + 'model_best.pth.tar')
+        shutil.copyfile(saving_dir + filename, saving_dir + '/model_best.pth.tar')
 
 ##################################################################
 
