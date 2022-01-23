@@ -286,8 +286,8 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
     
-
-
+ 
+    ##############################################
 
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
