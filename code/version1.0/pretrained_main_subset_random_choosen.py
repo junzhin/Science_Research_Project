@@ -286,8 +286,8 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
     
-
-
+ 
+    ##############################################
 
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
@@ -355,7 +355,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
     if args.log == '':
         writer = SummaryWriter(comment = 'training')
     else:
-        writer = SummaryWriter(log_dir = args.log, comment = 'training')
+        writer = SummaryWriter(log_dir = args.log + '/logtrainresults/', comment = 'training')
      
 
     # switch to train mode
@@ -422,7 +422,7 @@ def validate(val_loader, model, criterion, args,epoch_num = 0):
     if args.log == '':
         writer = SummaryWriter(comment = 'validating')
     else:
-        writer = SummaryWriter(log_dir = args.log, comment = 'validating')
+        writer = SummaryWriter(log_dir = args.log + "/logtestresults/", comment = 'validating')
     # switch to evaluate mode
     model.eval()
     total_losses = 0.0
