@@ -1,0 +1,152 @@
+Use GPU: 0 for training
+=> creating model 'resnet18'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+            0                    1
+0   n03400231           frying_pan
+1   n04004767              printer
+2   n02909870               bucket
+3   n03485407   hand-held_computer
+4   n04356056           sunglasses
+5   n04597913         wooden_spoon
+6   n03271574         electric_fan
+7   n03983396           pop_bottle
+8   n03376595        folding_chair
+9   n03691459          loudspeaker
+10  n03832673             notebook
+11  n04041544                radio
+12  n03259280           dutch_oven
+13  n03481172               hammer
+14  n04557648         water_bottle
+15  n03085013    computer_keyboard
+16  n03995372          power_drill
+17  n02769748             backpack
+18  n04591713          wine_bottle
+19  n02992529   cellular_telephone
+20  n03127747         crash_helmet
+21  n04099969        rocking_chair
+22  n03793489                mouse
+23  n03180011     desktop_computer
+24  n04344873         studio_couch
+25  n03937543          pill_bottle
+26  n03063599           coffee_mug
+27  n03379051      football_helmet
+28  n04154565          screwdriver
+29  n03982430           pool_table
+30  n03642806               laptop
+31  n02791124         barber_chair
+32  n03388183         fountain_pen
+33  n03201208         dining_table
+34  n04116512        rubber_eraser
+35  n03782006              monitor
+36  n03792782        mountain_bike
+37  n04505470  typewriter_keyboard
+38  n04070727         refrigerator
+39  n03187595       dial_telephone
+40  n02823428          beer_bottle
+[567, 742, 463, 590, 837, 910, 545, 737, 559, 632, 681, 754, 544, 587, 898, 508, 740, 414, 907, 487, 518, 765, 673, 527, 831, 720, 504, 560, 784, 736, 620, 423, 563, 532, 767, 664, 671, 878, 760, 528, 440]
+----------------------------------------
+1228502
+47947
+Use GPU: 1 for training
+=> creating model 'resnet18'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+            0                    1
+0   n03400231           frying_pan
+1   n04004767              printer
+2   n02909870               bucket
+3   n03485407   hand-held_computer
+4   n04356056           sunglasses
+5   n04597913         wooden_spoon
+6   n03271574         electric_fan
+7   n03983396           pop_bottle
+8   n03376595        folding_chair
+9   n03691459          loudspeaker
+10  n03832673             notebook
+11  n04041544                radio
+12  n03259280           dutch_oven
+13  n03481172               hammer
+14  n04557648         water_bottle
+15  n03085013    computer_keyboard
+16  n03995372          power_drill
+17  n02769748             backpack
+18  n04591713          wine_bottle
+19  n02992529   cellular_telephone
+20  n03127747         crash_helmet
+21  n04099969        rocking_chair
+22  n03793489                mouse
+23  n03180011     desktop_computer
+24  n04344873         studio_couch
+25  n03937543          pill_bottle
+26  n03063599           coffee_mug
+27  n03379051      football_helmet
+28  n04154565          screwdriver
+29  n03982430           pool_table
+30  n03642806               laptop
+31  n02791124         barber_chair
+32  n03388183         fountain_pen
+33  n03201208         dining_table
+34  n04116512        rubber_eraser
+35  n03782006              monitor
+36  n03792782        mountain_bike
+37  n04505470  typewriter_keyboard
+38  n04070727         refrigerator
+39  n03187595       dial_telephone
+40  n02823428          beer_bottle
+[567, 742, 463, 590, 837, 910, 545, 737, 559, 632, 681, 754, 544, 587, 898, 508, 740, 414, 907, 487, 518, 765, 673, 527, 831, 720, 504, 560, 784, 736, 620, 423, 563, 532, 767, 664, 671, 878, 760, 528, 440]
+----------------------------------------
+1228502
+47947

@@ -1,0 +1,60 @@
+Use GPU: 0 for training
+=> creating model 'resnet18'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Use GPU: 1 for training
+=> creating model 'resnet18'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------

@@ -1,0 +1,92 @@
+Use GPU: 0 for training
+=> creating model 'resnet18'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+            0             1
+0   n04004767       printer
+1   n02909870        bucket
+2   n03481172        hammer
+3   n03782006       monitor
+4   n04154565   screwdriver
+5   n04070727  refrigerator
+6   n03642806        laptop
+7   n02769748      backpack
+8   n03832673      notebook
+9   n04041544         radio
+10  n03793489         mouse
+[742, 463, 587, 664, 784, 760, 620, 414, 681, 754, 673]
+----------------------------------------
+1266766
+49447
+Use GPU: 1 for training
+=> creating model 'resnet18'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+            0             1
+0   n04004767       printer
+1   n02909870        bucket
+2   n03481172        hammer
+3   n03782006       monitor
+4   n04154565   screwdriver
+5   n04070727  refrigerator
+6   n03642806        laptop
+7   n02769748      backpack
+8   n03832673      notebook
+9   n04041544         radio
+10  n03793489         mouse
+[742, 463, 587, 664, 784, 760, 620, 414, 681, 754, 673]
+----------------------------------------
+1266766
+49447
