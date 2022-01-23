@@ -223,7 +223,7 @@ def main_worker(gpu, ngpus_per_node, args):
     cudnn.benchmark = True
 
     # Data loading code
-    ##############################################
+    ###################################################
     if args.alter_trainingfile_name is not None:
         training_filename = args.alter_trainingfile_name
     else:
@@ -232,7 +232,7 @@ def main_worker(gpu, ngpus_per_node, args):
         valid_filename  = args.alter_validationfile_name
     else:
         valid_filename = 'val'
-    ##############################################
+    ###################################################
 
     traindir = os.path.join(args.data, training_filename)
     valdir = os.path.join(args.data, valid_filename)
