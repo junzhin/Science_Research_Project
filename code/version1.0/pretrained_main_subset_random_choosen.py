@@ -7,6 +7,7 @@ from termios import PARENB
 import time
 import warnings
 import pandas as pd
+import random
 from enum import Enum
 
 import torch
@@ -89,6 +90,7 @@ parser.add_argument("-sp", "--subsetpath", default = False, type = str, help =
 'you must give a csv file containing' 
 'the labels you want to exclude! Note that your class'
 'label should be your first column in the csv file')
+parser.add_argument("-r", "--randomchosenmode", action='store_true')
 ###############################################################################
 
 best_acc1 = 0
@@ -267,28 +269,49 @@ def main_worker(gpu, ngpus_per_node, args):
 
     print(valid_dataset_initial)
     print("--"*20)
+
     if args.subset:
         if args.subsetpath is not None:
             masked_label_list= pd.read_csv(args.subsetpath, header = None)
-            masked_classes = [train_dataset_initial.class_to_idx[c] for c in list(masked_label_list[0])]
             print(masked_label_list)
-            print(masked_classes)
-            print("--"*20)
-            chosen_index_train = [ index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
-            chosen_index_valid = [ index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
+            if args.randomchosenmode:
+                # fix the random seed to produce the replicable sampling results
+                random.seed(1000)
+
+                # select the classes after excluding the masked classes 
+                exclude_masked_classes = [one_class for one_class in train_dataset_initial.classes if one_class not in list(masked_label_list[0])]
+                print(len(exclude_masked_classes))
+                random_selected_classes = random.sample(exclude_masked_classes, len(masked_label_list))
+                chosen_classes_labels_indices = [train_dataset_initial.class_to_idx[each] for each in train_dataset_initial.classes if each not in random_selected_classes]
+                print(len(chosen_classes_labels_indices))
+
+                chosen_classes_labels_names = [each for each in train_dataset_initial.classes if each not in random_selected_classes]
+                chosen_classes_labels_names_df = pd.Dataframe(chosen_classes_labels_names)
+                print(chosen_classes_labels_names_df)
+                chosen_classes_labels_names_df.to_csv(args.log + '/random_control_classes_list.csv', index = False, header = False)
+
+                # Find all relevant indices in the training and validating sets
+                chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] in chosen_classes_labels_indices]
+                chosen_index_valid = [index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] in chosen_classes_labels_indices]
+            else:
+                masked_classes = [train_dataset_initial.class_to_idx[c] for c in list(masked_label_list[0])]
+                print(masked_classes)
+                print("--"*20)
+                
+                chosen_index_train = [ index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
+                chosen_index_valid = [ index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
+
             train_dataset = torch.utils.data.Subset(train_dataset_initial, chosen_index_train)
             valid_dataset = torch.utils.data.Subset(valid_dataset_initial, chosen_index_valid)
             print(len(chosen_index_train))
             print(len(chosen_index_valid))
-
         else:
             warnings.warn('Since you do not specify the csv file for the class labels you are going to mask, so no subset model training will be used in this case!')
     else:
         train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
-    
+        
  
     ##############################################
-
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
     else:
