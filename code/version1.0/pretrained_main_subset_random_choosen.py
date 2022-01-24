@@ -286,9 +286,11 @@ def main_worker(gpu, ngpus_per_node, args):
                 print(len(chosen_classes_labels_indices))
 
                 chosen_classes_labels_names = [each for each in train_dataset_initial.classes if each not in random_selected_classes]
-                chosen_classes_labels_names_df = pd.Dataframe(chosen_classes_labels_names)
-                print(chosen_classes_labels_names_df)
-                chosen_classes_labels_names_df.to_csv(args.log + '/random_control_classes_list.csv', index = False, header = False)
+
+                # Save the random selected_classes to a csv file
+                random_selected_classes_labels_names_df = pd.DataFrame(random_selected_classes)
+                print(random_selected_classes_labels_names_df)
+                random_selected_classes_labels_names_df.to_csv(args.log + '/random_selected_classes_labels.csv', index = False, header = False)
 
                 # Find all relevant indices in the training and validating sets
                 chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] in chosen_classes_labels_indices]
@@ -309,7 +311,7 @@ def main_worker(gpu, ngpus_per_node, args):
             warnings.warn('Since you do not specify the csv file for the class labels you are going to mask, so no subset model training will be used in this case!')
     else:
         train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
-        
+
  
     ##############################################
     if args.distributed:
