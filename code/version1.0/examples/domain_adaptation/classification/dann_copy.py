@@ -6,6 +6,7 @@ import argparse
 import shutil
 import os.path as osp
 
+
 import torch
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
@@ -26,6 +27,9 @@ from common.utils.metric import accuracy, ConfusionMatrix
 from common.utils.meter import AverageMeter, ProgressMeter
 from common.utils.logger import CompleteLogger
 from common.utils.analysis import collect_feature, tsne, a_distance
+
+from torch.utils.tensorboard import SummaryWriter
+
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
