@@ -381,8 +381,8 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
         acc1, acc5 = accuracy(output, target, topk=(1, 5))
         losses.update(loss.item(), images.size(0))
         total_losses += loss
-        total_correct_count_top1 += acc1 * target.size(0)/100
-        total_correct_count_top5 += acc5 * target.size(0)/100
+        total_correct_count_top1 += acc1 
+        total_correct_count_top5 += acc5
         top1.update(acc1[0], images.size(0))
         top5.update(acc5[0], images.size(0))
         # compute gradient and do SGD step
@@ -399,11 +399,11 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
             progress.display(i)
 
 
-        writer.add_scalar('Loss/train',total_losses, epoch_num)
-        writer.add_scalar('Accuracy/top1/train', total_correct_count_top1/len(train_loader), epoch_num)
-        writer.add_scalar('Accuracy/top5/train',total_correct_count_top5/len(train_loader) , epoch_num)
-        writer.flush()
-        writer.close()
+    writer.add_scalar('Loss/train',total_losses, epoch_num)
+    writer.add_scalar('Accuracy/top1/train', total_correct_count_top1/len(train_loader), epoch_num)
+    writer.add_scalar('Accuracy/top5/train',total_correct_count_top5/len(train_loader) , epoch_num)
+    writer.flush()
+    writer.close()
 
 def validate(val_loader, model, criterion, args,epoch_num = 0):
     batch_time = AverageMeter('Time', ':6.3f', Summary.NONE)
@@ -441,8 +441,8 @@ def validate(val_loader, model, criterion, args,epoch_num = 0):
             # measure accuracy and record loss
             acc1, acc5 = accuracy(output, target, topk=(1, 5))
             total_losses += loss
-            total_correct_count_top1 += acc1 * target.size(0)/100
-            total_correct_count_top5 += acc5 * target.size(0)/100
+            total_correct_count_top1 += acc1
+            total_correct_count_top5 += acc5
             losses.update(loss.item(), images.size(0))
             top1.update(acc1[0], images.size(0))
             top5.update(acc5[0], images.size(0))
