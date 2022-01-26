@@ -454,12 +454,12 @@ def validate(val_loader, model, criterion, args,epoch_num = 0):
             if i % args.print_freq == 0:
                 progress.display(i)
 
-        progress.display_summary()
-        writer.add_scalar('Loss/test',total_losses, epoch_num)
-        writer.add_scalar('Accuracy/top1/test', total_correct_count_top1/len(val_loader), epoch_num)
-        writer.add_scalar('Accuracy/top5/test',total_correct_count_top5/len(val_loader) , epoch_num)
-        writer.flush()
-        writer.close()
+    progress.display_summary()
+    writer.add_scalar('Loss/test',total_losses, epoch_num)
+    writer.add_scalar('Accuracy/top1/test', total_correct_count_top1/len(val_loader), epoch_num)
+    writer.add_scalar('Accuracy/top5/test',total_correct_count_top5/len(val_loader) , epoch_num)
+    writer.flush()
+    writer.close()
 
 
     return top1.avg

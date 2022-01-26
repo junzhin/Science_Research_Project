@@ -426,11 +426,11 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
             progress.display(i)
 
 
-        writer.add_scalar('Loss/train',total_losses, epoch_num)
-        writer.add_scalar('Accuracy/top1/train', total_correct_count_top1/len(train_loader), epoch_num)
-        writer.add_scalar('Accuracy/top5/train',total_correct_count_top5/len(train_loader) , epoch_num)
-        writer.flush()
-        writer.close()
+    writer.add_scalar('Loss/train',total_losses, epoch_num)
+    writer.add_scalar('Accuracy/top1/train', total_correct_count_top1/len(train_loader), epoch_num)
+    writer.add_scalar('Accuracy/top5/train',total_correct_count_top5/len(train_loader) , epoch_num)
+    writer.flush()
+    writer.close()
 
 def validate(val_loader, model, criterion, args,epoch_num = 0):
     batch_time = AverageMeter('Time', ':6.3f', Summary.NONE)
