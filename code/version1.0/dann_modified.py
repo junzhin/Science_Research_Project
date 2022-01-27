@@ -151,9 +151,10 @@ def main(args: argparse.Namespace):
         train(train_source_iter, train_target_iter, classifier, domain_adv, optimizer,
               lr_scheduler, epoch, args)
 
+        
         if epoch % 1 == 0:
             # evaluate on validation set
-            acc1 = validate(val_loader, classifier, args)
+            acc1 = validate(val_loader, classifier, args, epoch=epoch)
 
             # remember best acc@1 and save checkpoint
             torch.save(classifier.state_dict(), logger.get_checkpoint_path('latest'))
@@ -190,6 +191,15 @@ def train(train_source_iter: ForeverDataIterator, train_target_iter: ForeverData
     # switch to train mode
     model.train()
     domain_adv.train()
+    total_losses = 0.0
+    total_cls_accs= 0.0
+    total_domain_accs= 0.0
+
+    if args.log == 'dann':
+        writer = SummaryWriter(comment = 'training')
+    else:
+        writer = SummaryWriter(log_dir = args.log + '/logtrainresults/', comment = 'training')
+    
 
     end = time.time()
     for i in range(args.iters_per_epoch):
@@ -213,8 +223,12 @@ def train(train_source_iter: ForeverDataIterator, train_target_iter: ForeverData
         transfer_loss = domain_adv(f_s, f_t)
         domain_acc = domain_adv.domain_discriminator_accuracy
         loss = cls_loss + transfer_loss * args.trade_off
-
         cls_acc = accuracy(y_s, labels_s)[0]
+
+        # update the log results:
+        total_losses += loss.item()
+        total_domain_accs += domain_acc.item()
+        total_cls_accs += cls_accs.item()
 
         losses.update(loss.item(), x_s.size(0))
         cls_accs.update(cls_acc.item(), x_s.size(0))
@@ -232,9 +246,17 @@ def train(train_source_iter: ForeverDataIterator, train_target_iter: ForeverData
 
         if i % args.print_freq == 0:
             progress.display(i)
+        
+    writer.add_scalar('Loss/train',total_losses, epoch)
+    writer.add_scalar('Accuracy/domain_accs/train', total_domain_accs/args.iters_per_epoch, epoch)
+    writer.add_scalar('Accuracy/cls_accs/train',total_cls_accs/args.iters_per_epoch, epoch)
+    writer.flush()
+    writer.close()
+
+    return
 
 
-def validate(val_loader: DataLoader, model: ImageClassifier, args: argparse.Namespace) -> float:
+def validate(val_loader: DataLoader, model: ImageClassifier, args: argparse.Namespace, epoch: int) -> float:
     batch_time = AverageMeter('Time', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')
     top1 = AverageMeter('Acc@1', ':6.2f')
@@ -251,6 +273,15 @@ def validate(val_loader: DataLoader, model: ImageClassifier, args: argparse.Name
         confmat = ConfusionMatrix(len(classes))
     else:
         confmat = None
+    
+    total_losses = 0.0
+    total_acc1s= 0.0
+    total_acc5s= 0.0
+
+    if args.log == 'dann':
+        writer = SummaryWriter(comment = 'validating')
+    else:
+        writer = SummaryWriter(log_dir = args.log + '/logtestresults/', comment = 'validating')
 
     with torch.no_grad():
         end = time.time()
@@ -270,6 +301,11 @@ def validate(val_loader: DataLoader, model: ImageClassifier, args: argparse.Name
             top1.update(acc1.item(), images.size(0))
             top5.update(acc5.item(), images.size(0))
 
+            # update the log results
+            total_losses += loss.item()
+            total_acc1s += acc1.item()
+            total_acc5s += acc5.item()
+
             # measure elapsed time
             batch_time.update(time.time() - end)
             end = time.time()
@@ -281,6 +317,12 @@ def validate(val_loader: DataLoader, model: ImageClassifier, args: argparse.Name
               .format(top1=top1, top5=top5))
         if confmat:
             print(confmat.format(classes))
+
+        writer.add_scalar('Loss/test',total_losses, epoch)
+        writer.add_scalar('Accuracy/top1/test', total_acc1s/len(val_loader), epoch)
+        writer.add_scalar('Accuracy/top5/test',total_acc5s/len(val_loader), epoch)
+        writer.flush()
+        writer.close()
 
     return top1.avg
 
@@ -337,7 +379,7 @@ if __name__ == '__main__':
                         help='number of total epochs to run')
     parser.add_argument('-i', '--iters-per-epoch', default=1000, type=int,
                         help='Number of iterations per epoch')
-    parser.add_argument('-p', '--print-freq', default=100, type=int,
+    parser.add_argument('-p', '--print-freq', default=50, type=int,
                         metavar='N', help='print frequency (default: 100)')
     parser.add_argument('--seed', default=None, type=int,
                         help='seed for initializing training. ')

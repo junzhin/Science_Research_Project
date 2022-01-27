@@ -300,8 +300,8 @@ def main_worker(gpu, ngpus_per_node, args):
                 print(masked_classes)
                 print("--"*20)
                 
-                chosen_index_train = [ index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
-                chosen_index_valid = [ index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
+                chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
+                chosen_index_valid = [index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
 
             train_dataset = torch.utils.data.Subset(train_dataset_initial, chosen_index_train)
             valid_dataset = torch.utils.data.Subset(valid_dataset_initial, chosen_index_valid)
