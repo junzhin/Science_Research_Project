@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "../pretrained_main_subset.py", line 572, in <module>
+    main()
+  File "../pretrained_main_subset.py", line 126, in main
+    mp.spawn(main_worker, nprocs=ngpus_per_node, args=(ngpus_per_node, args))
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 230, in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method='spawn')
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 188, in start_processes
+    while not context.join():
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 150, in join
+    raise ProcessRaisedException(msg, error_index, failed_process.pid)
+torch.multiprocessing.spawn.ProcessRaisedException: 
+
+-- Process 0 terminated with the following error:
+Traceback (most recent call last):
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 59, in _wrap
+    fn(i, *args)
+  File "/home/junzhin/Project/Summer_project/code/version1.0/pretrained_main_subset.py", line 147, in main_worker
+    world_size=args.world_size, rank=args.rank)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/distributed/distributed_c10d.py", line 576, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/distributed/rendezvous.py", line 183, in _tcp_rendezvous_handler
+    store = _create_c10d_store(result.hostname, result.port, rank, world_size, timeout)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/distributed/rendezvous.py", line 158, in _create_c10d_store
+    hostname, port, world_size, start_daemon, timeout, multi_tenant=True
+RuntimeError: Address already in use
+
