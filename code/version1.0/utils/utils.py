@@ -7,7 +7,7 @@ from sklearn.cluster import KMeans
 # from spherecluster import SphericalKMeans
 import numpy as np
 import random
-import ipdb
+#import ipdb
 
 def get_random_recover_index(num):
     list_rand = list(range(num))

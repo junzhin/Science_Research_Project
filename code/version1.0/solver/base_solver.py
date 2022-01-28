@@ -1,3 +1,4 @@
+
 import torch
 import torch.nn as nn
 import os
@@ -7,6 +8,7 @@ import numpy as np
 import json
 from tools.lr_scheduler import StepwiseLR, InvLR
 import shutil
+from torch.utils.tensorboard import SummaryWriter
 
 class BaseSolver:
     def __init__(self, classifier, dataloaders, args, **kwargs):
