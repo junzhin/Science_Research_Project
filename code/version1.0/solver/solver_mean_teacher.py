@@ -1,13 +1,12 @@
 ## we conduct the DA methods following https://github.com/thuml/Transfer-Learning-Library, which gives better results than the common settings.
-
 import torch
 import os
 import math
 import time
 from .base_solver import BaseSolver
 import torch.nn.functional as F
-from utils.utils import AverageMeter, to_cuda, accuracy, accuracy_for_each_class, get_random_recover_index
 from dalib.ssl.temporal_ensemble import consistency_loss, ImageClassifierHead
+from utils.utils import AverageMeter, to_cuda, accuracy, accuracy_for_each_class, get_random_recover_index
 import copy
 
 
