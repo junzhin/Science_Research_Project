@@ -170,6 +170,9 @@ class BaseSolver:
         eval_classifier.eval()
         # self.classifier.eval()
         prec1 = AverageMeter()
+        
+        writer = SummaryWriter(log_dir = self.args.save_dir + '/logresults/', comment = 'testing')
+    
         if self.args.category_mean:
             counter_all_ft = torch.FloatTensor(self.args.num_class).fill_(0)
             counter_acc_ft = torch.FloatTensor(self.args.num_class).fill_(0)

@@ -200,7 +200,7 @@ def main_worker(gpu, ngpus_per_node, args):
     backbone = models.__dict__[args.net](pretrained=True)
     pre_trained_feature = True
 
-    from common.modules.classifier import Classifier
+    from common.modules_ssl.classifier import Classifier
     if args.method == 'Fixmatch':
         args.strongaug = True
         classifier = Classifier(backbone, num_classes, pre_trained=pre_trained_feature)
