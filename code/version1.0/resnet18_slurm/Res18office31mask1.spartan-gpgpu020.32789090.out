@@ -1,0 +1,86 @@
+Use GPU: 1 for training
+=> creating model 'resnet18'
+=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1checkpoint.pth.tar'
+=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1checkpoint.pth.tar' (epoch 53)
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+           0                 1
+0  n03180011  desktop_computer
+1  n04004767           printer
+2  n03782006           monitor
+3  n02870880          bookcase
+4  n03793489             mouse
+5  n04009552         projector
+[527, 742, 664, 453, 673, 745]
+----------------------------------------
+1273267
+49697
+Use GPU: 0 for training
+=> creating model 'resnet18'
+=> loading checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1checkpoint.pth.tar'
+=> loaded checkpoint '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1checkpoint.pth.tar' (epoch 53)
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+           0                 1
+0  n03180011  desktop_computer
+1  n04004767           printer
+2  n03782006           monitor
+3  n02870880          bookcase
+4  n03793489             mouse
+5  n04009552         projector
+[527, 742, 664, 453, 673, 745]
+----------------------------------------
+1273267
+49697
