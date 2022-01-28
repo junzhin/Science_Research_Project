@@ -1,0 +1,36 @@
+
+
+------------ training start ------------------
+Sat Jan 29 03:04:54 2022
+-------------------------------------------
+{"T": 1.0, "base_lr": 0.01, "batchsize": 128, "bottleneck_dim": 256, "calculate_a_dis_only": false, "category_mean": false, "datapath": "./data/", "dataset": "Office31", "dist_backend": "nccl", "dist_url": "tcp://127.0.0.1:10013", "ema_m": 0.999, "entropy_cdan": false, "epochs": 30, "exp_name": "log_Office31_PseudoLabel_resnet50_W2D", "gpu": null, "iters_per_epoch": 250, "local_rank": 0, "log_interval": 100, "lr_schedule": "inv", "margin": 4.0, "mcdalnet_dis": "L1", "method": "PseudoLabel", "momentum": 0.9, "mu": 1, "multiprocessing_distributed": true, "net": "resnet50", "num_class": 31, "num_k": 4, "num_workers": 8, "onlyT": false, "p_cutoff": 0.95, "port": "12355", "rank": 0, "regular_only_feature": true, "resume": "", "save_dir": "../log/Office31/log_Office31_PseudoLabel_resnet50_W2D", "saving": false, "seed": 1, "source": "W", "strongaug": false, "target": "D", "test_only": false, "trade_off": 1.0, "transform_type": "randomcrop", "use_ema": false, "vat_eps": 1.0, "wd": 0.0001, "world_size": 1}
+
+
+------------ training start ------------------
+Sat Jan 29 03:15:45 2022
+-------------------------------------------
+{"T": 1.0, "base_lr": 0.01, "batchsize": 128, "bottleneck_dim": 256, "calculate_a_dis_only": false, "category_mean": false, "datapath": "./data/", "dataset": "Office31", "dist_backend": "nccl", "dist_url": "tcp://127.0.0.1:10013", "ema_m": 0.999, "entropy_cdan": false, "epochs": 30, "exp_name": "log_Office31_PseudoLabel_resnet50_W2D", "gpu": null, "iters_per_epoch": 250, "local_rank": 0, "log_interval": 100, "lr_schedule": "inv", "margin": 4.0, "mcdalnet_dis": "L1", "method": "PseudoLabel", "momentum": 0.9, "mu": 1, "multiprocessing_distributed": true, "net": "resnet50", "num_class": 31, "num_k": 4, "num_workers": 8, "onlyT": false, "p_cutoff": 0.95, "port": "12355", "rank": 0, "regular_only_feature": true, "resume": "", "save_dir": "../log/Office31/log_Office31_PseudoLabel_resnet50_W2D", "saving": false, "seed": 1, "source": "W", "strongaug": false, "target": "D", "test_only": false, "trade_off": 1.0, "transform_type": "randomcrop", "use_ema": false, "vat_eps": 1.0, "wd": 0.0001, "world_size": 1}
+
+
+------------ training start ------------------
+Sat Jan 29 03:21:22 2022
+-------------------------------------------
+{"T": 1.0, "base_lr": 0.01, "batchsize": 128, "bottleneck_dim": 256, "calculate_a_dis_only": false, "category_mean": false, "datapath": "./data/", "dataset": "Office31", "dist_backend": "nccl", "dist_url": "tcp://127.0.0.1:10013", "ema_m": 0.999, "entropy_cdan": false, "epochs": 30, "exp_name": "log_Office31_PseudoLabel_resnet50_W2D", "gpu": null, "iters_per_epoch": 250, "local_rank": 0, "log_interval": 100, "lr_schedule": "inv", "margin": 4.0, "mcdalnet_dis": "L1", "method": "PseudoLabel", "momentum": 0.9, "mu": 1, "multiprocessing_distributed": true, "net": "resnet50", "num_class": 31, "num_k": 4, "num_workers": 8, "onlyT": false, "p_cutoff": 0.95, "port": "12355", "rank": 0, "regular_only_feature": true, "resume": "", "save_dir": "../log/Office31/log_Office31_PseudoLabel_resnet50_W2D", "saving": false, "seed": 1, "source": "W", "strongaug": false, "target": "D", "test_only": false, "trade_off": 1.0, "transform_type": "randomcrop", "use_ema": false, "vat_eps": 1.0, "wd": 0.0001, "world_size": 1}
+
+
+------------ training start ------------------
+Sat Jan 29 03:23:23 2022
+-------------------------------------------
+{"T": 1.0, "base_lr": 0.01, "batchsize": 128, "bottleneck_dim": 256, "calculate_a_dis_only": false, "category_mean": false, "datapath": "./data/", "dataset": "Office31", "dist_backend": "nccl", "dist_url": "tcp://127.0.0.1:10013", "ema_m": 0.999, "entropy_cdan": false, "epochs": 30, "exp_name": "log_Office31_PseudoLabel_resnet50_W2D", "gpu": null, "iters_per_epoch": 250, "local_rank": 0, "log_interval": 100, "lr_schedule": "inv", "margin": 4.0, "mcdalnet_dis": "L1", "method": "PseudoLabel", "momentum": 0.9, "mu": 1, "multiprocessing_distributed": true, "net": "resnet50", "num_class": 31, "num_k": 4, "num_workers": 8, "onlyT": false, "p_cutoff": 0.95, "port": "12355", "rank": 0, "regular_only_feature": true, "resume": "", "save_dir": "../log/Office31/log_Office31_PseudoLabel_resnet50_W2D", "saving": false, "seed": 1, "source": "W", "strongaug": false, "target": "D", "test_only": false, "trade_off": 1.0, "transform_type": "randomcrop", "use_ema": false, "vat_eps": 1.0, "wd": 0.0001, "world_size": 1}
+
+
+------------ training start ------------------
+Sat Jan 29 03:29:02 2022
+-------------------------------------------
+{"T": 1.0, "base_lr": 0.01, "batchsize": 128, "bottleneck_dim": 256, "calculate_a_dis_only": false, "category_mean": false, "datapath": "./data/", "dataset": "Office31", "dist_backend": "nccl", "dist_url": "tcp://127.0.0.1:10013", "ema_m": 0.999, "entropy_cdan": false, "epochs": 30, "exp_name": "log_Office31_PseudoLabel_resnet50_W2D", "gpu": null, "iters_per_epoch": 250, "local_rank": 0, "log_interval": 100, "lr_schedule": "inv", "margin": 4.0, "mcdalnet_dis": "L1", "method": "PseudoLabel", "momentum": 0.9, "mu": 1, "multiprocessing_distributed": true, "net": "resnet50", "num_class": 31, "num_k": 4, "num_workers": 8, "onlyT": false, "p_cutoff": 0.95, "port": "12355", "rank": 0, "regular_only_feature": true, "resume": "", "save_dir": "../log/Office31/log_Office31_PseudoLabel_resnet50_W2D", "saving": false, "seed": 1, "source": "W", "strongaug": false, "target": "D", "test_only": false, "trade_off": 1.0, "transform_type": "randomcrop", "use_ema": false, "vat_eps": 1.0, "wd": 0.0001, "world_size": 1}
+
+
+------------ training start ------------------
+Sat Jan 29 03:37:18 2022
+-------------------------------------------
+{"T": 1.0, "base_lr": 0.01, "batchsize": 128, "bottleneck_dim": 256, "calculate_a_dis_only": false, "category_mean": false, "datapath": "./data/", "dataset": "Office31", "dist_backend": "nccl", "dist_url": "tcp://127.0.0.1:10013", "ema_m": 0.999, "entropy_cdan": false, "epochs": 30, "exp_name": "log_Office31_PseudoLabel_resnet50_W2D", "gpu": null, "iters_per_epoch": 250, "local_rank": 0, "log_interval": 100, "lr_schedule": "inv", "margin": 4.0, "mcdalnet_dis": "L1", "method": "PseudoLabel", "momentum": 0.9, "mu": 1, "multiprocessing_distributed": true, "net": "resnet50", "num_class": 31, "num_k": 4, "num_workers": 2, "onlyT": false, "p_cutoff": 0.95, "port": "12355", "rank": 0, "regular_only_feature": true, "resume": "", "save_dir": "../log/Office31/log_Office31_PseudoLabel_resnet50_W2D", "saving": false, "seed": 1, "source": "W", "strongaug": false, "target": "D", "test_only": false, "trade_off": 1.0, "transform_type": "randomcrop", "use_ema": false, "vat_eps": 1.0, "wd": 0.0001, "world_size": 1}

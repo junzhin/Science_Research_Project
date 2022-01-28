@@ -228,7 +228,7 @@ def train(train_source_iter: ForeverDataIterator, train_target_iter: ForeverData
         # update the log results:
         total_losses += loss.item()
         total_domain_accs += domain_acc.item()
-        total_cls_accs += cls_accs.item()
+        total_cls_accs += cls_acc.item()
 
         losses.update(loss.item(), x_s.size(0))
         cls_accs.update(cls_acc.item(), x_s.size(0))
