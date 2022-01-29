@@ -167,9 +167,9 @@ def main(args: argparse.Namespace):
 
     # evaluate on test set
     classifier.load_state_dict(torch.load(logger.get_checkpoint_path('best')))
-    acc1 = validate(val_loader, classifier, args)
+    acc1 = validate(val_loader, classifier, args, epoch = 0)
     print("val_acc1 = {:3.1f}".format(acc1))
-    acc1 = validate(test_loader, classifier, args)
+    acc1 = validate(test_loader, classifier, args, epoch = 0)
     print("test_acc1 = {:3.1f}".format(acc1))
 
     logger.close()
