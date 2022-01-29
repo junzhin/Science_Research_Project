@@ -34,7 +34,8 @@
 - `code`: Contain all code implementations in this project
   - `testing`: designed for initial debugging purposes
   -  `version1.0`:designed for Alexnet and Resnet18 models pretraining with selected classes and labels masked
-  -  `version2.0`: designed for UDA fine tuning
+  -  `version2.0`: designed for UDA fine tuning on pretraind models
+  -  `version3.0`: designed for SSL fine tuning on pretraind models
 - `pytorch_imagenet_example`: copied from https://github.com/pytorch/examples/tree/master/imagenet
 
 
