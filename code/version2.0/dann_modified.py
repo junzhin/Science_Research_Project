@@ -107,7 +107,7 @@ def main(args: argparse.Namespace):
 
     # create model
     print("=> using pre-trained model '{}'".format(args.arch))
-    backbone = models.__dict__[args.arch](pretrained=True)
+    backbone = models.__dict__[args.arch](pretrained=args.pretrained, local = args.local, local_pretrained_path = args.local_pretrained_path)
     classifier = ImageClassifier(backbone, train_source_dataset.num_classes, bottleneck_dim=args.bottleneck_dim).to(device)
     domain_discri = DomainDiscriminator(in_feature=classifier.features_dim, hidden_size=1024).to(device)
 
@@ -390,6 +390,18 @@ if __name__ == '__main__':
     parser.add_argument("--phase", type=str, default='train', choices=['train', 'test', 'analysis'],
                         help="When phase is 'test', only test the model."
                              "When phase is 'analysis', only analysis the model.")
+
+
+    ######################################
+    parser.add_argument('--pretrained', action='store_true', default=True, help='specify the boolean value ofr pretained model')
+    parser.add_argument('--local', action='store_true', default=False, help='to inicate if the local pretrained model exists')
+    parser.add_argument('--local-pretrained-path', default='',type = str, help='the path to local pre-trained-model')
+    ######################################
     args = parser.parse_args()
+
+
+
+
     main(args)
+
 
