@@ -1,3 +1,4 @@
 *.tar
 *.jpg
-/Volumes/mac_data/2022coding_files/Summer_project/code/version1.0/data
+/code/version1.0/data/
+/deprecated/
