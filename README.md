@@ -32,8 +32,9 @@
 - `data`: Contain All preprocessed files and small external datasets supporting the analysis.
 - `plots_results`: All plots and ouputresults both for model training and reporting writting.
 - `code`: Contain all code implementations in this project
-  - `testing`: for initial debugging purposes
-  -  `version1.0`: 
+  - `testing`: designed for initial debugging purposes
+  -  `version1.0`:designed for Alexnet and Resnet18 models pretraining with selected classes and labels masked
+  -  `version2.0`: designed for UDA fine tuning
 - `pytorch_imagenet_example`: copied from https://github.com/pytorch/examples/tree/master/imagenet
 
 
