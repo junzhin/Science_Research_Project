@@ -21,4 +21,4 @@
 
 source activate base 
 
-python3 ../../../../main_SSL.py --dist_url tcp://127.0.0.1:10040 --multiprocessing_distributed --regular_only_feature --p_cutoff 0.95 --seed 1  --epochs 30  --batchsize 128 --iters_per_epoch 250  --source W --target D  --method PseudoLabel --save_dir /home/junzhin/Project/Summer_project/code/version3.0/training_results/self_training/Resnet18_office31masked1/W_D --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1model_best.pth.tar
+python3 ../../../../main_SSL.py --dist_url tcp://127.0.0.1:10040 --multiprocessing_distributed --regular_only_feature --p_cutoff 0.95 --seed 1  --epochs 30  --batchsize 128 --iters_per_epoch 250  --source W --target D  --method PseudoLabel --save_dir /home/junzhin/Project/Summer_project/code/version3.0/training_results/self_training/Resnet18_office31masked1/W_D --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1_newmodel_best.pth.tar
