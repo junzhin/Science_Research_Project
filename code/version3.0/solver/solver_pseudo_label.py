@@ -124,8 +124,8 @@ class Solver(BaseSolver):
                       (self.iters, self.epoch, self.args.epochs, data_time.avg, batch_time.avg, losses_cls.avg, losses_ssl.avg, prec1.avg, mask.item(), acc_selected))
         log.close()
 
-        writer.add_scalar('Loss/train/source_classification',Total_losses_classification, self.epoch)
-        writer.add_scalar('Loss/train/target_classification',Total_losses_SSL, self.epoch)
+        writer.add_scalar('Loss/train/source_classification',Total_losses_classification/self.iters_per_epoch, self.epoch)
+        writer.add_scalar('Loss/train/target_classification',Total_losses_SSL/self.iters_per_epoch, self.epoch)
         writer.add_scalar('Accuracy/ssl/train/labels_softmax_proportion_above_p_cut_off', Total_ssl_proportion_above_p_cut_off/self.iters_per_epoch, self.epoch)
         writer.add_scalar('Accuracy/ssl/train/labels_accuarcy',Total_ssl_accs/self.iters_per_epoch, self.epoch)
         writer.flush()
