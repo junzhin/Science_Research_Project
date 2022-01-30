@@ -1,0 +1,125 @@
+Use GPU: 0 for training
+before loading the model,we have {args.num_classes} classes
+=> creating model 'alexnet'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+           0                 1
+0  n03180011  desktop_computer
+1  n04004767           printer
+2  n03782006           monitor
+3  n02870880          bookcase
+4  n03793489             mouse
+5  n04009552         projector
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
+994
+6
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
+1273267
+49697
+Use GPU: 1 for training
+before loading the model,we have {args.num_classes} classes
+=> creating model 'alexnet'
+----------------------------------------
+training directory:/data/gpfs/datasets/Imagenet/train_blurred
+
+validating directory:/data/gpfs/datasets/Imagenet/val_blurred
+
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 1281066
+    Root location: /data/gpfs/datasets/Imagenet/train_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+Dataset ImageFolder
+    Number of datapoints: 49997
+    Root location: /data/gpfs/datasets/Imagenet/val_blurred
+    StandardTransform
+Transform: Compose(
+               Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+               CenterCrop(size=(224, 224))
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+----------------------------------------
+           0                 1
+0  n03180011  desktop_computer
+1  n04004767           printer
+2  n03782006           monitor
+3  n02870880          bookcase
+4  n03793489             mouse
+5  n04009552         projector
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
+994
+6
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
+1273267
+49697
+Epoch: [0][  0/829]	Time 26.280 (26.280)	Data 22.113 (22.113)	Loss 6.9087e+00 (6.9087e+00)	Acc@1   0.00 (  0.00)	Acc@5   0.26 (  0.26)
+Epoch: [0][ 20/829]	Time  0.429 ( 3.569)	Data  0.216 ( 3.157)	Loss 6.9079e+00 (6.9080e+00)	Acc@1   0.13 (  0.14)	Acc@5   0.26 (  0.56)
+Epoch: [0][ 40/829]	Time  1.795 ( 3.319)	Data  0.000 ( 2.861)	Loss 6.9068e+00 (6.9079e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.65 (  0.53)
+Epoch: [0][ 60/829]	Time  7.585 ( 3.203)	Data  7.427 ( 2.685)	Loss 6.9086e+00 (6.9078e+00)	Acc@1   0.13 (  0.09)	Acc@5   0.13 (  0.51)
+Epoch: [0][ 80/829]	Time  0.525 ( 3.050)	Data  0.000 ( 2.561)	Loss 6.9079e+00 (6.9078e+00)	Acc@1   0.39 (  0.09)	Acc@5   0.52 (  0.52)
+Epoch: [0][100/829]	Time  2.285 ( 3.055)	Data  0.000 ( 2.520)	Loss 6.9083e+00 (6.9078e+00)	Acc@1   0.26 (  0.09)	Acc@5   0.39 (  0.52)
+Epoch: [0][120/829]	Time  5.815 ( 3.037)	Data  5.668 ( 2.437)	Loss 6.9074e+00 (6.9078e+00)	Acc@1   0.52 (  0.10)	Acc@5   1.30 (  0.52)
+Epoch: [0][140/829]	Time  0.487 ( 2.990)	Data  0.000 ( 2.356)	Loss 6.9075e+00 (6.9078e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.65 (  0.52)
+Epoch: [0][160/829]	Time  1.694 ( 2.996)	Data  0.000 ( 2.338)	Loss 6.9073e+00 (6.9077e+00)	Acc@1   0.13 (  0.09)	Acc@5   0.78 (  0.51)
+Epoch: [0][180/829]	Time  6.948 ( 2.988)	Data  6.796 ( 2.336)	Loss 6.9072e+00 (6.9077e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.52 (  0.51)
+Epoch: [0][200/829]	Time  0.343 ( 2.953)	Data  0.000 ( 2.324)	Loss 6.9076e+00 (6.9077e+00)	Acc@1   0.26 (  0.10)	Acc@5   0.65 (  0.52)
+Epoch: [0][220/829]	Time  0.340 ( 2.958)	Data  0.000 ( 2.360)	Loss 6.9072e+00 (6.9076e+00)	Acc@1   0.39 (  0.10)	Acc@5   0.78 (  0.53)
+Epoch: [0][240/829]	Time  7.422 ( 2.953)	Data  7.265 ( 2.382)	Loss 6.9064e+00 (6.9076e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.52 (  0.53)
+Epoch: [0][260/829]	Time  0.338 ( 2.924)	Data  0.000 ( 2.364)	Loss 6.9068e+00 (6.9076e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.39 (  0.54)
+Epoch: [0][280/829]	Time  1.643 ( 2.933)	Data  0.000 ( 2.358)	Loss 6.9067e+00 (6.9076e+00)	Acc@1   0.39 (  0.11)	Acc@5   0.65 (  0.54)
+Epoch: [0][300/829]	Time  7.421 ( 2.933)	Data  7.273 ( 2.362)	Loss 6.9070e+00 (6.9075e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.78 (  0.54)
+Epoch: [0][320/829]	Time  0.431 ( 2.912)	Data  0.000 ( 2.357)	Loss 6.9072e+00 (6.9075e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.52 (  0.53)
+Epoch: [0][340/829]	Time  0.337 ( 2.915)	Data  0.000 ( 2.369)	Loss 6.9056e+00 (6.9075e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.52 (  0.53)
+Epoch: [0][360/829]	Time  7.767 ( 2.920)	Data  7.599 ( 2.389)	Loss 6.9063e+00 (6.9074e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.65 (  0.53)
+Epoch: [0][380/829]	Time  0.435 ( 2.903)	Data  0.000 ( 2.385)	Loss 6.9077e+00 (6.9074e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.39 (  0.52)
+Epoch: [0][400/829]	Time  1.423 ( 2.908)	Data  0.000 ( 2.386)	Loss 6.9062e+00 (6.9073e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.78 (  0.53)
+Epoch: [0][420/829]	Time  7.676 ( 2.907)	Data  7.530 ( 2.390)	Loss 6.9059e+00 (6.9073e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.26 (  0.53)
+Epoch: [0][440/829]	Time  0.344 ( 2.896)	Data  0.000 ( 2.375)	Loss 6.9062e+00 (6.9072e+00)	Acc@1   0.39 (  0.10)	Acc@5   0.91 (  0.53)
+Epoch: [0][460/829]	Time  1.110 ( 2.899)	Data  0.000 ( 2.384)	Loss 6.9060e+00 (6.9071e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.39 (  0.52)
+Epoch: [0][480/829]	Time  5.304 ( 2.901)	Data  5.157 ( 2.370)	Loss 6.9065e+00 (6.9071e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.39 (  0.52)
+Epoch: [0][500/829]	Time  0.338 ( 2.896)	Data  0.000 ( 2.341)	Loss 6.9031e+00 (6.9070e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.26 (  0.52)
+Epoch: [0][520/829]	Time  3.181 ( 2.903)	Data  0.000 ( 2.314)	Loss 6.9037e+00 (6.9069e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.52 (  0.52)
+Epoch: [0][540/829]	Time  6.394 ( 2.903)	Data  6.243 ( 2.302)	Loss 6.9017e+00 (6.9067e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.78 (  0.52)
+Epoch: [0][560/829]	Time  0.339 ( 2.894)	Data  0.000 ( 2.287)	Loss 6.9016e+00 (6.9065e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.13 (  0.52)
+Epoch: [0][580/829]	Time  1.342 ( 2.897)	Data  0.346 ( 2.290)	Loss 6.8973e+00 (6.9063e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.13 (  0.52)
+Epoch: [0][600/829]	Time  5.853 ( 2.896)	Data  5.705 ( 2.299)	Loss 6.9048e+00 (6.9061e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.26 (  0.52)
+Epoch: [0][620/829]	Time  0.337 ( 2.890)	Data  0.000 ( 2.297)	Loss 6.8884e+00 (6.9057e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.52 (  0.52)
+Epoch: [0][640/829]	Time  0.946 ( 2.894)	Data  0.000 ( 2.292)	Loss 6.8916e+00 (6.9053e+00)	Acc@1   0.13 (  0.10)	Acc@5   0.26 (  0.52)
+Epoch: [0][660/829]	Time  7.383 ( 2.896)	Data  6.876 ( 2.297)	Loss 6.8868e+00 (6.9050e+00)	Acc@1   0.26 (  0.10)	Acc@5   0.52 (  0.51)
+Epoch: [0][680/829]	Time  0.339 ( 2.888)	Data  0.001 ( 2.292)	Loss 6.8872e+00 (6.9045e+00)	Acc@1   0.26 (  0.11)	Acc@5   0.52 (  0.51)
+Epoch: [0][700/829]	Time  0.343 ( 2.891)	Data  0.000 ( 2.303)	Loss 6.8792e+00 (6.9041e+00)	Acc@1   0.13 (  0.11)	Acc@5   1.04 (  0.52)
+Epoch: [0][720/829]	Time  7.948 ( 2.894)	Data  7.802 ( 2.314)	Loss 6.8875e+00 (6.9035e+00)	Acc@1   0.00 (  0.10)	Acc@5   0.39 (  0.52)
