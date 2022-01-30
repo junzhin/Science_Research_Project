@@ -146,7 +146,7 @@ def main_worker(gpu, ngpus_per_node, args):
         dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
                                 world_size=args.world_size, rank=args.rank)
 
-    #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
+    # 以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
     # create model
     if args.pretrained:
         print("=> using pre-trained model '{}'".format(args.arch))
