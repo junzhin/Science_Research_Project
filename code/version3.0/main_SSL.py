@@ -14,12 +14,12 @@ def opts():
     ### On data loader
     parser.add_argument('--source', type=str, default='Art', help='source domain')
     parser.add_argument('--target', type=str, default='Clipart', help='target domain')
-    parser.add_argument('--dataset', type=str, default='DomainNet', help='OfficeHome | office | multi')
-    parser.add_argument('--datapath', type=str, default='./data/', help='datapath')
+    parser.add_argument('--dataset', type=str, default='Office31', help='OfficeHome | office | multi')
+    parser.add_argument('--datapath', type=str, default='../../../../data/', help='datapath')
     parser.add_argument('--transform_type', type=str, default='randomcrop', help='randomcrop | randomsizedcrop | center')
     parser.add_argument('--batchsize', type=int, default=32, help='number of labeled examples in the target')
     parser.add_argument('--num_class', type=int, default=126, help='number of classes')
-    parser.add_argument('--num_workers', type=int, default=8, help='number of works for data loader')
+    parser.add_argument('--num_workers', type=int, default=2, help='number of works for data loader')
 
     parser.add_argument('--category_mean', action='store_true', default=False,
                         help='for visda, if true, the score is the mean over all categories instead of all samples')
