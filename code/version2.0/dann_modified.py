@@ -393,7 +393,7 @@ if __name__ == '__main__':
 
 
     ######################################
-    parser.add_argument('--pretrained', action='store_true', default=True, help='specify the boolean value ofr pretained model')
+    parser.add_argument('--pretrained', default=True, help='specify the boolean value ofr pretained model')
     parser.add_argument('--local', action='store_true', default=False, help='to inicate if the local pretrained model exists')
     parser.add_argument('--local-pretrained-path', default='',type = str, help='the path to local pre-trained-model')
     ######################################
