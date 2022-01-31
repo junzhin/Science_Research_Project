@@ -11,8 +11,8 @@
 #SBATCH --time=72:00:00
 #SBATCH --mem=16G
 
-#SBATCH -o Alexoffice31mask1RandomA_D.%N.%j.out # STDOUT 
-#SBATCH -e Alexoffice31mask1RandomA_D.%N.%j.err # STDERR
+#SBATCH -o Alexoffice31mask1RandomA_DSSL.%N.%j.out # STDOUT 
+#SBATCH -e Alexoffice31mask1RandomA_DSSL.%N.%j.err # STDERR
 
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=junzhin@student.unimelb.edu.au
