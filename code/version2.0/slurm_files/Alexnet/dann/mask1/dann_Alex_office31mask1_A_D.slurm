@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name="AM1AD"
+#SBATCH --job-name="AM1ADDANN"
 #SBATCH --account punim1006
 #SBATCH --qos="gpgpuresplat"
 #SBATCH --partition gpgpu
@@ -12,8 +12,8 @@
 #SBATCH --mem=16G
 
 
-#SBATCH -o Alexoffice31mask1_A_D.%N.%j.out # STDOUT 
-#SBATCH -e Alexoffice31mask1_A_D.%N.%j.err # STDERR
+#SBATCH -o Alexoffice31mask1_A_D_DANN.%N.%j.out # STDOUT 
+#SBATCH -e Alexoffice31mask1_A_D_DANN.%N.%j.err # STDERR
 
 
 #SBATCH --mail-type=ALL
@@ -21,4 +21,4 @@
 
 source activate base 
 
-python3 ../../../../dann_modified.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -b 128 -d Office31 -s A -t D -a alexnet --epochs 30 --seed 1 --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31masked1_newmodel_best.pth.tar --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/AlEX_office31masked1/A_D
+python3 ../../../../dann_modified.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -b 256 -d Office31 -s A -t D -a alexnet --epochs 30 --seed 1 --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31masked1_newmodel_best.pth.tar --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/AlEX_office31masked1/A_D

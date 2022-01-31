@@ -75,6 +75,7 @@ def alexnet(pretrained: bool = False, progress: bool = True, local: bool = False
     model = AlexNet(**kwargs)
     if pretrained:
         if local:
+            print("Loading the local alexnet pretrained model weights!")
             state_dict = torch.load(local_pretrained_path)['state_dict']
         else:
             state_dict = load_state_dict_from_url(model_urls['alexnet'],
