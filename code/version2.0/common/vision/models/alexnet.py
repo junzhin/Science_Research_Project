@@ -42,7 +42,7 @@ class AlexNet(nn.Module):
             nn.ReLU(inplace=True),
             nn.Linear(4096, num_classes),
         )
-        self._out_features = 64
+        self._out_features = (256, 6, 6)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.features(x)
@@ -58,7 +58,6 @@ class AlexNet(nn.Module):
         """The dimension of output features"""
         return self._out_features
 
-    
     # def copy_head(self) -> nn.Module:
     #     """Copy the origin fully connected layer"""
     #     return copy.deepcopy(self.fc)        
