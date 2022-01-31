@@ -42,7 +42,7 @@ class AlexNet(nn.Module):
             nn.ReLU(inplace=True),
             nn.Linear(4096, num_classes),
         )
-        self._out_features = 4096
+        self._out_features = 64
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.features(x)
