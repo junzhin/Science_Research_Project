@@ -21,6 +21,7 @@
 
 
 source activate base 
-python3 ../pretrained_main_subset_random_choosen_experiment.py -a alexnet --lr 0.01 --epochs 100 --dist-url tcp://127.0.0.1:7010 --dist-backend nccl --multiprocessing-distributed -s -sp /home/junzhin/Project/Summer_project/code/version1.0/masked_office31_imagenetlabel2_manual_df.csv  --world-size 1 --rank 0  --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_new -atfn train_blurred  -avfn val_blurred -j 6 /data/gpfs/datasets/Imagenet
+python3 ../pretrained_main_subset_random_choosen_experiment.py -a alexnet --lr 0.01 --epochs 100 -b 1024 --dist-url tcp://127.0.0.1:7020 --dist-backend nccl --multiprocessing-distributed -s -sp /home/junzhin/Project/Summer_project/code/version1.0/masked_office31_imagenetlabel2_manual_df.csv  --world-size 1 --rank 0  --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_new -atfn train_blurred  -avfn val_blurred -j 6 /data/gpfs/datasets/Imagenet
+
 
 
