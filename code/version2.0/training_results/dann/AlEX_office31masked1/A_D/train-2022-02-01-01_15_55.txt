@@ -1,0 +1,14 @@
+Namespace(arch='alexnet', batch_size=32, bottleneck_dim=256, center_crop=False, data='Office31', data_processing='ours', epochs=30, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31masked1_newmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/AlEX_office31masked1/A_D', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=50, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=1, source='A', target='D', trade_off=1.0, weight_decay=0.001, workers=2)
+../../../../dann_modified.py:46: UserWarning: You have chosen to seed training. This will turn on the CUDNN deterministic setting, which can slow down your training considerably! You may see unexpected behavior when restarting from checkpoints.
+  warnings.warn('You have chosen to seed training. '
+=> using pre-trained model 'alexnet'
+Traceback (most recent call last):
+  File "../../../../dann_modified.py", line 405, in <module>
+    main(args)
+  File "../../../../dann_modified.py", line 111, in main
+    classifier = ImageClassifier(backbone, train_source_dataset.num_classes, bottleneck_dim=args.bottleneck_dim).to(device)
+  File "/home/junzhin/Project/Summer_project/code/version2.0/dalib/adaptation/dann.py", line 85, in __init__
+    nn.Linear(backbone.out_features, bottleneck_dim),
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/linear.py", line 85, in __init__
+    self.weight = Parameter(torch.empty((out_features, in_features), **factory_kwargs))
+TypeError: empty(): argument 'size' must be tuple of ints, but found element of type tuple at pos 2
