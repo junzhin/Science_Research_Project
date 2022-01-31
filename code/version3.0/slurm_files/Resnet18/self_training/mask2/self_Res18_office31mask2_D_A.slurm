@@ -12,8 +12,8 @@
 #SBATCH --mem=16G
 
 
-#SBATCH -o Res18office31mask2D_A.%N.%j.out # STDOUT 
-#SBATCH -e Res18office31mask2D_A.%N.%j.err # STDERR
+#SBATCH -o Res18office31mask2D_ASSL.%N.%j.out # STDOUT 
+#SBATCH -e Res18office31mask2D_ASSL.%N.%j.err # STDERR
 
 
 #SBATCH --mail-type=ALL
