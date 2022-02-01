@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name="AM2AD"
+#SBATCH --job-name="AM2ADDANN"
 #SBATCH --account punim1006
 #SBATCH --qos="gpgpuresplat"
 #SBATCH --partition gpgpu
@@ -12,8 +12,8 @@
 #SBATCH --mem=16G
 
 
-#SBATCH -o Alexoffice31mask2A_D.%N.%j.out # STDOUT 
-#SBATCH -e Alexoffice31mask2A_D.%N.%j.err # STDERR
+#SBATCH -o Alexoffice31mask2A_D_DANN.%N.%j.out # STDOUT 
+#SBATCH -e Alexoffice31mask2A_D_DANN.%N.%j.err # STDERR
 
 
 #SBATCH --mail-type=ALL
@@ -21,5 +21,4 @@
 
 
 source activate base 
-
-python3 ../../../../main_SSL.py --dist_url tcp://127.0.0.1:10027 --multiprocessing_distributed --regular_only_feature --p_cutoff 0.95 --seed 1  --epochs 30  --batchsize 128 --iters_per_epoch 250  --source A --target D  --method PseudoLabel --save_dir /home/junzhin/Project/Summer_project/code/version3.0/training_results/self_training/ALEX_office31masked2/A_D --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_newmodel_best.pth.tar
+python3 ../../../../dann_modified.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s A -t D -a alexnet --epochs 30 --seed 1 --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31masked2_newmodel_best.pth.tar --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/AlEX_office31masked2/A_D
