@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name="RM1AW"
+#SBATCH --job-name="RM1AWDANN"
 #SBATCH --account punim1006
 #SBATCH --qos="gpgpuresplat"
 #SBATCH --partition gpgpu
@@ -12,8 +12,8 @@
 #SBATCH --mem=16G
 
 
-#SBATCH -o Res18office31mask1_A_W.%N.%j.out # STDOUT 
-#SBATCH -e Res18xoffice31mask1_A_W.%N.%j.err # STDERR
+#SBATCH -o Res18office31mask1_A_W_DANN.%N.%j.out # STDOUT 
+#SBATCH -e Res18office31mask1_A_W_DANN.%N.%j.err # STDERR
 
 
 #SBATCH --mail-type=ALL
@@ -21,4 +21,4 @@
 
 source activate base 
 
-python3 ../../../../main_SSL.py --dist_url tcp://127.0.0.1:10036 --multiprocessing_distributed --regular_only_feature --p_cutoff 0.95 --seed 1  --epochs 30  --batchsize 128 --iters_per_epoch 250  --source A --target W  --method PseudoLabel --save_dir /home/junzhin/Project/Summer_project/code/version3.0/training_results/self_training/Resnet18_office31masked1/A_W --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1_newmodel_best.pth.tar
+python3 ../../../../dann_modified.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s A -t W -a alexnet --epochs 30 --seed 1 --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1_newmodel_best.pth.tar --log  /home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/Resnet18_office31masked1/A_W
