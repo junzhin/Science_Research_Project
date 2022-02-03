@@ -21,4 +21,4 @@
 
 source activate base 
 
-python3 ../../../../dann_modified.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s W -t A -a alexnet --epochs 30 --seed 1 --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1_newmodel_best.pth.tar --log  /home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/Resnet18_office31masked1/W_A
+python3 ../../../../dann_modified.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s W -t A -a resnet18 --epochs 30 --seed 1 --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked1_newmodel_best.pth.tar --log  /home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/Resnet18_office31masked1/W_A
