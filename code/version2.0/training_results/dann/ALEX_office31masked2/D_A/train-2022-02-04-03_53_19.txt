@@ -5,3 +5,6 @@ Namespace(arch='alexnet', batch_size=256, bottleneck_dim=256, center_crop=False,
 Loading the local alexnet pretrained model weights!
 Epoch: [0][   0/1000]	Time  4.53 ( 4.53)	Data  4.21 ( 4.21)	Loss   4.17 (  4.17)	Cls Acc 4.7 (4.7)	Domain Acc 78.5 (78.5)
 Epoch: [0][  50/1000]	Time  6.41 ( 6.51)	Data  6.29 ( 6.39)	Loss   1.53 (  2.46)	Cls Acc 71.5 (40.3)	Domain Acc 97.7 (96.8)
+Epoch: [0][ 100/1000]	Time  6.64 ( 6.55)	Data  6.52 ( 6.43)	Loss   0.48 (  1.69)	Cls Acc 94.1 (62.6)	Domain Acc 99.0 (97.7)
+Epoch: [0][ 150/1000]	Time  6.28 ( 6.54)	Data  6.17 ( 6.43)	Loss   0.19 (  1.22)	Cls Acc 99.2 (74.3)	Domain Acc 99.4 (98.2)
+Epoch: [0][ 200/1000]	Time  6.47 ( 6.55)	Data  6.36 ( 6.43)	Loss   0.11 (  0.95)	Cls Acc 100.0 (80.6)	Domain Acc 98.8 (98.5)
