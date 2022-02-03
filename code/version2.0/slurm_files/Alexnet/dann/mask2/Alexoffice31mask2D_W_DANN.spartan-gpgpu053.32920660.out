@@ -69,3 +69,8 @@ Epoch: [2][ 800/1000]	Time  6.23 ( 7.08)	Data  6.12 ( 6.97)	Loss   0.71 (  0.76)
 Epoch: [2][ 850/1000]	Time  8.66 ( 7.08)	Data  8.55 ( 6.97)	Loss   0.73 (  0.76)	Cls Acc 100.0 (99.9)	Domain Acc 53.5 (52.8)
 Epoch: [2][ 900/1000]	Time  6.23 ( 7.08)	Data  6.12 ( 6.97)	Loss   0.74 (  0.76)	Cls Acc 100.0 (99.9)	Domain Acc 49.4 (53.0)
 Epoch: [2][ 950/1000]	Time  6.21 ( 7.08)	Data  6.10 ( 6.97)	Loss   0.69 (  0.76)	Cls Acc 100.0 (99.9)	Domain Acc 60.5 (53.0)
+Test: [0/4]	Time  2.427 ( 2.427)	Loss 1.6750e+00 (1.6750e+00)	Acc@1  59.38 ( 59.38)	Acc@5  90.62 ( 90.62)
+ * Acc@1 62.013 Acc@5 90.314
+acc1 = 62.0, best_acc1 = 62.0
+Epoch: [3][   0/1000]	Time  8.69 ( 8.69)	Data  8.58 ( 8.58)	Loss   0.74 (  0.74)	Cls Acc 100.0 (100.0)	Domain Acc 49.2 (49.2)
+Epoch: [3][  50/1000]	Time  6.22 ( 7.04)	Data  6.11 ( 6.92)	Loss   0.87 (  0.75)	Cls Acc 100.0 (99.9)	Domain Acc 38.9 (52.6)
