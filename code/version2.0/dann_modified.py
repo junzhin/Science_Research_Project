@@ -247,7 +247,7 @@ def train(train_source_iter: ForeverDataIterator, train_target_iter: ForeverData
         if i % args.print_freq == 0:
             progress.display(i)
         
-    writer.add_scalar('Loss/train',total_losses, epoch)
+    writer.add_scalar('Loss/train',total_losses/args.iters_per_epoch, epoch)
     writer.add_scalar('Accuracy/domain_accs/train', total_domain_accs/args.iters_per_epoch, epoch)
     writer.add_scalar('Accuracy/cls_accs/train',total_cls_accs/args.iters_per_epoch, epoch)
     writer.flush()
@@ -318,7 +318,7 @@ def validate(val_loader: DataLoader, model: ImageClassifier, args: argparse.Name
         if confmat:
             print(confmat.format(classes))
 
-        writer.add_scalar('Loss/test',total_losses, epoch)
+        writer.add_scalar('Loss/test',total_losses/len(val_loader), epoch)
         writer.add_scalar('Accuracy/top1/test', total_acc1s/len(val_loader), epoch)
         writer.add_scalar('Accuracy/top5/test',total_acc5s/len(val_loader), epoch)
         writer.flush()
