@@ -1,0 +1,6 @@
+Namespace(arch='alexnet', batch_size=256, bottleneck_dim=256, center_crop=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2Random_newmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/ALEX_office31masked2Random/D_W', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=50, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=1, source='D', target='W', trade_off=1.0, weight_decay=0.001, workers=4)
+../../../../dann_modified.py:46: UserWarning: You have chosen to seed training. This will turn on the CUDNN deterministic setting, which can slow down your training considerably! You may see unexpected behavior when restarting from checkpoints.
+  warnings.warn('You have chosen to seed training. '
+=> using pre-trained model 'alexnet'
+Loading the local alexnet pretrained model weights!
+Epoch: [0][   0/1000]	Time  1.48 ( 1.48)	Data  0.18 ( 0.18)	Loss   4.22 (  4.22)	Cls Acc 5.9 (5.9)	Domain Acc 64.1 (64.1)
