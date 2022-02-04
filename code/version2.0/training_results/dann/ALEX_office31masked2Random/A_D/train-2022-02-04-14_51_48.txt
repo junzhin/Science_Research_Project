@@ -1,0 +1,10 @@
+Namespace(arch='alexnet', batch_size=256, bottleneck_dim=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2Random_newmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/ALEX_office31masked2Random/A_D', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=50, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='D', trade_off=1.0, weight_decay=0.001, workers=4)
+=> using pre-trained model 'alexnet'
+Loading the local alexnet pretrained model weights!
+Epoch: [0][   0/1000]	Time  3.80 ( 3.80)	Data  1.59 ( 1.59)	Loss   4.21 (  4.21)	Cls Acc 3.9 (3.9)	Domain Acc 42.0 (42.0)
+Epoch: [0][  50/1000]	Time  6.27 ( 6.42)	Data  6.21 ( 6.32)	Loss   2.48 (  2.94)	Cls Acc 32.0 (23.3)	Domain Acc 98.4 (96.3)
+Epoch: [0][ 100/1000]	Time  6.40 ( 6.50)	Data  6.33 ( 6.42)	Loss   1.87 (  2.55)	Cls Acc 49.6 (33.4)	Domain Acc 98.4 (97.5)
+Epoch: [0][ 150/1000]	Time  6.38 ( 6.54)	Data  6.32 ( 6.46)	Loss   1.65 (  2.28)	Cls Acc 55.5 (40.4)	Domain Acc 98.8 (98.0)
+Epoch: [0][ 200/1000]	Time  6.44 ( 6.59)	Data  6.38 ( 6.52)	Loss   1.43 (  2.08)	Cls Acc 63.3 (45.9)	Domain Acc 98.2 (98.2)
+Epoch: [0][ 250/1000]	Time  6.33 ( 6.58)	Data  6.27 ( 6.51)	Loss   1.20 (  1.91)	Cls Acc 69.5 (50.4)	Domain Acc 98.8 (98.4)
+Epoch: [0][ 300/1000]	Time  6.29 ( 6.57)	Data  6.22 ( 6.50)	Loss   1.01 (  1.76)	Cls Acc 71.9 (54.3)	Domain Acc 99.2 (98.5)
