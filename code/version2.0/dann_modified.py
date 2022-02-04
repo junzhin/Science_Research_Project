@@ -157,8 +157,9 @@ def main(args: argparse.Namespace):
             acc1 = validate(val_loader, classifier, args, epoch=epoch)
 
             # remember best acc@1 and save checkpoint
-            torch.save(classifier.state_dict(), logger.get_checkpoint_path('latest'))
-            if acc1 > best_acc1:
+            if args.checkmodel_logsave:
+                torch.save(classifier.state_dict(), logger.get_checkpoint_path('latest'))
+            if acc1 > best_acc1 and args.checkmodel_logsave:
                 shutil.copy(logger.get_checkpoint_path('latest'), logger.get_checkpoint_path('best'))
             best_acc1 = max(acc1, best_acc1)
             print("acc1 = {:3.1f}, best_acc1 = {:3.1f}".format(acc1, best_acc1))
@@ -396,6 +397,7 @@ if __name__ == '__main__':
     parser.add_argument('--pretrained', default=True, help='specify the boolean value ofr pretained model')
     parser.add_argument('--local', action='store_true', default=False, help='to inicate if the local pretrained model exists')
     parser.add_argument('--local-pretrained-path', default='',type = str, help='the path to local pre-trained-model')
+    parser.add_argument('--checkmodel_logsave', default=False, action = 'store_true', help = "indicate if the training will save the best model and the checkpoint weights in case of limited storage space.")
     ######################################
     args = parser.parse_args()
 
