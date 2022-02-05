@@ -98,7 +98,7 @@ def main(args: argparse.Namespace):
 
     # create model
     print("=> using pre-trained model '{}'".format(args.arch))
-    backbone = models.__dict__[args.arch](pretrained=True)
+    backbone = models.__dict__[args.arch](pretrained=args.pretrained, local = args.local, local_pretrained_path = args.local_pretrained_path)
     num_classes = train_source_dataset.num_classes
     classifier = Classifier(backbone, num_classes).to(device)
 
@@ -321,6 +321,14 @@ if __name__ == '__main__':
     parser.add_argument("--phase", type=str, default='train', choices=['train', 'test', 'analysis'],
                         help="When phase is 'test', only test the model."
                              "When phase is 'analysis', only analysis the model.")
+
+
+    ######################################
+    parser.add_argument('--pretrained', default=True, help='specify the boolean value ofr pretained model')
+    parser.add_argument('--local', action='store_true', default=False, help='to inicate if the local pretrained model exists')
+    parser.add_argument('--local-pretrained-path', default='',type = str, help='the path to local pre-trained-model')
+    parser.add_argument('--checkmodel_logsave', default=False, action = 'store_true', help = "indicate if the training will save the best model and the checkpoint weights in case of limited storage space.")
+    ######################################
     args = parser.parse_args()
     main(args)
 

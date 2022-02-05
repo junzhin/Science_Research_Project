@@ -1,0 +1,9 @@
+Namespace(arch='resnet18', batch_size=32, center_crop=False, data='Office31', data_processing='ours', epochs=20, iters_per_epoch=500, log='src_only', lr=0.001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=False, phase='train', print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source=None, target=None, wd=0.0005, workers=2)
+Traceback (most recent call last):
+  File "source_only.py", line 325, in <module>
+    main(args)
+  File "source_only.py", line 83, in main
+    train_source_dataset = dataset(root=args.root, task=args.source, download=True, transform=train_transform)
+  File "../../../common/vision/datasets/office31.py", line 51, in __init__
+    assert task in self.image_list
+AssertionError

@@ -1,0 +1,17 @@
+Namespace(arch='alexnet', batch_size=32, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=10, iters_per_epoch=500, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_Random_newmodel_best.pth.tar', log='logs/src_only/Office31_A2W', lr=0.001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='W', wd=0.0005, workers=2)
+=> using pre-trained model 'alexnet'
+Loading the local alexnet pretrained model weights!
+Traceback (most recent call last):
+  File "source_only.py", line 333, in <module>
+    main(args)
+  File "source_only.py", line 101, in main
+    backbone = models.__dict__[args.arch](pretrained=args.pretrained, local = args.local, local_pretrained_path = args.local_pretrained_path)
+  File "../../../common/vision/models/alexnet.py", line 79, in alexnet
+    state_dict = torch.load(local_pretrained_path)['state_dict']
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/serialization.py", line 594, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/serialization.py", line 230, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/serialization.py", line 211, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_Random_newmodel_best.pth.tar'

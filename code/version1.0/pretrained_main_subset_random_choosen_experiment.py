@@ -96,7 +96,6 @@ parser.add_argument( "--num-classes", default = 1000, type = int)
 
 best_acc1 = 0
 
-
 def main():
     args = parser.parse_args()
     
@@ -149,15 +148,25 @@ def main_worker(gpu, ngpus_per_node, args):
         dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
                                 world_size=args.world_size, rank=args.rank)
 
+
+    #######################换了位置################################
+
     #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
     # create model
-    print("before loading the model,we have {args.num_classes} classes")
+    # update the parameters for the number of classes if necessary
+    if args.subset and args.subsetpath is not None:
+            args.num_classes= 1000 - len(pd.read_csv(args.subsetpath, header = None))
+            
+    print("when creating the model, the number of classes are")
+    print(args.num_classes)
     if args.pretrained:
         print("=> using pre-trained model '{}'".format(args.arch))
         model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
     else:
         print("=> creating model '{}'".format(args.arch))
         model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
+
+ 
 
     if not torch.cuda.is_available():
         print('using CPU, this will be slow')
@@ -225,6 +234,9 @@ def main_worker(gpu, ngpus_per_node, args):
             print("=> no checkpoint found at '{}'".format(args.resume))
 
     cudnn.benchmark = True
+
+
+    #######################换了位置#################################
 
     # Data loading code
     ###################################################
@@ -337,17 +349,21 @@ def main_worker(gpu, ngpus_per_node, args):
         train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
         num_workers=args.workers, pin_memory=True, sampler=train_sampler)
 
+    print("training set")
+    print(len(train_loader))
+
     val_loader = torch.utils.data.DataLoader(
         valid_dataset,
         batch_size=args.batch_size, shuffle=False,
         num_workers=args.workers, pin_memory=True)
+    print("valiidating   set")
+    print(len(val_loader))
+
 
     if args.evaluate:
         validate(val_loader, model, criterion, args)
         return
 
-
-    
 
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:

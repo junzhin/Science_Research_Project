@@ -83,5 +83,4 @@ class Classifier(nn.Module):
             {"params": self.bottleneck.parameters(), "lr": 1.0 * base_lr},
             {"params": self.head.parameters(), "lr": 1.0 * base_lr},
         ]
-
         return params

@@ -21,7 +21,7 @@
 
 
 source activate base 
-python3 ../pretrained_main_subset_random_choosen_experiment.py -a resnet18 -b 1024 --epochs 100 --dist-url tcp://127.0.0.1:8001 --dist-backend nccl --multiprocessing-distribute --world-size 1 --rank 0 --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31full -atfn train_blurred -avfn val_blurred -j 16 /data/gpfs/datasets/Imagenet
+python3 ../pretrained_main_subset_random_choosen_experiment.py -a resnet18 -b 512 --epochs 100 --dist-url tcp://127.0.0.1:8001 --dist-backend nccl --multiprocessing-distribute --world-size 1 --rank 0 --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31full -atfn train_blurred -avfn val_blurred -j 16 /data/gpfs/datasets/Imagenet
 
 
  
