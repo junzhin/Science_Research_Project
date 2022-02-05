@@ -433,3 +433,4 @@ Epoch: [18][ 700/1000]	Time  6.47 ( 7.16)	Data  6.40 ( 7.09)	Loss   0.69 (  0.69
 Epoch: [18][ 750/1000]	Time  8.93 ( 7.15)	Data  8.87 ( 7.09)	Loss   0.69 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 58.0 (54.9)
 Epoch: [18][ 800/1000]	Time  6.52 ( 7.15)	Data  6.46 ( 7.09)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.6 (54.9)
 Epoch: [18][ 850/1000]	Time  6.20 ( 7.15)	Data  6.13 ( 7.08)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.1 (54.9)
+Epoch: [18][ 900/1000]	Time  8.78 ( 7.14)	Data  8.72 ( 7.08)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.6 (55.0)
