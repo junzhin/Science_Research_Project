@@ -465,3 +465,7 @@ Epoch: [20][   0/1000]	Time  6.31 ( 6.31)	Data  6.24 ( 6.24)	Loss   0.70 (  0.70
 Epoch: [20][  50/1000]	Time  6.30 ( 6.52)	Data  6.23 ( 6.45)	Loss   0.72 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 50.4 (52.9)
 Epoch: [20][ 100/1000]	Time  6.32 ( 6.56)	Data  6.25 ( 6.49)	Loss   0.69 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 59.0 (52.3)
 Epoch: [20][ 150/1000]	Time  6.33 ( 6.54)	Data  6.27 ( 6.48)	Loss   0.71 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 50.6 (52.5)
+Epoch: [20][ 200/1000]	Time  6.33 ( 6.54)	Data  6.27 ( 6.48)	Loss   0.70 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 54.9 (52.7)
+Epoch: [20][ 250/1000]	Time  6.30 ( 6.53)	Data  6.24 ( 6.47)	Loss   0.71 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (52.9)
+Epoch: [20][ 300/1000]	Time  6.25 ( 6.54)	Data  6.18 ( 6.47)	Loss   0.71 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 51.4 (52.9)
+Epoch: [20][ 350/1000]	Time  8.45 ( 6.54)	Data  8.38 ( 6.47)	Loss   0.70 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 55.3 (52.7)
