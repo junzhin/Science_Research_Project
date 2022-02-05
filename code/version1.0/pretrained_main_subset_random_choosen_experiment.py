@@ -151,6 +151,225 @@ def main_worker(gpu, ngpus_per_node, args):
 
     #######################换了位置################################
 
+    # #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
+    # # create model
+    # # update the parameters for the number of classes if necessary
+    # if args.subset and args.subsetpath is not None:
+    #         args.num_classes= 1000 - len(pd.read_csv(args.subsetpath, header = None))
+            
+    # print("when creating the model, the number of classes are")
+    # print(args.num_classes)
+    # if args.pretrained:
+    #     print("=> using pre-trained model '{}'".format(args.arch))
+    #     model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
+    # else:
+    #     print("=> creating model '{}'".format(args.arch))
+    #     model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
+
+ 
+
+    # if not torch.cuda.is_available():
+    #     print('using CPU, this will be slow')
+    # elif args.distributed:
+    #     # For multiprocessing distributed, DistributedDataParallel constructor
+    #     # should always set the single device scope, otherwise,
+    #     # DistributedDataParallel will use all available devices.
+    #     if args.gpu is not None:
+    #         torch.cuda.set_device(args.gpu)
+    #         model.cuda(args.gpu)
+    #         # When using a single GPU per process and per
+    #         # DistributedDataParallel, we need to divide the batch size
+    #         # ourselves based on the total number of GPUs we have
+    #         args.batch_size = int(args.batch_size / ngpus_per_node)
+    #         args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
+    #         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
+    #     else:
+    #         model.cuda()
+    #         # DistributedDataParallel will divide and allocate batch_size to all
+    #         # available GPUs if device_ids are not set
+    #         model = torch.nn.parallel.DistributedDataParallel(model)
+    # elif args.gpu is not None:
+    #     torch.cuda.set_device(args.gpu)
+    #     model = model.cuda(args.gpu)
+    # else:
+    #     # 这里的是关键
+    #     # DataParallel will divide and allocate batch_size to all available GPUs
+    #     if args.arch.startswith('alexnet') or args.arch.startswith('vgg'):
+    #         model.features = torch.nn.DataParallel(model.features)
+    #         model.cuda()
+    #     else:
+    #         # cuda（） 的实际作用
+    #         # model = torch.nn.DataParallel(model)
+    #         model = torch.nn.DataParallel(model).cuda()
+    #         #model = torch.nn.DataParallel(model,device_ids=range(torch.cuda.device_count()))
+
+
+    # # define loss function (criterion) and optimizer
+    # criterion = nn.CrossEntropyLoss().cuda(args.gpu)
+
+    # optimizer = torch.optim.SGD(model.parameters(), args.lr,
+    #                             momentum=args.momentum,
+    #                             weight_decay=args.weight_decay)
+
+    # # optionally resume from a checkpoint
+    # if args.resume:
+    #     if os.path.isfile(args.resume):
+    #         print("=> loading checkpoint '{}'".format(args.resume))
+    #         if args.gpu is None:
+    #             checkpoint = torch.load(args.resume)
+    #         else:
+    #             # Map model to be loaded to specified single gpu.
+    #             loc = 'cuda:{}'.format(args.gpu)
+    #             checkpoint = torch.load(args.resume, map_location=loc)
+    #         args.start_epoch = checkpoint['epoch']
+    #         best_acc1 = checkpoint['best_acc1']
+    #         if args.gpu is not None:
+    #             # best_acc1 may be from a checkpoint from a different GPU
+    #             best_acc1 = best_acc1.to(args.gpu)
+    #         model.load_state_dict(checkpoint['state_dict'])
+    #         optimizer.load_state_dict(checkpoint['optimizer'])
+    #         print("=> loaded checkpoint '{}' (epoch {})"
+    #               .format(args.resume, checkpoint['epoch']))
+    #     else:
+    #         print("=> no checkpoint found at '{}'".format(args.resume))
+
+    # cudnn.benchmark = True
+
+
+    #######################换了位置#################################
+
+    # Data loading code
+    ###################################################
+    if args.alter_trainingfile_name is not None:
+        training_filename = args.alter_trainingfile_name
+    else:
+        training_filename = 'train'
+    if args.alter_validationfile_name is not None:
+        valid_filename  = args.alter_validationfile_name
+    else:
+        valid_filename = 'val'
+    ###################################################
+
+    traindir = os.path.join(args.data, training_filename)
+    valdir = os.path.join(args.data, valid_filename)
+    ####################################################
+    print("--"*20)
+    print("training directory:" + traindir + "\n")
+    print("validating directory:" + valdir + "\n")
+    print("--"*20)
+    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                     std=[0.229, 0.224, 0.225])
+
+    train_dataset_initial = datasets.ImageFolder(traindir, 
+    transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            normalize,
+        ]))
+
+    print(train_dataset_initial)
+    print("--"*20)
+    
+    ######################################################################################################################
+    # extend the functionality to include the subset model training_filename
+    valid_dataset_initial = datasets.ImageFolder(valdir, 
+    transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            normalize,
+        ]))
+
+    print(valid_dataset_initial)
+    print("--"*20)
+
+    if args.subset:
+        if args.subsetpath is not None:
+            masked_label_list= pd.read_csv(args.subsetpath, header = None)
+            print(masked_label_list)
+            if args.randomchosenmode:
+                # fix the random seed to produce the replicable sampling results
+                random.seed(1000)
+
+                # select the classes after excluding the masked classes 
+                exclude_masked_classes = [one_class for one_class in train_dataset_initial.classes if one_class not in list(masked_label_list[0])]
+
+                # assign the number of classes to args 
+                args.num_classes = len(exclude_masked_classes)
+                print("+---"*20)
+                print(len(exclude_masked_classes))
+                print(len([train_dataset_initial.class_to_idx[c] for c in list(masked_label_list[0])]))
+                print("+---"*20)
+
+                random_selected_classes = random.sample(exclude_masked_classes, len(masked_label_list))
+                chosen_classes_labels_indices = [train_dataset_initial.class_to_idx[each] for each in train_dataset_initial.classes if each not in random_selected_classes]
+                print(len(chosen_classes_labels_indices))
+
+                classes_dict = {x:i for i,x in enumerate(chosen_classes_labels_indices)}
+
+                chosen_classes_labels_names = [each for each in train_dataset_initial.classes if each not in random_selected_classes]
+                # print(chosen_classes_labels_names)
+
+                # Save the random selected_classes to a csv file
+                random_selected_classes_labels_names_df = pd.DataFrame(random_selected_classes)
+                print(random_selected_classes_labels_names_df)
+                random_selected_classes_labels_names_df.to_csv(args.log + '/random_selected_classes_labels.csv', index = False, header = False)
+
+                # Find all relevant indices in the training and validating sets
+                chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] in chosen_classes_labels_indices]
+                chosen_index_valid = [index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] in chosen_classes_labels_indices]
+            else:
+                # assigned the number of classes to args 
+                masked_classes = [train_dataset_initial.class_to_idx[c] for c in list(masked_label_list[0])]
+                args.num_classes = len(train_dataset_initial.classes) - len(masked_classes)
+                print("+---"*20)
+                print(args.num_classes)
+                print(len(masked_classes))
+                print("+---"*20)
+                
+                chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
+                chosen_index_valid = [index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
+
+                chosen_classes_labels_indices = [train_dataset_initial.class_to_idx[each] for each in train_dataset_initial.classes if each not in list(masked_label_list[0])]
+                classes_dict = {x:i for i,x in enumerate(chosen_classes_labels_indices)}
+
+            train_dataset = torch.utils.data.Subset(train_dataset_initial, chosen_index_train)
+            valid_dataset = torch.utils.data.Subset(valid_dataset_initial, chosen_index_valid)
+            print(len(chosen_index_train))
+            print(len(chosen_index_valid))
+        else:
+            warnings.warn('Since you do not specify the csv file for the class labels you are going to mask, so no subset model training will be used in this case!')
+    else:
+        train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
+        classes_dict = {i:i for i in range(len(train_dataset.classes))}
+
+    print(classes_dict)
+
+    ##############################################################################################
+    if args.distributed:
+        train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
+    else:
+        train_sampler = None
+
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
+        num_workers=args.workers, pin_memory=True, sampler=train_sampler)
+
+    print("training set")
+    print(len(train_loader))
+
+    val_loader = torch.utils.data.DataLoader(
+        valid_dataset,
+        batch_size=args.batch_size, shuffle=False,
+        num_workers=args.workers, pin_memory=True)
+    print("validating   set")
+    print(len(val_loader))
+
+
+
+    #######################换了位置################################
+
     #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
     # create model
     # update the parameters for the number of classes if necessary
@@ -238,130 +457,10 @@ def main_worker(gpu, ngpus_per_node, args):
 
     #######################换了位置#################################
 
-    # Data loading code
-    ###################################################
-    if args.alter_trainingfile_name is not None:
-        training_filename = args.alter_trainingfile_name
-    else:
-        training_filename = 'train'
-    if args.alter_validationfile_name is not None:
-        valid_filename  = args.alter_validationfile_name
-    else:
-        valid_filename = 'val'
-    ###################################################
-
-    traindir = os.path.join(args.data, training_filename)
-    valdir = os.path.join(args.data, valid_filename)
-    ####################################################
-    print("--"*20)
-    print("training directory:" + traindir + "\n")
-    print("validating directory:" + valdir + "\n")
-    print("--"*20)
-    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                     std=[0.229, 0.224, 0.225])
-
-    train_dataset_initial = datasets.ImageFolder(traindir, 
-    transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            normalize,
-        ]))
-
-    print(train_dataset_initial)
-    print("--"*20)
-    
-    ######################################################################################################################
-    # extend the functionality to include the subset model training_filename
-    valid_dataset_initial = datasets.ImageFolder(valdir, 
-    transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            normalize,
-        ]))
-
-    print(valid_dataset_initial)
-    print("--"*20)
-
-    if args.subset:
-        if args.subsetpath is not None:
-            masked_label_list= pd.read_csv(args.subsetpath, header = None)
-            print(masked_label_list)
-            if args.randomchosenmode:
-                # fix the random seed to produce the replicable sampling results
-                random.seed(1000)
-
-                # select the classes after excluding the masked classes 
-                exclude_masked_classes = [one_class for one_class in train_dataset_initial.classes if one_class not in list(masked_label_list[0])]
-
-                # assign the number of classes to args 
-                args.num_classes = len(exclude_masked_classes)
-                print("+---"*20)
-                print(len(exclude_masked_classes))
-                print(len([train_dataset_initial.class_to_idx[c] for c in list(masked_label_list[0])]))
-                print("+---"*20)
-
-                random_selected_classes = random.sample(exclude_masked_classes, len(masked_label_list))
-                chosen_classes_labels_indices = [train_dataset_initial.class_to_idx[each] for each in train_dataset_initial.classes if each not in random_selected_classes]
-                print(len(chosen_classes_labels_indices))
-
-                chosen_classes_labels_names = [each for each in train_dataset_initial.classes if each not in random_selected_classes]
-                print(chosen_classes_labels_names)
-
-                # Save the random selected_classes to a csv file
-                random_selected_classes_labels_names_df = pd.DataFrame(random_selected_classes)
-                print(random_selected_classes_labels_names_df)
-                random_selected_classes_labels_names_df.to_csv(args.log + '/random_selected_classes_labels.csv', index = False, header = False)
-
-                # Find all relevant indices in the training and validating sets
-                chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] in chosen_classes_labels_indices]
-                chosen_index_valid = [index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] in chosen_classes_labels_indices]
-            else:
-                # assigned the number of classes to args 
-                masked_classes = [train_dataset_initial.class_to_idx[c] for c in list(masked_label_list[0])]
-                args.num_classes = len(train_dataset_initial.classes) - len(masked_classes)
-                print("+---"*20)
-                print(args.num_classes)
-                print(len(masked_classes))
-                print("+---"*20)
-                
-                chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
-                chosen_index_valid = [index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
-
-            train_dataset = torch.utils.data.Subset(train_dataset_initial, chosen_index_train)
-            valid_dataset = torch.utils.data.Subset(valid_dataset_initial, chosen_index_valid)
-            print(len(chosen_index_train))
-            print(len(chosen_index_valid))
-        else:
-            warnings.warn('Since you do not specify the csv file for the class labels you are going to mask, so no subset model training will be used in this case!')
-    else:
-        train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
-
- 
-    ##############################################################################################
-    if args.distributed:
-        train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
-    else:
-        train_sampler = None
-
-    train_loader = torch.utils.data.DataLoader(
-        train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
-        num_workers=args.workers, pin_memory=True, sampler=train_sampler)
-
-    print("training set")
-    print(len(train_loader))
-
-    val_loader = torch.utils.data.DataLoader(
-        valid_dataset,
-        batch_size=args.batch_size, shuffle=False,
-        num_workers=args.workers, pin_memory=True)
-    print("valiidating   set")
-    print(len(val_loader))
 
 
     if args.evaluate:
-        validate(val_loader, model, criterion, args)
+        validate(val_loader, model, criterion, args, classes_dict = classes_dict)
         return
 
 
@@ -372,12 +471,12 @@ def main_worker(gpu, ngpus_per_node, args):
 
 
         # train for one epoch
-        train(train_loader, model, criterion, optimizer, epoch, args, epoch)
+        train(train_loader, model, criterion, optimizer, epoch, args, epoch, classes_dict = classes_dict)
 
 
 
         # evaluate on validation set
-        acc1 = validate(val_loader, model, criterion, args, epoch)
+        acc1 = validate(val_loader, model, criterion, args, epoch, classes_dict = classes_dict)
 
         # remember best acc@1 and save checkpoint
         is_best = acc1 > best_acc1
@@ -396,7 +495,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
 
 
-def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
+def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  classes_dict):
     batch_time = AverageMeter('Time', ':6.3f')
     data_time = AverageMeter('Data', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')
@@ -426,8 +525,13 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
 
         if args.gpu is not None:
             images = images.cuda(args.gpu, non_blocking=True)
+
         if torch.cuda.is_available():
-            target = target.cuda(args.gpu, non_blocking=True)
+            ###################################
+            target_map = torch.tensor([classes_dict[x.item()] for x in target])
+            del target
+            ###################################
+            target = target_map.cuda(args.gpu, non_blocking=True)
 
         # compute output
         output = model(images)
@@ -461,7 +565,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num):
     writer.flush()
     writer.close()
 
-def validate(val_loader, model, criterion, args,epoch_num = 0):
+def validate(val_loader, model, criterion,classes_dict, args,epoch_num = 0):
     batch_time = AverageMeter('Time', ':6.3f', Summary.NONE)
     losses = AverageMeter('Loss', ':.4e', Summary.NONE)
     top1 = AverageMeter('Acc@1', ':6.2f', Summary.AVERAGE)
@@ -488,7 +592,11 @@ def validate(val_loader, model, criterion, args,epoch_num = 0):
             if args.gpu is not None:
                 images = images.cuda(args.gpu, non_blocking=True)
             if torch.cuda.is_available():
-                target = target.cuda(args.gpu, non_blocking=True)
+            ###################################
+                target_map = torch.tensor([classes_dict[x.item()] for x in target])
+                del target
+            ###################################
+                target = target_map.cuda(args.gpu, non_blocking=True)
 
             # compute output
             output = model(images)
