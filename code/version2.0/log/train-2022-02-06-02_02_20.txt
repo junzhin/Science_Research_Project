@@ -1,0 +1,56 @@
+Namespace(arch='resnet18', batch_size=128, bottleneck_dim=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=500, local=False, local_pretrained_path='', log='/home/junzhin/Project/Summer_project/code/version2.0/log', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=50, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='D', trade_off=1.0, weight_decay=0.001, workers=4)
+=> using pre-trained model 'resnet18'
+Epoch: [0][  0/500]	Time  4.74 ( 4.74)	Data  2.31 ( 2.31)	Loss   4.22 (  4.22)	Cls Acc 2.3 (2.3)	Domain Acc 50.0 (50.0)
+Epoch: [0][ 50/500]	Time  0.50 ( 1.58)	Data  0.36 ( 1.40)	Loss   0.71 (  1.89)	Cls Acc 83.6 (62.3)	Domain Acc 99.6 (94.6)
+Epoch: [0][100/500]	Time  0.50 ( 1.57)	Data  0.36 ( 1.41)	Loss   0.44 (  1.23)	Cls Acc 88.3 (74.4)	Domain Acc 99.2 (97.1)
+Epoch: [0][150/500]	Time  3.50 ( 1.57)	Data  3.37 ( 1.42)	Loss   0.26 (  0.94)	Cls Acc 96.9 (80.3)	Domain Acc 99.6 (98.0)
+Epoch: [0][200/500]	Time  0.50 ( 1.56)	Data  0.37 ( 1.41)	Loss   0.13 (  0.76)	Cls Acc 98.4 (84.1)	Domain Acc 100.0 (98.5)
+Epoch: [0][250/500]	Time  0.50 ( 1.56)	Data  0.36 ( 1.42)	Loss   0.10 (  0.64)	Cls Acc 99.2 (86.9)	Domain Acc 100.0 (98.8)
+Epoch: [0][300/500]	Time  3.46 ( 1.56)	Data  3.32 ( 1.42)	Loss   0.12 (  0.55)	Cls Acc 98.4 (88.9)	Domain Acc 99.6 (99.0)
+Epoch: [0][350/500]	Time  0.50 ( 1.56)	Data  0.36 ( 1.41)	Loss   0.08 (  0.48)	Cls Acc 98.4 (90.4)	Domain Acc 100.0 (99.1)
+Epoch: [0][400/500]	Time  0.50 ( 1.56)	Data  0.36 ( 1.42)	Loss   0.06 (  0.43)	Cls Acc 100.0 (91.6)	Domain Acc 100.0 (99.2)
+Epoch: [0][450/500]	Time  3.53 ( 1.56)	Data  3.39 ( 1.42)	Loss   0.06 (  0.39)	Cls Acc 99.2 (92.5)	Domain Acc 99.6 (99.3)
+Test: [0/4]	Time  3.809 ( 3.809)	Loss 1.8293e+00 (1.8293e+00)	Acc@1  64.84 ( 64.84)	Acc@5  91.41 ( 91.41)
+ * Acc@1 60.040 Acc@5 86.345
+acc1 = 60.0, best_acc1 = 60.0
+Epoch: [1][  0/500]	Time  0.23 ( 0.23)	Data  0.09 ( 0.09)	Loss   0.05 (  0.05)	Cls Acc 99.2 (99.2)	Domain Acc 99.6 (99.6)
+Epoch: [1][ 50/500]	Time  1.35 ( 1.57)	Data  1.21 ( 1.43)	Loss   0.04 (  0.04)	Cls Acc 100.0 (100.0)	Domain Acc 99.6 (99.8)
+Traceback (most recent call last):
+  File "/home/junzhin/Project/Summer_project/code/version2.0/common/utils/data.py", line 12, in __next__
+    data = next(self.iter)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1176, in _next_data
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "../../../../dann_modified.py", line 407, in <module>
+    main(args)
+  File "../../../../dann_modified.py", line 152, in main
+    lr_scheduler, epoch, args)
+  File "../../../../dann_modified.py", line 208, in train
+    x_t, _ = next(train_target_iter)
+  File "/home/junzhin/Project/Summer_project/code/version2.0/common/utils/data.py", line 15, in __next__
+    data = next(self.iter)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1186, in _next_data
+    idx, data = self._get_data()
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1152, in _get_data
+    success, data = self._try_get_data()
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 990, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/queues.py", line 104, in get
+    if not self._poll(timeout):
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 257, in poll
+    return self._poll(timeout)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 414, in _poll
+    r = wait([self], timeout)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 921, in wait
+    ready = selector.select(timeout)
+  File "/home/junzhin/anaconda3/lib/python3.7/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt
