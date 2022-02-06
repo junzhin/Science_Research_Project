@@ -159,7 +159,7 @@ def main(args: argparse.Namespace):
             # remember best acc@1 and save checkpoint
             if args.checkmodel_logsave:
                 torch.save(classifier.state_dict(), logger.get_checkpoint_path('latest'))
-            if acc1 > best_acc1 and args.checkmodel_logsave:
+            if acc1 > best_acc1:
                 shutil.copy(logger.get_checkpoint_path('latest'), logger.get_checkpoint_path('best'))
             best_acc1 = max(acc1, best_acc1)
             print("acc1 = {:3.1f}, best_acc1 = {:3.1f}".format(acc1, best_acc1))

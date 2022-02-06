@@ -146,7 +146,8 @@ def main(args: argparse.Namespace):
             # evaluate on validation set
             acc1 = validate(val_loader, classifier, args, epoch)
 
-            # remember best acc@1 and save checkpoint
+            # remember best acc@1 and save checkpoint/home/junzhin/Project/Summer_project/code/version2.0/slurm_files/Alexnet/baseline_old/mask2
+            
             torch.save(classifier.state_dict(), logger.get_checkpoint_path('latest'))
             if acc1 > best_acc1:
                 shutil.copy(logger.get_checkpoint_path('latest'), logger.get_checkpoint_path('best'))
