@@ -473,8 +473,6 @@ def main_worker(gpu, ngpus_per_node, args):
         # train for one epoch
         train(train_loader, model, criterion, optimizer, epoch, args, epoch, classes_dict = classes_dict)
 
-
-
         # evaluate on validation set
         acc1 = validate(val_loader, model, criterion, args, epoch, classes_dict = classes_dict)
 
@@ -495,7 +493,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
 
 
-def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  classes_dict):
+def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  classes_dict = None ):
     batch_time = AverageMeter('Time', ':6.3f')
     data_time = AverageMeter('Data', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')
@@ -529,16 +527,16 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  cl
         if torch.cuda.is_available():
             ###################################
             target_map = torch.tensor([classes_dict[x.item()] for x in target])
-            del target
             ###################################
-            target = target_map.cuda(args.gpu, non_blocking=True)
+            target_map = target_map.cuda(args.gpu, non_blocking=True)
 
         # compute output
         output = model(images)
-        loss = criterion(output, target)
+        loss = criterion(output, target_map)
 
         # measure accuracy and record loss
-        acc1, acc5 = accuracy(output, target, topk=(1, 5))
+        acc1, acc5 = accuracy(output, target_map, topk=(1, 5))
+        # del target_map
         losses.update(loss.item(), images.size(0))
         total_losses += loss
         total_correct_count_top1 += acc1
@@ -565,7 +563,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  cl
     writer.flush()
     writer.close()
 
-def validate(val_loader, model, criterion,classes_dict, args,epoch_num = 0):
+def validate(val_loader, model, criterion,args, epoch_num = 0, classes_dict = None):
     batch_time = AverageMeter('Time', ':6.3f', Summary.NONE)
     losses = AverageMeter('Loss', ':.4e', Summary.NONE)
     top1 = AverageMeter('Acc@1', ':6.2f', Summary.AVERAGE)
@@ -594,16 +592,16 @@ def validate(val_loader, model, criterion,classes_dict, args,epoch_num = 0):
             if torch.cuda.is_available():
             ###################################
                 target_map = torch.tensor([classes_dict[x.item()] for x in target])
-                del target
             ###################################
-                target = target_map.cuda(args.gpu, non_blocking=True)
+                target_map = target_map.cuda(args.gpu, non_blocking=True)
 
             # compute output
             output = model(images)
-            loss = criterion(output, target)
+            loss = criterion(output, target_map)
 
             # measure accuracy and record loss
-            acc1, acc5 = accuracy(output, target, topk=(1, 5))
+            acc1, acc5 = accuracy(output, target_map, topk=(1, 5))
+            # del target_map
             total_losses += loss
             total_correct_count_top1 += acc1
             total_correct_count_top5 += acc5

@@ -1,0 +1,74 @@
+THCudaCheck FAIL file=/opt/conda/conda-bld/pytorch_1639180543123/work/aten/src/THC/THCCachingHostAllocator.cpp line=280 error=1 : invalid argument
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/home/junzhin/anaconda3/lib/python3.7/threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "/home/junzhin/anaconda3/lib/python3.7/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/_utils/pin_memory.py", line 28, in _pin_memory_loop
+    r = in_queue.get(timeout=MP_STATUS_CHECK_INTERVAL)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/queues.py", line 113, in get
+    return _ForkingPickler.loads(res)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/reductions.py", line 289, in rebuild_storage_fd
+    fd = df.detach()
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/resource_sharer.py", line 87, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 498, in Client
+    answer_challenge(c, authkey)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 742, in answer_challenge
+    message = connection.recv_bytes(256)         # reject large message
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+Traceback (most recent call last):
+  File "../pretrained_main_subset_random_choosen_experiment.py", line 736, in <module>
+    main()
+  File "../pretrained_main_subset_random_choosen_experiment.py", line 128, in main
+    mp.spawn(main_worker, nprocs=ngpus_per_node, args=(ngpus_per_node, args))
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 230, in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method='spawn')
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 188, in start_processes
+    while not context.join():
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 150, in join
+    raise ProcessRaisedException(msg, error_index, failed_process.pid)
+torch.multiprocessing.spawn.ProcessRaisedException: 
+
+-- Process 1 terminated with the following error:
+Traceback (most recent call last):
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 990, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/junzhin/anaconda3/lib/python3.7/queue.py", line 179, in get
+    self.not_empty.wait(remaining)
+  File "/home/junzhin/anaconda3/lib/python3.7/threading.py", line 300, in wait
+    gotit = waiter.acquire(True, timeout)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/_utils/signal_handling.py", line 66, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 23076) is killed by signal: Killed. 
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 59, in _wrap
+    fn(i, *args)
+  File "/home/junzhin/Project/Summer_project/code/version1.0/pretrained_main_subset_random_choosen_experiment.py", line 474, in main_worker
+    train(train_loader, model, criterion, optimizer, epoch, args, epoch, classes_dict = classes_dict)
+  File "/home/junzhin/Project/Summer_project/code/version1.0/pretrained_main_subset_random_choosen_experiment.py", line 522, in train
+    for i, (images, target) in enumerate(train_loader):
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1186, in _next_data
+    idx, data = self._get_data()
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1142, in _get_data
+    success, data = self._try_get_data()
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1003, in _try_get_data
+    raise RuntimeError('DataLoader worker (pid(s) {}) exited unexpectedly'.format(pids_str)) from e
+RuntimeError: DataLoader worker (pid(s) 23076) exited unexpectedly
+
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=32968299.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.
