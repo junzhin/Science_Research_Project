@@ -55,7 +55,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--wd', '--weight-decay', default=1e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)',
                     dest='weight_decay')
-parser.add_argument('-p', '--print-freq', default=20, type=int,
+parser.add_argument('-p', '--print-freq', default=50, type=int,
                     metavar='N', help='print frequency (default: 10)')
 parser.add_argument('--resume', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
@@ -151,89 +151,89 @@ def main_worker(gpu, ngpus_per_node, args):
 
     #######################换了位置################################
 
-    # #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
-    # # create model
-    # # update the parameters for the number of classes if necessary
-    # if args.subset and args.subsetpath is not None:
-    #         args.num_classes= 1000 - len(pd.read_csv(args.subsetpath, header = None))
+    #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
+    # create model
+    # update the parameters for the number of classes if necessary
+    if args.subset and args.subsetpath is not None:
+            args.num_classes= 1000 - len(pd.read_csv(args.subsetpath, header = None))
             
-    # print("when creating the model, the number of classes are")
-    # print(args.num_classes)
-    # if args.pretrained:
-    #     print("=> using pre-trained model '{}'".format(args.arch))
-    #     model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
-    # else:
-    #     print("=> creating model '{}'".format(args.arch))
-    #     model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
+    print("when creating the model, the number of classes are")
+    print(args.num_classes)
+    if args.pretrained:
+        print("=> using pre-trained model '{}'".format(args.arch))
+        model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
+    else:
+        print("=> creating model '{}'".format(args.arch))
+        model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
 
  
 
-    # if not torch.cuda.is_available():
-    #     print('using CPU, this will be slow')
-    # elif args.distributed:
-    #     # For multiprocessing distributed, DistributedDataParallel constructor
-    #     # should always set the single device scope, otherwise,
-    #     # DistributedDataParallel will use all available devices.
-    #     if args.gpu is not None:
-    #         torch.cuda.set_device(args.gpu)
-    #         model.cuda(args.gpu)
-    #         # When using a single GPU per process and per
-    #         # DistributedDataParallel, we need to divide the batch size
-    #         # ourselves based on the total number of GPUs we have
-    #         args.batch_size = int(args.batch_size / ngpus_per_node)
-    #         args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
-    #         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
-    #     else:
-    #         model.cuda()
-    #         # DistributedDataParallel will divide and allocate batch_size to all
-    #         # available GPUs if device_ids are not set
-    #         model = torch.nn.parallel.DistributedDataParallel(model)
-    # elif args.gpu is not None:
-    #     torch.cuda.set_device(args.gpu)
-    #     model = model.cuda(args.gpu)
-    # else:
-    #     # 这里的是关键
-    #     # DataParallel will divide and allocate batch_size to all available GPUs
-    #     if args.arch.startswith('alexnet') or args.arch.startswith('vgg'):
-    #         model.features = torch.nn.DataParallel(model.features)
-    #         model.cuda()
-    #     else:
-    #         # cuda（） 的实际作用
-    #         # model = torch.nn.DataParallel(model)
-    #         model = torch.nn.DataParallel(model).cuda()
-    #         #model = torch.nn.DataParallel(model,device_ids=range(torch.cuda.device_count()))
+    if not torch.cuda.is_available():
+        print('using CPU, this will be slow')
+    elif args.distributed:
+        # For multiprocessing distributed, DistributedDataParallel constructor
+        # should always set the single device scope, otherwise,
+        # DistributedDataParallel will use all available devices.
+        if args.gpu is not None:
+            torch.cuda.set_device(args.gpu)
+            model.cuda(args.gpu)
+            # When using a single GPU per process and per
+            # DistributedDataParallel, we need to divide the batch size
+            # ourselves based on the total number of GPUs we have
+            args.batch_size = int(args.batch_size / ngpus_per_node)
+            args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
+            model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
+        else:
+            model.cuda()
+            # DistributedDataParallel will divide and allocate batch_size to all
+            # available GPUs if device_ids are not set
+            model = torch.nn.parallel.DistributedDataParallel(model)
+    elif args.gpu is not None:
+        torch.cuda.set_device(args.gpu)
+        model = model.cuda(args.gpu)
+    else:
+        # 这里的是关键
+        # DataParallel will divide and allocate batch_size to all available GPUs
+        if args.arch.startswith('alexnet') or args.arch.startswith('vgg'):
+            model.features = torch.nn.DataParallel(model.features)
+            model.cuda()
+        else:
+            # cuda（） 的实际作用
+            # model = torch.nn.DataParallel(model)
+            model = torch.nn.DataParallel(model).cuda()
+            #model = torch.nn.DataParallel(model,device_ids=range(torch.cuda.device_count()))
 
 
-    # # define loss function (criterion) and optimizer
-    # criterion = nn.CrossEntropyLoss().cuda(args.gpu)
+    # define loss function (criterion) and optimizer
+    criterion = nn.CrossEntropyLoss().cuda(args.gpu)
 
-    # optimizer = torch.optim.SGD(model.parameters(), args.lr,
-    #                             momentum=args.momentum,
-    #                             weight_decay=args.weight_decay)
+    optimizer = torch.optim.SGD(model.parameters(), args.lr,
+                                momentum=args.momentum,
+                                weight_decay=args.weight_decay)
 
-    # # optionally resume from a checkpoint
-    # if args.resume:
-    #     if os.path.isfile(args.resume):
-    #         print("=> loading checkpoint '{}'".format(args.resume))
-    #         if args.gpu is None:
-    #             checkpoint = torch.load(args.resume)
-    #         else:
-    #             # Map model to be loaded to specified single gpu.
-    #             loc = 'cuda:{}'.format(args.gpu)
-    #             checkpoint = torch.load(args.resume, map_location=loc)
-    #         args.start_epoch = checkpoint['epoch']
-    #         best_acc1 = checkpoint['best_acc1']
-    #         if args.gpu is not None:
-    #             # best_acc1 may be from a checkpoint from a different GPU
-    #             best_acc1 = best_acc1.to(args.gpu)
-    #         model.load_state_dict(checkpoint['state_dict'])
-    #         optimizer.load_state_dict(checkpoint['optimizer'])
-    #         print("=> loaded checkpoint '{}' (epoch {})"
-    #               .format(args.resume, checkpoint['epoch']))
-    #     else:
-    #         print("=> no checkpoint found at '{}'".format(args.resume))
+    # optionally resume from a checkpoint
+    if args.resume:
+        if os.path.isfile(args.resume):
+            print("=> loading checkpoint '{}'".format(args.resume))
+            if args.gpu is None:
+                checkpoint = torch.load(args.resume)
+            else:
+                # Map model to be loaded to specified single gpu.
+                loc = 'cuda:{}'.format(args.gpu)
+                checkpoint = torch.load(args.resume, map_location=loc)
+            args.start_epoch = checkpoint['epoch']
+            best_acc1 = checkpoint['best_acc1']
+            if args.gpu is not None:
+                # best_acc1 may be from a checkpoint from a different GPU
+                best_acc1 = best_acc1.to(args.gpu)
+            model.load_state_dict(checkpoint['state_dict'])
+            optimizer.load_state_dict(checkpoint['optimizer'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(args.resume, checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(args.resume))
 
-    # cudnn.benchmark = True
+    cudnn.benchmark = True
 
 
     #######################换了位置#################################
@@ -344,7 +344,7 @@ def main_worker(gpu, ngpus_per_node, args):
         train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
         classes_dict = {i:i for i in range(len(train_dataset.classes))}
 
-    print(classes_dict)
+    # print(classes_dict)
 
     ##############################################################################################
     if args.distributed:
@@ -363,96 +363,96 @@ def main_worker(gpu, ngpus_per_node, args):
         valid_dataset,
         batch_size=args.batch_size, shuffle=False,
         num_workers=args.workers, pin_memory=True)
-    print("validating   set")
+    print("validating  set")
     print(len(val_loader))
 
 
 
     #######################换了位置################################
 
-    #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
-    # create model
-    # update the parameters for the number of classes if necessary
-    if args.subset and args.subsetpath is not None:
-            args.num_classes= 1000 - len(pd.read_csv(args.subsetpath, header = None))
+    # #以下是处理gpus 和 不同 distributed 选项之间的方案，值得深挖！
+    # # create model
+    # # update the parameters for the number of classes if necessary
+    # if args.subset and args.subsetpath is not None:
+    #         args.num_classes= 1000 - len(pd.read_csv(args.subsetpath, header = None))
             
-    print("when creating the model, the number of classes are")
-    print(args.num_classes)
-    if args.pretrained:
-        print("=> using pre-trained model '{}'".format(args.arch))
-        model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
-    else:
-        print("=> creating model '{}'".format(args.arch))
-        model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
+    # print("when creating the model, the number of classes are")
+    # print(args.num_classes)
+    # if args.pretrained:
+    #     print("=> using pre-trained model '{}'".format(args.arch))
+    #     model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
+    # else:
+    #     print("=> creating model '{}'".format(args.arch))
+    #     model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
 
  
 
-    if not torch.cuda.is_available():
-        print('using CPU, this will be slow')
-    elif args.distributed:
-        # For multiprocessing distributed, DistributedDataParallel constructor
-        # should always set the single device scope, otherwise,
-        # DistributedDataParallel will use all available devices.
-        if args.gpu is not None:
-            torch.cuda.set_device(args.gpu)
-            model.cuda(args.gpu)
-            # When using a single GPU per process and per
-            # DistributedDataParallel, we need to divide the batch size
-            # ourselves based on the total number of GPUs we have
-            args.batch_size = int(args.batch_size / ngpus_per_node)
-            args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
-            model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
-        else:
-            model.cuda()
-            # DistributedDataParallel will divide and allocate batch_size to all
-            # available GPUs if device_ids are not set
-            model = torch.nn.parallel.DistributedDataParallel(model)
-    elif args.gpu is not None:
-        torch.cuda.set_device(args.gpu)
-        model = model.cuda(args.gpu)
-    else:
-        # 这里的是关键
-        # DataParallel will divide and allocate batch_size to all available GPUs
-        if args.arch.startswith('alexnet') or args.arch.startswith('vgg'):
-            model.features = torch.nn.DataParallel(model.features)
-            model.cuda()
-        else:
-            # cuda（） 的实际作用
-            # model = torch.nn.DataParallel(model)
-            model = torch.nn.DataParallel(model).cuda()
-            #model = torch.nn.DataParallel(model,device_ids=range(torch.cuda.device_count()))
+    # if not torch.cuda.is_available():
+    #     print('using CPU, this will be slow')
+    # elif args.distributed:
+    #     # For multiprocessing distributed, DistributedDataParallel constructor
+    #     # should always set the single device scope, otherwise,
+    #     # DistributedDataParallel will use all available devices.
+    #     if args.gpu is not None:
+    #         torch.cuda.set_device(args.gpu)
+    #         model.cuda(args.gpu)
+    #         # When using a single GPU per process and per
+    #         # DistributedDataParallel, we need to divide the batch size
+    #         # ourselves based on the total number of GPUs we have
+    #         args.batch_size = int(args.batch_size / ngpus_per_node)
+    #         args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
+    #         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
+    #     else:
+    #         model.cuda()
+    #         # DistributedDataParallel will divide and allocate batch_size to all
+    #         # available GPUs if device_ids are not set
+    #         model = torch.nn.parallel.DistributedDataParallel(model)
+    # elif args.gpu is not None:
+    #     torch.cuda.set_device(args.gpu)
+    #     model = model.cuda(args.gpu)
+    # else:
+    #     # 这里的是关键
+    #     # DataParallel will divide and allocate batch_size to all available GPUs
+    #     if args.arch.startswith('alexnet') or args.arch.startswith('vgg'):
+    #         model.features = torch.nn.DataParallel(model.features)
+    #         model.cuda()
+    #     else:
+    #         # cuda（） 的实际作用
+    #         # model = torch.nn.DataParallel(model)
+    #         model = torch.nn.DataParallel(model).cuda()
+    #         #model = torch.nn.DataParallel(model,device_ids=range(torch.cuda.device_count()))
 
 
-    # define loss function (criterion) and optimizer
-    criterion = nn.CrossEntropyLoss().cuda(args.gpu)
+    # # define loss function (criterion) and optimizer
+    # criterion = nn.CrossEntropyLoss().cuda(args.gpu)
 
-    optimizer = torch.optim.SGD(model.parameters(), args.lr,
-                                momentum=args.momentum,
-                                weight_decay=args.weight_decay)
+    # optimizer = torch.optim.SGD(model.parameters(), args.lr,
+    #                             momentum=args.momentum,
+    #                             weight_decay=args.weight_decay)
 
-    # optionally resume from a checkpoint
-    if args.resume:
-        if os.path.isfile(args.resume):
-            print("=> loading checkpoint '{}'".format(args.resume))
-            if args.gpu is None:
-                checkpoint = torch.load(args.resume)
-            else:
-                # Map model to be loaded to specified single gpu.
-                loc = 'cuda:{}'.format(args.gpu)
-                checkpoint = torch.load(args.resume, map_location=loc)
-            args.start_epoch = checkpoint['epoch']
-            best_acc1 = checkpoint['best_acc1']
-            if args.gpu is not None:
-                # best_acc1 may be from a checkpoint from a different GPU
-                best_acc1 = best_acc1.to(args.gpu)
-            model.load_state_dict(checkpoint['state_dict'])
-            optimizer.load_state_dict(checkpoint['optimizer'])
-            print("=> loaded checkpoint '{}' (epoch {})"
-                  .format(args.resume, checkpoint['epoch']))
-        else:
-            print("=> no checkpoint found at '{}'".format(args.resume))
+    # # optionally resume from a checkpoint
+    # if args.resume:
+    #     if os.path.isfile(args.resume):
+    #         print("=> loading checkpoint '{}'".format(args.resume))
+    #         if args.gpu is None:
+    #             checkpoint = torch.load(args.resume)
+    #         else:
+    #             # Map model to be loaded to specified single gpu.
+    #             loc = 'cuda:{}'.format(args.gpu)
+    #             checkpoint = torch.load(args.resume, map_location=loc)
+    #         args.start_epoch = checkpoint['epoch']
+    #         best_acc1 = checkpoint['best_acc1']
+    #         if args.gpu is not None:
+    #             # best_acc1 may be from a checkpoint from a different GPU
+    #             best_acc1 = best_acc1.to(args.gpu)
+    #         model.load_state_dict(checkpoint['state_dict'])
+    #         optimizer.load_state_dict(checkpoint['optimizer'])
+    #         print("=> loaded checkpoint '{}' (epoch {})"
+    #               .format(args.resume, checkpoint['epoch']))
+    #     else:
+    #         print("=> no checkpoint found at '{}'".format(args.resume))
 
-    cudnn.benchmark = True
+    # cudnn.benchmark = True
 
 
     #######################换了位置#################################
@@ -524,19 +524,20 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  cl
         if args.gpu is not None:
             images = images.cuda(args.gpu, non_blocking=True)
 
+        target = torch.tensor([classes_dict[x.item()] for x in target])
+
         if torch.cuda.is_available():
             ###################################
-            target_map = torch.tensor([classes_dict[x.item()] for x in target])
+            # target_map_before = torch.tensor([classes_dict[x.item()] for x in target])
             ###################################
-            target_map = target_map.cuda(args.gpu, non_blocking=True)
+            target = target.cuda(args.gpu, non_blocking=True)
 
         # compute output
         output = model(images)
-        loss = criterion(output, target_map)
+        loss = criterion(output, target)
 
         # measure accuracy and record loss
-        acc1, acc5 = accuracy(output, target_map, topk=(1, 5))
-        # del target_map
+        acc1, acc5 = accuracy(output, target, topk=(1, 5))
         losses.update(loss.item(), images.size(0))
         total_losses += loss
         total_correct_count_top1 += acc1
@@ -589,19 +590,21 @@ def validate(val_loader, model, criterion,args, epoch_num = 0, classes_dict = No
         for i, (images, target) in enumerate(val_loader):
             if args.gpu is not None:
                 images = images.cuda(args.gpu, non_blocking=True)
+
+            target = torch.tensor([classes_dict[x.item()] for x in target])
+            
             if torch.cuda.is_available():
             ###################################
-                target_map = torch.tensor([classes_dict[x.item()] for x in target])
+                # target_map_before = torch.tensor([classes_dict[x.item()] for x in target])
             ###################################
-                target_map = target_map.cuda(args.gpu, non_blocking=True)
+                target = target.cuda(args.gpu, non_blocking=True)
 
             # compute output
             output = model(images)
-            loss = criterion(output, target_map)
+            loss = criterion(output, target)
 
             # measure accuracy and record loss
-            acc1, acc5 = accuracy(output, target_map, topk=(1, 5))
-            # del target_map
+            acc1, acc5 = accuracy(output, target, topk=(1, 5))
             total_losses += loss
             total_correct_count_top1 += acc1
             total_correct_count_top5 += acc5
