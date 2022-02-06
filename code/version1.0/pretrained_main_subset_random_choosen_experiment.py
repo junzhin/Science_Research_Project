@@ -529,16 +529,16 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  cl
         if torch.cuda.is_available():
             ###################################
             target_map = torch.tensor([classes_dict[x.item()] for x in target])
-            del target
             ###################################
-            target = target_map.cuda(args.gpu, non_blocking=True)
+            target_map = target_map.cuda(args.gpu, non_blocking=True)
 
         # compute output
         output = model(images)
-        loss = criterion(output, target)
+        loss = criterion(output, target_map)
 
         # measure accuracy and record loss
-        acc1, acc5 = accuracy(output, target, topk=(1, 5))
+        acc1, acc5 = accuracy(output, target_map, topk=(1, 5))
+        # del target_map
         losses.update(loss.item(), images.size(0))
         total_losses += loss
         total_correct_count_top1 += acc1
@@ -594,16 +594,16 @@ def validate(val_loader, model, criterion,classes_dict, args,epoch_num = 0):
             if torch.cuda.is_available():
             ###################################
                 target_map = torch.tensor([classes_dict[x.item()] for x in target])
-                del target
             ###################################
-                target = target_map.cuda(args.gpu, non_blocking=True)
+                target_map = target_map.cuda(args.gpu, non_blocking=True)
 
             # compute output
             output = model(images)
-            loss = criterion(output, target)
+            loss = criterion(output, target_map)
 
             # measure accuracy and record loss
-            acc1, acc5 = accuracy(output, target, topk=(1, 5))
+            acc1, acc5 = accuracy(output, target_map, topk=(1, 5))
+            # del target_map
             total_losses += loss
             total_correct_count_top1 += acc1
             total_correct_count_top5 += acc5
