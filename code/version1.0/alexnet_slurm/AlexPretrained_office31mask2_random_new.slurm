@@ -8,8 +8,8 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=6
 #SBATCH --gres=gpu:4
-#SBATCH --time=96:00:00
-#SBATCH --mem=16G
+#SBATCH --time=72:00:00
+#SBATCH --mem=32G
 
 
 #SBATCH -o Alexoffice31mask2Random_new.%N.%j.out # STDOUT 

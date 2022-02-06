@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/spawn.py", line 105, in spawn_main
+    exitcode = _main(fd)
+  File "/home/junzhin/anaconda3/lib/python3.7/multiprocessing/spawn.py", line 115, in _main
+    self = reduction.pickle.load(from_parent)
+_pickle.UnpicklingError: pickle data was truncated
+Traceback (most recent call last):
+  File "../pretrained_main_subset_random_choosen_experiment.py", line 736, in <module>
+    main()
+  File "../pretrained_main_subset_random_choosen_experiment.py", line 128, in main
+    mp.spawn(main_worker, nprocs=ngpus_per_node, args=(ngpus_per_node, args))
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 230, in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method='spawn')
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 188, in start_processes
+    while not context.join():
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 136, in join
+    signal_name=name
+torch.multiprocessing.spawn.ProcessExitedException: process 2 terminated with signal SIGKILL
+slurmstepd: error: Detected 28 oom-kill event(s) in StepId=32968263.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.
