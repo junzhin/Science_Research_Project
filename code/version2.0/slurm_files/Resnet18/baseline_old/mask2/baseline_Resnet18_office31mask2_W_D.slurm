@@ -20,4 +20,4 @@
 #SBATCH --mail-user=junzhin@student.unimelb.edu.au
 
 source activate base 
-python3 ../../../../source_only.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s W -t D -a resnet18 --epochs 30  --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked2_newmodel_best.pth.tar --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/baseline_old/Resnet18_office31masked2/W_D
+python3 ../../../../source_only.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s W -t D -a resnet18 --epochs 30  --local --local-pretrained-path /home/junzhin/Project/Summer_project/code/version1.0/old_model_results/Resnet18_office31masked2_newmodel_best.pth.tar --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/baseline_old/Resnet18_office31masked2/W_D
