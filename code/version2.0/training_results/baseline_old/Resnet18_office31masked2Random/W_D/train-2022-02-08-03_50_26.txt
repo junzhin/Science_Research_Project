@@ -1,0 +1,14 @@
+Namespace(arch='resnet18', batch_size=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=30, iters_per_epoch=500, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/old_model_results/Resnet18_office31masked2Random_newmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/baseline_old/Resnet18_office31masked2Random/W_D', lr=0.001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='W', target='D', wd=0.0005, workers=4)
+=> using pre-trained model 'resnet18'
+Epoch: [0][  0/500]	Time 3.610 (3.610)	Data 0.091 (0.091)	Loss 3.64 (3.64)	Cls Acc 1.2 (1.2)
+Epoch: [0][100/500]	Time 0.492 (1.223)	Data 0.360 (1.057)	Loss 3.12 (3.25)	Cls Acc 14.5 (13.1)
+Epoch: [0][200/500]	Time 0.493 (1.212)	Data 0.361 (1.062)	Loss 2.81 (3.10)	Cls Acc 26.2 (17.6)
+Epoch: [0][300/500]	Time 2.593 (1.215)	Data 2.457 (1.071)	Loss 2.54 (2.96)	Cls Acc 32.8 (21.4)
+Epoch: [0][400/500]	Time 0.494 (1.212)	Data 0.362 (1.070)	Loss 2.34 (2.84)	Cls Acc 40.6 (24.8)
+Test: [0/2]	Time 12.263 (12.263)	Loss 3.1461e+00 (3.1461e+00)	Acc@1  17.19 ( 17.19)	Acc@5  48.05 ( 48.05)
+ * Acc@1 16.667 Acc@5 42.169
+acc1 = 16.7, best_acc1 = 16.7
+Epoch: [1][  0/500]	Time 0.225 (0.225)	Data 0.088 (0.088)	Loss 2.17 (2.17)	Cls Acc 43.4 (43.4)
+Epoch: [1][100/500]	Time 2.610 (1.212)	Data 2.474 (1.079)	Loss 2.03 (2.11)	Cls Acc 47.3 (42.7)
+Epoch: [1][200/500]	Time 0.492 (1.206)	Data 0.360 (1.073)	Loss 1.98 (2.04)	Cls Acc 45.7 (44.6)
+Epoch: [1][300/500]	Time 0.496 (1.205)	Data 0.364 (1.071)	Loss 1.73 (1.97)	Cls Acc 56.6 (46.5)

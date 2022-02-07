@@ -1,0 +1,21 @@
+Namespace(arch='resnet18', batch_size=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=30, iters_per_epoch=500, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/old_model_results/Resnet18_office31masked2Random_newmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/baseline_old/Resnet18_office31masked2Random/D_W', lr=0.001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='D', target='W', wd=0.0005, workers=4)
+=> using pre-trained model 'resnet18'
+Epoch: [0][  0/500]	Time 5.747 (5.747)	Data 3.374 (3.374)	Loss 3.59 (3.59)	Cls Acc 0.8 (0.8)
+Epoch: [0][100/500]	Time 6.175 (6.137)	Data 6.042 (5.981)	Loss 3.05 (3.21)	Cls Acc 18.4 (12.9)
+Epoch: [0][200/500]	Time 6.134 (6.139)	Data 6.000 (5.994)	Loss 2.90 (3.08)	Cls Acc 21.5 (17.3)
+Epoch: [0][300/500]	Time 6.153 (6.143)	Data 6.020 (6.002)	Loss 2.64 (2.97)	Cls Acc 29.7 (20.4)
+Epoch: [0][400/500]	Time 6.152 (6.144)	Data 6.019 (6.005)	Loss 2.50 (2.87)	Cls Acc 34.0 (23.4)
+Test: [0/4]	Time  2.577 ( 2.577)	Loss 4.1870e+00 (4.1870e+00)	Acc@1  13.67 ( 13.67)	Acc@5  35.94 ( 35.94)
+ * Acc@1 9.560 Acc@5 28.553
+acc1 = 9.6, best_acc1 = 9.6
+Epoch: [1][  0/500]	Time 6.143 (6.143)	Data 6.005 (6.005)	Loss 2.17 (2.17)	Cls Acc 45.3 (45.3)
+Epoch: [1][100/500]	Time 6.089 (6.133)	Data 5.956 (5.999)	Loss 2.17 (2.21)	Cls Acc 43.0 (40.9)
+Epoch: [1][200/500]	Time 6.132 (6.133)	Data 6.000 (6.000)	Loss 1.90 (2.12)	Cls Acc 50.0 (43.3)
+Epoch: [1][300/500]	Time 6.164 (6.137)	Data 6.031 (6.003)	Loss 1.83 (2.04)	Cls Acc 50.8 (46.1)
+Epoch: [1][400/500]	Time 6.173 (6.140)	Data 6.040 (6.006)	Loss 1.73 (1.96)	Cls Acc 56.6 (48.9)
+Test: [0/4]	Time  2.601 ( 2.601)	Loss 4.4344e+00 (4.4344e+00)	Acc@1  15.23 ( 15.23)	Acc@5  38.28 ( 38.28)
+ * Acc@1 14.340 Acc@5 34.843
+acc1 = 14.3, best_acc1 = 14.3
+Epoch: [2][  0/500]	Time 6.150 (6.150)	Data 6.018 (6.018)	Loss 1.54 (1.54)	Cls Acc 62.9 (62.9)
+Epoch: [2][100/500]	Time 6.158 (6.148)	Data 6.025 (6.014)	Loss 1.39 (1.45)	Cls Acc 65.6 (65.4)
+Epoch: [2][200/500]	Time 6.174 (6.146)	Data 6.041 (6.013)	Loss 1.26 (1.39)	Cls Acc 71.5 (67.0)
