@@ -20,4 +20,4 @@
 #SBATCH --mail-user=junzhin@student.unimelb.edu.au
 
 source activate base 
-python3 ../../../source_only.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s A -t W -a alexnet --epochs 30 --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/Alex_pretrained/mask2/A_W
+python3 ../../../source_only.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 4 -b 256 -d Office31 -s A -t W -a alexnet --epochs 30 --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/Alex_pretrained/A_W
