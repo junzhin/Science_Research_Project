@@ -157,8 +157,7 @@ def main(args: argparse.Namespace):
             acc1 = validate(val_loader, classifier, args, epoch=epoch)
 
             # remember best acc@1 and save checkpoint
-            if args.checkmodel_logsave:
-                torch.save(classifier.state_dict(), logger.get_checkpoint_path('latest'))
+            torch.save(classifier.state_dict(), logger.get_checkpoint_path('latest'))
             if acc1 > best_acc1:
                 shutil.copy(logger.get_checkpoint_path('latest'), logger.get_checkpoint_path('best'))
             best_acc1 = max(acc1, best_acc1)
@@ -378,7 +377,7 @@ if __name__ == '__main__':
                         help='number of data loading workers (default: 4)')
     parser.add_argument('--epochs', default=20, type=int, metavar='N',
                         help='number of total epochs to run')
-    parser.add_argument('-i', '--iters-per-epoch', default=500, type=int,
+    parser.add_argument('-i', '--iters-per-epoch', default=1000, type=int,
                         help='Number of iterations per epoch')
     parser.add_argument('-p', '--print-freq', default=50, type=int,
                         metavar='N', help='print frequency (default: 100)')

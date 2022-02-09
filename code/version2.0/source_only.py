@@ -158,9 +158,9 @@ def main(args: argparse.Namespace):
 
     # evaluate on test set
     classifier.load_state_dict(torch.load(logger.get_checkpoint_path('best')))
-    acc1 = validate(val_loader, classifier, args)
+    acc1 = validate(val_loader, classifier, args, epoch = 0)
     print("val_acc1 = {:3.1f}".format(acc1))
-    acc1 = validate(test_loader, classifier, args)
+    acc1 = validate(test_loader, classifier, args, epoch = 0)
     print("test_acc1 = {:3.1f}".format(acc1))
 
     logger.close()
@@ -352,7 +352,7 @@ if __name__ == '__main__':
                         help='number of data loading workers (default: 4)')
     parser.add_argument('--epochs', default=20, type=int, metavar='N',
                         help='number of total epochs to run')
-    parser.add_argument('-i', '--iters-per-epoch', default=500, type=int,
+    parser.add_argument('-i', '--iters-per-epoch', default=1000, type=int,
                         help='Number of iterations per epoch')
     parser.add_argument('-p', '--print-freq', default=100, type=int,
                         metavar='N', help='print frequency (default: 100)')

@@ -337,14 +337,16 @@ def main_worker(gpu, ngpus_per_node, args):
             train_dataset = torch.utils.data.Subset(train_dataset_initial, chosen_index_train)
             valid_dataset = torch.utils.data.Subset(valid_dataset_initial, chosen_index_valid)
             print(len(chosen_index_train))
+            print("train_datast length is {%d}".format(len(train_dataset)))
             print(len(chosen_index_valid))
+            print("valid_dataset length is {%d}".format(len(valid_dataset)))
         else:
             warnings.warn('Since you do not specify the csv file for the class labels you are going to mask, so no subset model training will be used in this case!')
     else:
         train_dataset, valid_dataset = train_dataset_initial,valid_dataset_initial
         classes_dict = {i:i for i in range(len(train_dataset.classes))}
 
-    # print(classes_dict)
+    print(classes_dict)
 
     ##############################################################################################
     if args.distributed:
@@ -524,8 +526,9 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  cl
         if args.gpu is not None:
             images = images.cuda(args.gpu, non_blocking=True)
 
+        print(target.item())
         target = torch.tensor([classes_dict[x.item()] for x in target])
-
+        print(target.item())
         if torch.cuda.is_available():
             ###################################
             # target_map_before = torch.tensor([classes_dict[x.item()] for x in target])
@@ -591,7 +594,10 @@ def validate(val_loader, model, criterion,args, epoch_num = 0, classes_dict = No
             if args.gpu is not None:
                 images = images.cuda(args.gpu, non_blocking=True)
 
+            print(target.item())
             target = torch.tensor([classes_dict[x.item()] for x in target])
+            print("<>" * 100)
+            print(target.item())
             
             if torch.cuda.is_available():
             ###################################
@@ -616,7 +622,7 @@ def validate(val_loader, model, criterion,args, epoch_num = 0, classes_dict = No
             batch_time.update(time.time() - end)
             end = time.time()
 
-            if i % args.print_freq == 0:
+            if i % 10 == 0:
                 progress.display(i)
 
         progress.display_summary()
