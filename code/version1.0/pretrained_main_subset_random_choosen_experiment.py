@@ -22,6 +22,7 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
+import models as self_made_alexnet
 from torch.utils.tensorboard import SummaryWriter
 
 
@@ -48,7 +49,7 @@ parser.add_argument('-b', '--batch-size', default=256, type=int,
                     help='mini-batch size (default: 256), this is the total '
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
-parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
+parser.add_argument('--lr', '--learning-rate', default=0.001, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
@@ -479,11 +480,10 @@ def main_worker(gpu, ngpus_per_node, args):
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             train_sampler.set_epoch(epoch)
+
         # 换掉 原装的lr sched
         # adjust_learning_rate(optimizer, epoch, args)
        
-    
-
         # train for one epoch
         train(train_loader, model, criterion, optimizer, epoch, args, epoch, classes_dict = classes_dict)
 
