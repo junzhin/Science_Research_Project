@@ -213,7 +213,7 @@ def main_worker(gpu, ngpus_per_node, args):
     #                             weight_decay=args.weight_decay)
 
     # 换成 adam 优化器
-    optimizer = torch.optim.Adam(model.parameters(), lr =  args.lr)
+    optimizer = torch.optim.Adam(model.parameters(), lr =  args.lr, weight_decay = args.weight_decay)
     my_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer = optimizer, step_size =  30, gamma = 0.1 ,verbose = True)
     
 
