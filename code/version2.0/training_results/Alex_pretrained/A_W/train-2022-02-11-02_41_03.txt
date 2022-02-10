@@ -1,3 +1,18 @@
 Namespace(arch='alexnet', batch_size=512, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=30, iters_per_epoch=1000, local=False, local_pretrained_path='', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/Alex_pretrained/A_W', lr=0.0001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='W', wd=0.0005, workers=8)
 => using pre-trained model 'alexnet'
 Epoch: [0][   0/1000]	Time 2.406 (2.406)	Data 0.204 (0.204)	Loss 3.59 (3.59)	Cls Acc 4.9 (4.9)
+Epoch: [0][ 100/1000]	Time 3.540 (1.007)	Data 3.478 (0.928)	Loss 3.33 (3.45)	Cls Acc 8.6 (7.0)
+Epoch: [0][ 200/1000]	Time 3.464 (0.999)	Data 3.406 (0.931)	Loss 3.16 (3.35)	Cls Acc 14.3 (8.9)
+Epoch: [0][ 300/1000]	Time 3.562 (0.997)	Data 3.504 (0.932)	Loss 3.02 (3.27)	Cls Acc 20.9 (11.8)
+Epoch: [0][ 400/1000]	Time 3.586 (0.996)	Data 3.527 (0.933)	Loss 2.81 (3.18)	Cls Acc 26.8 (14.6)
+Epoch: [0][ 500/1000]	Time 3.567 (0.996)	Data 3.509 (0.934)	Loss 2.67 (3.11)	Cls Acc 32.8 (17.3)
+Epoch: [0][ 600/1000]	Time 3.560 (0.995)	Data 3.501 (0.934)	Loss 2.62 (3.03)	Cls Acc 31.8 (19.9)
+Epoch: [0][ 700/1000]	Time 3.521 (0.995)	Data 3.463 (0.934)	Loss 2.49 (2.96)	Cls Acc 38.5 (22.5)
+Epoch: [0][ 800/1000]	Time 3.454 (0.995)	Data 3.396 (0.934)	Loss 2.29 (2.88)	Cls Acc 46.3 (25.1)
+Epoch: [0][ 900/1000]	Time 3.585 (0.995)	Data 3.526 (0.934)	Loss 2.26 (2.81)	Cls Acc 46.9 (27.6)
+Test: [0/2]	Time  4.952 ( 4.952)	Loss 2.6719e+00 (2.6719e+00)	Acc@1  29.69 ( 29.69)	Acc@5  58.98 ( 58.98)
+ * Acc@1 32.579 Acc@5 60.629
+acc1 = 32.6, best_acc1 = 32.6
+Epoch: [1][   0/1000]	Time 3.563 (3.563)	Data 3.502 (3.502)	Loss 2.09 (2.09)	Cls Acc 51.6 (51.6)
+Epoch: [1][ 100/1000]	Time 3.550 (1.015)	Data 3.492 (0.958)	Loss 1.93 (2.01)	Cls Acc 58.0 (54.6)
+Epoch: [1][ 200/1000]	Time 3.585 (1.003)	Data 3.527 (0.945)	Loss 1.93 (1.95)	Cls Acc 55.1 (55.8)
