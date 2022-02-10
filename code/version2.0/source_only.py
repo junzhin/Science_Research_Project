@@ -106,7 +106,7 @@ def main(args: argparse.Namespace):
 
     # define optimizer and lr scheduler
     optimizer = SGD(classifier.get_parameters(), args.lr, momentum=args.momentum, weight_decay=args.wd, nesterov=True)
-    lr_scheduler = LambdaLR(optimizer, lambda x:  args.lr * (1. + args.lr_gamma * float(x)) ** (-args.lr_decay))
+    lr_scheduler = LambdaLR(optimizer, lambda x:  args.lrlr * (1. + args.lr_gamma * float(x)) ** (-args.lr_decay))
 
     # resume from the best checkpoint
     if args.phase != 'train':

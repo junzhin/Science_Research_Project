@@ -207,9 +207,14 @@ def main_worker(gpu, ngpus_per_node, args):
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
 
-    optimizer = torch.optim.SGD(model.parameters(), args.lr,
-                                momentum=args.momentum,
-                                weight_decay=args.weight_decay)
+    # optimizer = torch.optim.SGD(model.parameters(), args.lr,
+    #                             momentum=args.momentum,
+    #                             weight_decay=args.weight_decay)
+
+    # 换成 adam 优化器
+    optimizer = torch.optim.Adam(model.parameters(), lr =  args.lr)
+    my_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer = optimizer, step_size =  30, gamma = 0.1 ,verbose = True)
+    
 
     # optionally resume from a checkpoint
     if args.resume:
@@ -309,7 +314,8 @@ def main_worker(gpu, ngpus_per_node, args):
                 classes_dict = {x:i for i,x in enumerate(chosen_classes_labels_indices)}
 
                 chosen_classes_labels_names = [each for each in train_dataset_initial.classes if each not in random_selected_classes]
-                # print(chosen_classes_labels_names)
+                print("chosen_classes_labels_names")
+                print(chosen_classes_labels_names)
 
                 # Save the random selected_classes to a csv file
                 random_selected_classes_labels_names_df = pd.DataFrame(random_selected_classes)
@@ -327,6 +333,10 @@ def main_worker(gpu, ngpus_per_node, args):
                 print(args.num_classes)
                 print(len(masked_classes))
                 print("+---"*20)
+
+                chosen_classes_labels_names = [each for each in train_dataset_initial.classes if each not in list(masked_label_list[0])]
+                print("chosen_classes_labels_names")
+                print(chosen_classes_labels_names)
                 
                 chosen_index_train = [index for index in range(len(train_dataset_initial)) if train_dataset_initial.imgs[index][1] not in masked_classes]
                 chosen_index_valid = [index for index in range(len(valid_dataset_initial)) if valid_dataset_initial.imgs[index][1] not in masked_classes]
@@ -337,9 +347,9 @@ def main_worker(gpu, ngpus_per_node, args):
             train_dataset = torch.utils.data.Subset(train_dataset_initial, chosen_index_train)
             valid_dataset = torch.utils.data.Subset(valid_dataset_initial, chosen_index_valid)
             print(len(chosen_index_train))
-            print("train_datast length is {%d}".format(len(train_dataset)))
+            print("train_datast length is %d" % (len(train_dataset)))
             print(len(chosen_index_valid))
-            print("valid_dataset length is {%d}".format(len(valid_dataset)))
+            print("valid_dataset length is %d" % (len(valid_dataset)))
         else:
             warnings.warn('Since you do not specify the csv file for the class labels you are going to mask, so no subset model training will be used in this case!')
     else:
@@ -469,11 +479,14 @@ def main_worker(gpu, ngpus_per_node, args):
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             train_sampler.set_epoch(epoch)
-        adjust_learning_rate(optimizer, epoch, args)
-
+        # 换掉 原装的lr sched
+        # adjust_learning_rate(optimizer, epoch, args)
+       
+    
 
         # train for one epoch
         train(train_loader, model, criterion, optimizer, epoch, args, epoch, classes_dict = classes_dict)
+
 
         # evaluate on validation set
         acc1 = validate(val_loader, model, criterion, args, epoch, classes_dict = classes_dict)
@@ -492,6 +505,7 @@ def main_worker(gpu, ngpus_per_node, args):
                 'best_acc1': best_acc1,
                 'optimizer' : optimizer.state_dict(),
             }, is_best, saving_dir = args.log)
+        my_lr_scheduler.step()
 
 
 
@@ -525,16 +539,12 @@ def train(train_loader, model, criterion, optimizer, epoch, args, epoch_num,  cl
 
         if args.gpu is not None:
             images = images.cuda(args.gpu, non_blocking=True)
-
-        print(target.item())
         target = torch.tensor([classes_dict[x.item()] for x in target])
-        print(target.item())
         if torch.cuda.is_available():
             ###################################
             # target_map_before = torch.tensor([classes_dict[x.item()] for x in target])
             ###################################
             target = target.cuda(args.gpu, non_blocking=True)
-
         # compute output
         output = model(images)
         loss = criterion(output, target)
@@ -593,12 +603,7 @@ def validate(val_loader, model, criterion,args, epoch_num = 0, classes_dict = No
         for i, (images, target) in enumerate(val_loader):
             if args.gpu is not None:
                 images = images.cuda(args.gpu, non_blocking=True)
-
-            print(target.item())
             target = torch.tensor([classes_dict[x.item()] for x in target])
-            print("<>" * 100)
-            print(target.item())
-            
             if torch.cuda.is_available():
             ###################################
                 # target_map_before = torch.tensor([classes_dict[x.item()] for x in target])
