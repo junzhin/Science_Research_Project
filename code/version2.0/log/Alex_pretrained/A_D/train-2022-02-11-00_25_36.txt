@@ -1,0 +1,28 @@
+Namespace(arch='alexnet', batch_size=512, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=1000, local=False, local_pretrained_path='', log='/home/junzhin/Project/Summer_project/code/version2.0/log/Alex_pretrained/A_D', lr=0.0001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=False, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='D', wd=0.0005, workers=4)
+=> using pre-trained model 'alexnet'
+Traceback (most recent call last):
+  File "source_only.py", line 377, in <module>
+    main(args)
+  File "source_only.py", line 143, in main
+    lr_scheduler, epoch, args)
+  File "source_only.py", line 202, in train
+    y_s, f_s = model(x_s)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/junzhin/Project/Summer_project/code/version2.0/common/modules/classifier.py", line 72, in forward
+    f = self.backbone(x)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/junzhin/Project/Summer_project/code/version2.0/common/vision/models/alexnet.py", line 48, in forward
+    x = self.features(x)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/conv.py", line 446, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
+    self.padding, self.dilation, self.groups)
+KeyboardInterrupt
