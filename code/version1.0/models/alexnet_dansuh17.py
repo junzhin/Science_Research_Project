@@ -3,6 +3,8 @@ import torch.nn as nn
 from torch.hub import load_state_dict_from_url
 from typing import Any
 
+# modified based on https://github.com/dansuh17/alexnet-pytorch/blob/master/model.py
+
 
 __all__ = ['AlexNet', 'alexnet']
 
