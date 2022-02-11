@@ -98,7 +98,8 @@ best_acc1 = 0
 
 def main():
     args = parser.parse_args()
-    
+    print(args)
+
     if args.seed is not None:
         random.seed(args.seed)
         torch.manual_seed(args.seed)
