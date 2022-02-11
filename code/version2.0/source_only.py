@@ -144,7 +144,7 @@ def main(args: argparse.Namespace):
 
         if epoch % 1 == 0:
             # evaluate on validation set
-            acc1 = validate(val_loader, classifier, args, epoch)
+            acc1 = validate(val_loader, classifier, args, epoch = epoch)
 
             # remember best acc@1 and save checkpoint/home/junzhin/Project/Summer_project/code/version2.0/slurm_files/Alexnet/baseline_old/mask2
             
@@ -235,7 +235,7 @@ def train(train_source_iter: ForeverDataIterator, model: Classifier, optimizer: 
 
     return
 
-def validate(val_loader: DataLoader, model: Classifier, args: argparse.Namespace, epoch: int) -> float:
+def validate(val_loader: DataLoader, model: Classifier, args: argparse.Namespace, epoch: int = 0) -> float:
     batch_time = AverageMeter('Time', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')
     top1 = AverageMeter('Acc@1', ':6.2f')
@@ -358,7 +358,7 @@ if __name__ == '__main__':
                         metavar='N', help='print frequency (default: 100)')
     parser.add_argument('--seed', default=None, type=int,
                         help='seed for initializing training. ')
-    parser.add_argument('--per-class-eval', action='store_true',
+    parser.add_argument('--per-class-eval', action='store_true', default = True,
                         help='whether output per-class accuracy during evaluation')
     parser.add_argument("--log", type=str, default='src_only',
                         help="Where to save logs, checkpoints and debugging images.")
