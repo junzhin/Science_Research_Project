@@ -21,6 +21,7 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
+import models.alexnet_CDAN as models_CDAN
 from torch.utils.tensorboard import SummaryWriter
 
 
@@ -158,7 +159,12 @@ def main_worker(gpu, ngpus_per_node, args):
             
     print("when creating the model, the number of classes are")
     print(args.num_classes)
-    if args.pretrained:
+
+    # Special version of alexnet for CDAN
+    if args.pretrained and args.arch == 'alexnet':
+        print("=> using pre-trained model '{}'".format(args.arch))
+        model = models_CDAN.alexnet(pretrained=True, num_classes = args.num_classes)
+    elif args.pretrained:
         print("=> using pre-trained model '{}'".format(args.arch))
         model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
     else:
