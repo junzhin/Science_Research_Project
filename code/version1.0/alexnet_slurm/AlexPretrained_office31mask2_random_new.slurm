@@ -22,7 +22,7 @@
 
 
 source activate base 
-python3 ../pretrained_main_subset_random_choosen_experiment.py -a alexnet --lr 0.0001 --epochs 100 -b 1536 --dist-url tcp://127.0.0.1:7005 --dist-backend nccl --multiprocessing-distributed --resume /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2Random_newcheckpoint.pth.tar  -s -r -sp /home/junzhin/Project/Summer_project/code/version1.0/masked_office31_imagenetlabel2_manual_df.csv  --world-size 1 --rank 0 --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2Random_new -atfn train_blurred  -avfn val_blurred -j 8 /data/gpfs/datasets/Imagenet
+python3 ../pretrained_main_subset_random_choosen_experiment_CDAN.py -a alexnet_cdan --lr 0.01 --epochs 100 -b 256 --dist-url tcp://127.0.0.1:7005 --dist-backend nccl --multiprocessing-distributed --resume /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2Random_newcheckpoint.pth.tar  -s -r -sp /home/junzhin/Project/Summer_project/code/version1.0/masked_office31_imagenetlabel2_manual_df.csv  --world-size 1 --rank 0 --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2Random_new -atfn train_blurred  -avfn val_blurred -j 8 /data/gpfs/datasets/Imagenet
 
 
   
