@@ -22,4 +22,4 @@
 
 
 source activate base 
-python3 ../pretrained_main_subset_random_choosen_experiment.py -a alexnet --lr 0.0001 -b 1536 --epochs 100 --dist-url tcp://127.0.0.1:7001 --dist-backend nccl --multiprocessing-distributed --world-size 1 --rank 0   --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31full -atfn train_blurred  -avfn val_blurred -j 8 /data/gpfs/datasets/Imagenet
+python3 ../pretrained_main_subset_random_choosen_experiment.py -a alexnet --lr 0.0001 -b 1536 --epochs 100 --dist-url tcp://127.0.0.1:7001 --dist-backend nccl --multiprocessing-distributed --world-size 1 --rank 0 --resume /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31fullcheckpoint.pth.tar  --log /home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31full -atfn train_blurred  -avfn val_blurred -j 8 /data/gpfs/datasets/Imagenet

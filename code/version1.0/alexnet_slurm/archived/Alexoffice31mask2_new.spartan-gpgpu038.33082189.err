@@ -40,3 +40,4 @@ Traceback (most recent call last):
   File "/home/junzhin/Project/Summer_project/code/version1.0/models/__init__.py", line 1, in <module>
     from .alexnet import *
 ModuleNotFoundError: No module named 'models.alexnet'
+slurmstepd: error: *** JOB 33082189 ON spartan-gpgpu038 CANCELLED AT 2022-02-11T19:08:05 ***
