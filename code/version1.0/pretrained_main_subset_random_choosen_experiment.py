@@ -160,11 +160,19 @@ def main_worker(gpu, ngpus_per_node, args):
     print("when creating the model, the number of classes are")
     print(args.num_classes)
 
-    # Special version of alexnet for CDAN
-    if args.pretrained and args.arch == 'alexnet':
-        print("=> using pre-trained model '{}'".format(args.arch))
-        model = models_CDAN.alexnet(pretrained=True, num_classes = args.num_classes)
-    elif args.pretrained:
+    # # Special version of alexnet for CDAN
+    # if args.pretrained and args.arch == 'alexnet':
+    #     print("=> using pre-trained model '{}'".format(args.arch))
+    #     model = models_CDAN.alexnet(pretrained=True, num_classes = args.num_classes)
+    # elif args.pretrained:
+    #     print("=> using pre-trained model '{}'".format(args.arch))
+    #     model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
+    # else:
+    #     print("=> creating model '{}'".format(args.arch))
+    #     model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
+
+
+    if args.pretrained:
         print("=> using pre-trained model '{}'".format(args.arch))
         model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
     else:
