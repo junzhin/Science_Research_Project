@@ -8,7 +8,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --gres=gpu:2
-#SBATCH --time=48:00:00
+#SBATCH --time=72:00:00
 #SBATCH --mem=32G
 
 
@@ -21,4 +21,4 @@
 
 
 source activate base 
-python3 ../../../source_only.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 8 -b 512 -d Office31 -s W -t A -a alexnet --epochs 30  --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/Alex_pretrained/W_A
+python3 ../../../source_only.py /home/junzhin/Project/Summer_project/code/version2.0/data/office31 -j 8 -b 512 -d Office31 -s W -t A -a alexnet --epochs 100  --log /home/junzhin/Project/Summer_project/code/version2.0/training_results/Alex_pretrained/W_A

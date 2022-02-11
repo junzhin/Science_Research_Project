@@ -1,0 +1,56 @@
+Namespace(arch='alexnet', batch_size=512, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=100, iters_per_epoch=1000, local=False, local_pretrained_path='', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/Alex_pretrained/W_D', lr=0.0001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='W', target='D', wd=0.0005, workers=8)
+=> using pre-trained model 'alexnet'
+Epoch: [0][   0/1000]	Time 3.135 (3.135)	Data 0.947 (0.947)	Loss 3.59 (3.59)	Cls Acc 2.9 (2.9)
+Epoch: [0][ 100/1000]	Time 4.826 (4.823)	Data 4.768 (4.744)	Loss 3.35 (3.48)	Cls Acc 9.0 (5.8)
+Epoch: [0][ 200/1000]	Time 4.960 (4.885)	Data 4.901 (4.816)	Loss 3.20 (3.37)	Cls Acc 13.5 (8.5)
+Epoch: [0][ 300/1000]	Time 4.931 (4.912)	Data 4.873 (4.846)	Loss 3.02 (3.28)	Cls Acc 24.0 (12.1)
+Epoch: [0][ 400/1000]	Time 4.795 (4.906)	Data 4.737 (4.842)	Loss 2.85 (3.19)	Cls Acc 32.6 (16.2)
+Epoch: [0][ 500/1000]	Time 4.925 (4.898)	Data 4.867 (4.835)	Loss 2.71 (3.11)	Cls Acc 38.3 (20.3)
+Epoch: [0][ 600/1000]	Time 4.790 (4.892)	Data 4.732 (4.830)	Loss 2.51 (3.02)	Cls Acc 43.9 (23.9)
+Epoch: [0][ 700/1000]	Time 4.886 (4.891)	Data 4.827 (4.829)	Loss 2.30 (2.94)	Cls Acc 51.4 (27.2)
+Epoch: [0][ 800/1000]	Time 4.807 (4.886)	Data 4.749 (4.825)	Loss 2.08 (2.85)	Cls Acc 58.4 (30.4)
+Epoch: [0][ 900/1000]	Time 4.920 (4.886)	Data 4.862 (4.825)	Loss 1.97 (2.76)	Cls Acc 60.5 (33.3)
+Test: [0/1]	Time 12.344 (12.344)	Loss 2.0517e+00 (2.0517e+00)	Acc@1  52.41 ( 52.41)	Acc@5  83.94 ( 83.94)
+ * Acc@1 52.410 Acc@5 83.936
+global correct: 52.4
+mean correct:53.0
+mean IoU: 35.5
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     |       100.0        |        48.0        |
+|       bike       | 95.23809814453125  | 95.23809814453125  |
+|   bike_helmet    | 91.66667175292969  | 78.57142639160156  |
+|     bookcase     |        0.0         |        0.0         |
+|      bottle      |        37.5        |        37.5        |
+|    calculator    |        25.0        |        25.0        |
+|    desk_chair    |       100.0        | 86.66666412353516  |
+|    desk_lamp     | 71.42857360839844  |        50.0        |
+| desktop_computer |        20.0        | 16.666667938232422 |
+|   file_cabinet   | 26.666667938232422 | 22.22222328186035  |
+|    headphones    | 76.92308044433594  | 66.66667175292969  |
+|     keyboard     | 60.000003814697266 | 27.272727966308594 |
+| laptop_computer  | 79.16667175292969  | 43.181819915771484 |
+|   letter_tray    |       56.25        | 39.130435943603516 |
+|   mobile_phone   | 54.83871078491211  | 47.22222137451172  |
+|     monitor      |       100.0        |        25.0        |
+|      mouse       | 66.66667175292969  | 38.095237731933594 |
+|       mug        |       100.0        | 47.05882263183594  |
+|  paper_notebook  | 60.000003814697266 |        50.0        |
+|       pen        |        90.0        | 42.85714340209961  |
+|      phone       | 38.46154022216797  |       31.25        |
+|     printer      | 26.666667938232422 | 22.22222328186035  |
+|    projector     | 65.21739196777344  | 27.77777862548828  |
+|     punchers     | 55.55555725097656  | 35.71428680419922  |
+|   ring_binder    |        90.0        |        45.0        |
+|      ruler       |        0.0         |        0.0         |
+|     scissors     | 22.22222328186035  | 21.052631378173828 |
+|     speaker      | 11.538461685180664 | 10.714285850524902 |
+|     stapler      |        0.0         |        0.0         |
+|  tape_dispenser  | 9.090909004211426  | 8.333333969116211  |
+|    trash_can     | 13.333333969116211 |        12.5        |
++------------------+--------------------+--------------------+
+acc1 = 52.4, best_acc1 = 52.4
+Epoch: [1][   0/1000]	Time 4.885 (4.885)	Data 4.824 (4.824)	Loss 1.79 (1.79)	Cls Acc 64.3 (64.3)
+Epoch: [1][ 100/1000]	Time 4.859 (4.901)	Data 4.800 (4.842)	Loss 1.58 (1.69)	Cls Acc 71.7 (66.6)
+Epoch: [1][ 200/1000]	Time 4.925 (4.868)	Data 4.866 (4.809)	Loss 1.44 (1.61)	Cls Acc 72.7 (68.4)
