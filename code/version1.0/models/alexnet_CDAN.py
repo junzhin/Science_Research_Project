@@ -32,7 +32,7 @@ class LRN(nn.Module):
             div = self.average(div).squeeze(1)
             div = div.mul(self.alpha).add(1.0).pow(self.beta)
         else:
-            div = x.pow(2)
+            div = x.pow(2)  
             div = self.average(div)
             div = div.mul(self.alpha).add(1.0).pow(self.beta)
         x = x.div(div)
@@ -91,6 +91,6 @@ def alexnet(pretrained=False, **kwargs):
     #     model.load_state_dict(pretrained_model['state_dict'])
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls['alexnet'],progress=True)
-        model.load_state_dict(state_dict)
-        
+        model.load_state_dict(state_dict, strict = False)
+
     return model
