@@ -1,12 +1,15 @@
-import torch
 import torch.nn as nn
 from torch.hub import load_state_dict_from_url
+
+# modified based on https://github.com/thuml/CDAN/blob/master/pytorch/alexnet.py
 
 
 __all__ = ['AlexNet', 'alexnet']
 
-
+# 
 model_urls = {
+    # Note that the alexnet structure used here is different from the pytorch original implementation of alexnet,
+    # if you want to use the pretrained model from pytorch, you might get the underperformed results
     'alexnet': 'https://download.pytorch.org/models/alexnet-owt-7be5be79.pth',
 }
 
@@ -37,7 +40,6 @@ class LRN(nn.Module):
             div = div.mul(self.alpha).add(1.0).pow(self.beta)
         x = x.div(div)
         return x
-
 class AlexNet(nn.Module):
 
     def __init__(self, num_classes=1000):

@@ -21,7 +21,6 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
-import models.alexnet_CDAN as models_CDAN
 from torch.utils.tensorboard import SummaryWriter
 
 
@@ -52,7 +51,7 @@ parser.add_argument('--lr', '--learning-rate', default=0.001, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
-parser.add_argument('--wd', '--weight-decay', default=1e-4, type=float,
+parser.add_argument('--wd', '--weight-decay', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)',
                     dest='weight_decay')
 parser.add_argument('-p', '--print-freq', default=50, type=int,
@@ -221,12 +220,12 @@ def main_worker(gpu, ngpus_per_node, args):
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
 
-    # optimizer = torch.optim.SGD(model.parameters(), args.lr,
-    #                             momentum=args.momentum,
-    #                             weight_decay=args.weight_decay)
+    optimizer = torch.optim.SGD(model.parameters(), args.lr,
+                                momentum=args.momentum,
+                                weight_decay=args.weight_decay)
 
     # 换成 adam 优化器
-    optimizer = torch.optim.Adam(model.parameters(), lr =  args.lr, weight_decay = args.weight_decay)
+    # optimizer = torch.optim.Adam(model.parameters(), lr =  args.lr, weight_decay = args.weight_decay)
     my_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer = optimizer, step_size =  30, gamma = 0.1 ,verbose = True)
     
 
