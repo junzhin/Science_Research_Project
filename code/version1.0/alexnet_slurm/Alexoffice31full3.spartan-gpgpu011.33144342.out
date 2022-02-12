@@ -1,5 +1,5 @@
 Namespace(alter_trainingfile_name='train_blurred', alter_validationfile_name='val_blurred', arch='alexnet', batch_size=256, data='/data/gpfs/datasets/Imagenet', dist_backend='nccl', dist_url='tcp://127.0.0.1:7001', epochs=100, evaluate=False, gpu=None, log='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31full3', lr=0.01, momentum=0.9, multiprocessing_distributed=True, num_classes=1000, pretrained=False, print_freq=50, randomchosenmode=False, rank=0, resume='', seed=None, start_epoch=0, subset=False, subsetpath=False, weight_decay=0.0005, workers=8, world_size=1)
-Use GPU: 0 for training
+Use GPU: 1 for training
 when creating the model, the number of classes are
 1000
 => creating model 'alexnet'
@@ -39,7 +39,7 @@ training set
 5005
 validating  set
 391
-Use GPU: 1 for training
+Use GPU: 0 for training
 when creating the model, the number of classes are
 1000
 => creating model 'alexnet'
