@@ -285,9 +285,9 @@ def main_worker(gpu, ngpus_per_node, args):
 
     train_dataset_initial = datasets.ImageFolder(traindir, 
     transforms.Compose([
-            transforms.RandomHorizontalFlip(),
-            transforms.Resize(256), 
-            transforms.RandomResizedCrop(input_size),
+            transforms.RandomHorizontalFlip(),# modified
+            transforms.Resize(256), #modified
+            transforms.RandomResizedCrop(input_size), # modified
             transforms.ToTensor(),
             normalize,
         ]))
