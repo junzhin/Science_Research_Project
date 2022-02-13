@@ -120,7 +120,7 @@ def main(args: argparse.Namespace):
 
         backbone.load_state_dict(state)
     else:
-        print("=> using pre-trained model '{}'".format(args.arch))
+        print("=> using pre-trained model from pytorch website '{}'".format(args.arch))
         backbone = models.__dict__[args.arch](pretrained=True)
 
 

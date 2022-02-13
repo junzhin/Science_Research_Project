@@ -125,7 +125,7 @@ def main(args: argparse.Namespace):
 
         backbone.load_state_dict(state)
     else:
-        print("=> using pre-trained model '{}'".format(args.arch))
+        print("=> using pre-trained model from pytorch website '{}'".format(args.arch))
         backbone = models.__dict__[args.arch](pretrained=True)
 
     classifier = ImageClassifier(backbone, train_source_dataset.num_classes, bottleneck_dim=args.bottleneck_dim).to(device)
