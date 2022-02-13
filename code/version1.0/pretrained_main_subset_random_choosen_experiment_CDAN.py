@@ -168,7 +168,7 @@ def main_worker(gpu, ngpus_per_node, args):
         print("=> using pre-trained model '{}'".format(args.arch))
         input_size = 227
         model = models_CDAN.alexnet_cdan(num_classes = args.num_classes)
-    elif args.pretrained:
+    elif args.pretrained and args.arch != 'alexnet_cdan':
         print("=> using pre-trained model '{}'".format(args.arch))
         model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
         input_size = 224
