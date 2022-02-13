@@ -106,8 +106,28 @@ def main(args: argparse.Namespace):
     train_target_iter = ForeverDataIterator(train_target_loader)
 
     # create model
-    print("=> using pre-trained model '{}'".format(args.arch))
-    backbone = models.__dict__[args.arch](pretrained=args.pretrained, local = args.local, local_pretrained_path = args.local_pretrained_path)
+    if args.local:
+        print("Loading the local alexnet pretrained model weights!")
+        state = torch.load(args.local_pretrained_path)
+        state_dict = state['state_dict']
+
+        if "num_classes" in state.keys():
+            num_classes = args.num_classes
+        else:
+            num_classes = 1000
+
+        backbone = models.__dict__[args.arch](pretrained=True, num_classes = num_classes)
+
+        print(state_dict.keys())
+        # 处理不同 pretrained model weights 的前缀,使其兼容
+        state = OD([(key.split("module.")[-1], state_dict[key]) for key in state_dict])
+        print(state.keys())
+
+        backbone.load_state_dict(state)
+    else:
+        print("=> using pre-trained model '{}'".format(args.arch))
+        backbone = models.__dict__[args.arch](pretrained=True)
+
     classifier = ImageClassifier(backbone, train_source_dataset.num_classes, bottleneck_dim=args.bottleneck_dim).to(device)
     domain_discri = DomainDiscriminator(in_feature=classifier.features_dim, hidden_size=1024).to(device)
 

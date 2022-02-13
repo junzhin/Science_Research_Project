@@ -17,6 +17,7 @@ class AlexNet(nn.Module):
 
     def __init__(self, num_classes: int = 1000) -> None:
         super(AlexNet, self).__init__()
+        self.num_classes = num_classes
         self.features = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
             nn.ReLU(inplace=True),
@@ -40,7 +41,7 @@ class AlexNet(nn.Module):
             nn.Dropout(),
             nn.Linear(4096, 4096),
             nn.ReLU(inplace=True),
-            nn.Linear(4096, num_classes),
+            nn.Linear(4096, self.num_classes),
         )
         self._out_features = 256
 
@@ -63,7 +64,7 @@ class AlexNet(nn.Module):
     #     return copy.deepcopy(self.fc)        
 
 
-def alexnet(pretrained: bool = False, progress: bool = True, local: bool = False, local_pretrained_path: str = '', **kwargs: Any) -> AlexNet:
+def alexnet(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> AlexNet:
     r"""AlexNet model architecture from the
     `"One weird trick..." <https://arxiv.org/abs/1404.5997>`_ paper.
     The required minimum input size of the model is 63x63.
@@ -74,11 +75,8 @@ def alexnet(pretrained: bool = False, progress: bool = True, local: bool = False
     """
     model = AlexNet(**kwargs)
     if pretrained:
-        if local:
-            print("Loading the local alexnet pretrained model weights!")
-            model.load_state_dict(torch.load(local_pretrained_path), strict = False)
-        else:
-            state_dict = load_state_dict_from_url(model_urls['alexnet'],
-                                              progress=progress)
-            model.load_state_dict(state_dict)
+        state_dict = load_state_dict_from_url(model_urls['alexnet'],
+                                            progress=progress)
+        print(state_dict.keys())
+        model.load_state_dict(state_dict)
     return model

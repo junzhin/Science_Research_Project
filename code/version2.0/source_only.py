@@ -5,6 +5,7 @@ import sys
 import argparse
 import shutil
 import os.path as osp
+from sympy import E
 
 import torch
 import torch.nn as nn
@@ -14,6 +15,7 @@ from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data import DataLoader
 import torchvision.transforms as T
 import torch.nn.functional as F
+from collections import OrderedDict as OD
 
 sys.path.append('../../..')
 from common.modules.classifier import Classifier
@@ -99,14 +101,37 @@ def main(args: argparse.Namespace):
     train_source_iter = ForeverDataIterator(train_source_loader)
 
     # create model
-    print("=> using pre-trained model '{}'".format(args.arch))
-    backbone = models.__dict__[args.arch](pretrained=args.pretrained, local = args.local, local_pretrained_path = args.local_pretrained_path)
+    if args.local:
+        print("Loading the local alexnet pretrained model weights!")
+        state = torch.load(args.local_pretrained_path)
+        state_dict = state['state_dict']
+
+        if "num_classes" in state.keys():
+            num_classes = args.num_classes
+        else:
+            num_classes = 1000
+
+        backbone = models.__dict__[args.arch](pretrained=True, num_classes = num_classes)
+
+        print(state_dict.keys())
+        # 处理不同 pretrained model weights 的前缀,使其兼容
+        state = OD([(key.split("module.")[-1], state_dict[key]) for key in state_dict])
+        print(state.keys())
+
+        backbone.load_state_dict(state)
+    else:
+        print("=> using pre-trained model '{}'".format(args.arch))
+        backbone = models.__dict__[args.arch](pretrained=True)
+
+
     num_classes = train_source_dataset.num_classes
     classifier = Classifier(backbone, num_classes).to(device)
 
     # define optimizer and lr scheduler
     optimizer = SGD(classifier.get_parameters(), args.lr, momentum=args.momentum, weight_decay=args.wd, nesterov=True)
     lr_scheduler = LambdaLR(optimizer, lambda x:  args.lr * (1. + args.lr_gamma * float(x)) ** (-args.lr_decay), verbose = False)
+
+   
 
     # resume from the best checkpoint
     if args.phase != 'train':
@@ -368,7 +393,7 @@ if __name__ == '__main__':
 
 
     ######################################
-    parser.add_argument('--pretrained', default=True, help='specify the boolean value ofr pretained model')
+    parser.add_argument('--pretrained', default=True, action = 'store_true', help='specify the boolean value ofr pretained model')
     parser.add_argument('--local', action='store_true', default=False, help='to inicate if the local pretrained model exists')
     parser.add_argument('--local-pretrained-path', default='',type = str, help='the path to local pre-trained-model')
     parser.add_argument('--checkmodel_logsave', default=False, action = 'store_true', help = "indicate if the training will save the best model and the checkpoint weights in case of limited storage space.")

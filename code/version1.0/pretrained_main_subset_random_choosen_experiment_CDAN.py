@@ -63,7 +63,7 @@ parser.add_argument('--resume', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate model on validation set')
-parser.add_argument('--pretrained', dest='pretrained', action='store_true',
+parser.add_argument('--pretrained', dest='pretrained', action='store_true', default = False,
                     help='use pre-trained model')
 parser.add_argument('--world-size', default=-1, type=int,
                     help='number of nodes for distributed training')
@@ -167,7 +167,7 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.arch == 'alexnet_cdan':
         print("=> using pre-trained model '{}'".format(args.arch))
         input_size = 227
-        model = models_CDAN.alexnet(num_classes = args.num_classes)
+        model = models_CDAN.alexnet_cdan(num_classes = args.num_classes)
     elif args.pretrained:
         print("=> using pre-trained model '{}'".format(args.arch))
         model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
@@ -522,6 +522,7 @@ def main_worker(gpu, ngpus_per_node, args):
                 'state_dict': model.state_dict(),
                 'best_acc1': best_acc1,
                 'optimizer' : optimizer.state_dict(),
+                'num_classes' : args.num_classes,
             }, is_best, saving_dir = args.log)
         my_lr_scheduler.step()
 

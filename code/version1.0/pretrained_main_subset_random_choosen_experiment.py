@@ -516,6 +516,7 @@ def main_worker(gpu, ngpus_per_node, args):
                 'state_dict': model.state_dict(),
                 'best_acc1': best_acc1,
                 'optimizer' : optimizer.state_dict(),
+                'num_classes':args.num_classes,
             }, is_best, saving_dir = args.log)
         my_lr_scheduler.step()
 

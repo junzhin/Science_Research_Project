@@ -54,12 +54,9 @@ def _resnet(arch, block, layers, pretrained, progress, local: bool = False, loca
     model = ResNet(block, layers, **kwargs)
     if pretrained:
         model_dict = model.state_dict()
-        if local:
-            pretrained_dict = torch.load(local_pretrained_path)['state_dict']
-        else:
-            pretrained_dict = load_state_dict_from_url(model_urls[arch],progress=progress)
-            # remove keys from pretrained dict that doesn't appear in model dict
-            pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
+        pretrained_dict = load_state_dict_from_url(model_urls[arch],progress=progress)
+        # remove keys from pretrained dict that doesn't appear in model dict
+        pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
         model.load_state_dict(pretrained_dict, strict=False)
     return model
 
