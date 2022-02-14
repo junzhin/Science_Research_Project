@@ -297,12 +297,13 @@ def main_worker(gpu, ngpus_per_node, args):
     
     ######################################################################################################################
     # extend the functionality to include the subset model training_filename
+    # notice here we apply the different transformation to the validation set of images
     valid_dataset_initial = datasets.ImageFolder(valdir, 
     transforms.Compose([
-            transforms.RandomHorizontalFlip(),# modified
-            transforms.Resize(256), #modified
-            transforms.RandomResizedCrop(input_size), # modified
+            transforms.Resize(256),
+            transforms.CenterCrop(input_size),
             transforms.ToTensor(),
+            normalize,
         ]))
 
     print(valid_dataset_initial)
