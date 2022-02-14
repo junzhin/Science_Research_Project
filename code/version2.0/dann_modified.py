@@ -112,8 +112,9 @@ def main(args: argparse.Namespace):
         state_dict = state['state_dict']
 
         if "num_classes" in state.keys():
-            num_classes = args.num_classes
+            num_classes = state["num_classes"]
         else:
+            # default value of number of classes
             num_classes = 1000
 
         backbone = models.__dict__[args.arch](pretrained=True, num_classes = num_classes)
