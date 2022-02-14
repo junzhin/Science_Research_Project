@@ -71,6 +71,7 @@ class AlexNet(nn.Module):
             nn.Dropout(),
             nn.Linear(4096, self.num_classes),
         )
+        self._out_features = 256
 
     def forward(self, x):
         x = self.features(x)
@@ -78,6 +79,17 @@ class AlexNet(nn.Module):
         # x = x.view(x.size(0), 256 * 6 * 6)
         # x = self.classifier(x)
         return x
+
+    
+    @property
+    def out_features(self) -> int:
+        """The dimension of output features"""
+        return self._out_features
+
+    # def copy_head(self) -> nn.Module:
+    #     """Copy the origin fully connected layer"""
+    #     return copy.deepcopy(self.fc)        
+
 
 
 def alexnet_cdan(pretrained=False, **kwargs):
@@ -87,7 +99,7 @@ def alexnet_cdan(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = AlexNet(**kwargs)
-    print("the number of classes are %d" % (model.num_classes))
+    print("the number of classes are in the alexnet cdan %d" % (model.num_classes))
     # if pretrained:
     #     model_path = './alexnet.pth.tar'
     #     pretrained_model = torch.load(model_path)

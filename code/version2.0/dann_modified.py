@@ -123,7 +123,7 @@ def main(args: argparse.Namespace):
         state = OD([(key.split("module.")[-1], state_dict[key]) for key in state_dict])
         print(state.keys())
 
-        backbone.load_state_dict(state)
+        backbone.load_state_dict(state, strict = False)
     else:
         print("=> using pre-trained model from pytorch website '{}'".format(args.arch))
         backbone = models.__dict__[args.arch](pretrained=True)
