@@ -1,0 +1,21 @@
+Namespace(arch='alexnet_cdan', batch_size=32, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2Random_CDANmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/log/baseline/ALEX_office31masked2Random/A_D', lr=0.0001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='D', wd=0.0005, workers=8)
+Loading the local alexnet pretrained model weights!
+the number of classes are in the alexnet cdan 958
+Traceback (most recent call last):
+  File "../../../../source_only.py", line 403, in <module>
+    main(args)
+  File "../../../../source_only.py", line 115, in main
+    backbone = models.__dict__[args.arch](pretrained=True, num_classes = num_classes)
+  File "/home/junzhin/Project/Summer_project/code/version2.0/common/vision/models/alexnet_CDAN.py", line 109, in alexnet_cdan
+    model.load_state_dict(state_dict, strict = False)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1483, in load_state_dict
+    self.__class__.__name__, "\n\t".join(error_msgs)))
+RuntimeError: Error(s) in loading state_dict for AlexNet:
+	size mismatch for features.0.weight: copying a param with shape torch.Size([64, 3, 11, 11]) from checkpoint, the shape in current model is torch.Size([96, 3, 11, 11]).
+	size mismatch for features.0.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([96]).
+	size mismatch for features.8.weight: copying a param with shape torch.Size([256, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([384, 256, 3, 3]).
+	size mismatch for features.8.bias: copying a param with shape torch.Size([256]) from checkpoint, the shape in current model is torch.Size([384]).
+	size mismatch for features.10.weight: copying a param with shape torch.Size([256, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([384, 192, 3, 3]).
+	size mismatch for features.10.bias: copying a param with shape torch.Size([256]) from checkpoint, the shape in current model is torch.Size([384]).
+	size mismatch for classifier.6.weight: copying a param with shape torch.Size([1000, 4096]) from checkpoint, the shape in current model is torch.Size([958, 4096]).
+	size mismatch for classifier.6.bias: copying a param with shape torch.Size([1000]) from checkpoint, the shape in current model is torch.Size([958]).

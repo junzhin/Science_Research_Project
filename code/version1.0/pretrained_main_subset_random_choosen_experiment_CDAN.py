@@ -10,6 +10,7 @@ import pandas as pd
 import random
 from enum import Enum
 
+
 import torch
 import torch.nn as nn
 import torch.nn.parallel
@@ -177,14 +178,7 @@ def main_worker(gpu, ngpus_per_node, args):
         model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
         input_size = 224
 
-    # if args.pretrained:
-    #     print("=> using pre-trained model '{}'".format(args.arch))
-    #     model = models.__dict__[args.arch](pretrained=True, num_classes = args.num_classes)
-    # else:
-    #     print("=> creating model '{}'".format(args.arch))
-    #     model = models.__dict__[args.arch](pretrained=False, num_classes = args.num_classes)
 
- 
 
     if not torch.cuda.is_available():
         print('using CPU, this will be slow')

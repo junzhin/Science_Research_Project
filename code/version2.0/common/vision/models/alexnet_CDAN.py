@@ -104,8 +104,5 @@ def alexnet_cdan(pretrained=False, **kwargs):
     #     model_path = './alexnet.pth.tar'
     #     pretrained_model = torch.load(model_path)
     #     model.load_state_dict(pretrained_model['state_dict'])
-    if pretrained:
-        state_dict = load_state_dict_from_url(model_urls['alexnet'],progress=True)
-        model.load_state_dict(state_dict, strict = False)
 
     return model

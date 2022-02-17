@@ -1,5 +1,6 @@
 import torch.nn as nn
 from torch.hub import load_state_dict_from_url
+from torchsummary import summary
 
 # modified based on https://github.com/thuml/CDAN/blob/master/pytorch/alexnet.py
 
@@ -95,4 +96,6 @@ def alexnet_cdan(pretrained=False, **kwargs):
         state_dict = load_state_dict_from_url(model_urls['alexnet'],progress=True)
         model.load_state_dict(state_dict, strict = False)
 
+    print(summary(model.cuda(), (3,256,256)))
+    # print(summary(model, (3,256,256)))
     return model
