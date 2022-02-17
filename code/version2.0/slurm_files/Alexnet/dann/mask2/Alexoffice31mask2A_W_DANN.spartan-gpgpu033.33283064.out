@@ -1,0 +1,57 @@
+Namespace(arch='alexnet_cdan', batch_size=32, bottleneck_dim=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_CDANmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/ALEX_office31masked2/A_W', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='W', trade_off=1.0, weight_decay=0.001, workers=8)
+Loading the local alexnet pretrained model weights!
+the number of classes are in the alexnet cdan 958
+odict_keys(['module.features.0.weight', 'module.features.0.bias', 'module.features.4.weight', 'module.features.4.bias', 'module.features.8.weight', 'module.features.8.bias', 'module.features.10.weight', 'module.features.10.bias', 'module.features.12.weight', 'module.features.12.bias', 'module.classifier.0.weight', 'module.classifier.0.bias', 'module.classifier.3.weight', 'module.classifier.3.bias', 'module.classifier.6.weight', 'module.classifier.6.bias'])
+odict_keys(['features.0.weight', 'features.0.bias', 'features.4.weight', 'features.4.bias', 'features.8.weight', 'features.8.bias', 'features.10.weight', 'features.10.bias', 'features.12.weight', 'features.12.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.3.weight', 'classifier.3.bias', 'classifier.6.weight', 'classifier.6.bias'])
+Epoch: [0][   0/1000]	Time  0.56 ( 0.56)	Data  0.03 ( 0.03)	Loss   4.17 (  4.17)	Cls Acc 0.0 (0.0)	Domain Acc 46.9 (46.9)
+Epoch: [0][ 100/1000]	Time  0.08 ( 0.12)	Data  0.05 ( 0.09)	Loss   1.21 (  2.02)	Cls Acc 68.8 (52.6)	Domain Acc 100.0 (93.1)
+Epoch: [0][ 200/1000]	Time  0.08 ( 0.11)	Data  0.05 ( 0.09)	Loss   0.75 (  1.51)	Cls Acc 84.4 (64.3)	Domain Acc 96.9 (95.2)
+Epoch: [0][ 300/1000]	Time  0.07 ( 0.11)	Data  0.05 ( 0.09)	Loss   0.61 (  1.26)	Cls Acc 81.2 (70.2)	Domain Acc 98.4 (95.9)
+Epoch: [0][ 400/1000]	Time  0.08 ( 0.11)	Data  0.05 ( 0.09)	Loss   0.34 (  1.09)	Cls Acc 93.8 (74.6)	Domain Acc 96.9 (95.8)
+Epoch: [0][ 500/1000]	Time  0.08 ( 0.11)	Data  0.05 ( 0.09)	Loss   0.33 (  0.97)	Cls Acc 93.8 (77.9)	Domain Acc 92.2 (95.8)
+Epoch: [0][ 600/1000]	Time  0.76 ( 0.12)	Data  0.73 ( 0.09)	Loss   0.68 (  0.89)	Cls Acc 87.5 (80.4)	Domain Acc 90.6 (95.5)
+Epoch: [0][ 700/1000]	Time  0.10 ( 0.11)	Data  0.07 ( 0.09)	Loss   0.48 (  0.82)	Cls Acc 90.6 (82.5)	Domain Acc 98.4 (95.2)
+Epoch: [0][ 800/1000]	Time  0.09 ( 0.12)	Data  0.07 ( 0.09)	Loss   0.29 (  0.77)	Cls Acc 100.0 (84.3)	Domain Acc 93.8 (94.7)
+Epoch: [0][ 900/1000]	Time  0.07 ( 0.12)	Data  0.05 ( 0.09)	Loss   0.57 (  0.74)	Cls Acc 93.8 (85.6)	Domain Acc 82.8 (94.0)
+Test: [ 0/25]	Time  0.927 ( 0.927)	Loss 2.1947e+00 (2.1947e+00)	Acc@1  53.12 ( 53.12)	Acc@5  71.88 ( 71.88)
+ * Acc@1 43.899 Acc@5 75.094
+global correct: 43.9
+mean correct:44.4
+mean IoU: 31.3
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 79.31034851074219  | 76.66666412353516  |
+|       bike       | 71.42857360839844  | 71.42857360839844  |
+|   bike_helmet    | 82.14286041259766  | 76.66666412353516  |
+|     bookcase     | 41.666664123535156 | 35.71428680419922  |
+|      bottle      |        0.0         |        0.0         |
+|    calculator    | 51.61289978027344  | 48.48484802246094  |
+|    desk_chair    |        40.0        | 39.02438735961914  |
+|    desk_lamp     | 66.66667175292969  | 32.432430267333984 |
+| desktop_computer | 4.761904716491699  |       3.125        |
+|   file_cabinet   |  52.6315803527832  | 33.333335876464844 |
+|    headphones    | 55.55555725097656  |  48.3870964050293  |
+|     keyboard     | 96.29629516601562  | 42.62295150756836  |
+| laptop_computer  | 36.66666793823242  | 33.333335876464844 |
+|   letter_tray    | 63.15789031982422  | 35.29411697387695  |
+|   mobile_phone   |        0.0         |        0.0         |
+|     monitor      | 9.302325248718262  | 7.843137741088867  |
+|      mouse       | 46.66666793823242  | 35.897438049316406 |
+|       mug        | 29.629629135131836 | 17.77777862548828  |
+|  paper_notebook  |        50.0        | 32.55813980102539  |
+|       pen        |       96.875       | 57.40740966796875  |
+|      phone       |       68.75        | 61.11111068725586  |
+|     printer      |        50.0        | 20.40816307067871  |
+|    projector     | 30.000001907348633 | 17.307693481445312 |
+|     punchers     | 37.03703689575195  | 11.36363697052002  |
+|   ring_binder    |        20.0        | 14.545454025268555 |
+|      ruler       | 27.272727966308594 |        12.5        |
+|     scissors     |        56.0        | 45.16128921508789  |
+|     speaker      | 26.666667938232422 | 8.163265228271484  |
+|     stapler      | 33.333335876464844 | 16.32653045654297  |
+|  tape_dispenser  | 47.826087951660156 | 31.428571701049805 |
+|    trash_can     | 4.761904716491699  |  3.22580623626709  |
++------------------+--------------------+--------------------+
+acc1 = 43.9, best_acc1 = 43.9
+Epoch: [1][   0/1000]	Time  0.05 ( 0.05)	Data  0.03 ( 0.03)	Loss   0.54 (  0.54)	Cls Acc 100.0 (100.0)	Domain Acc 78.1 (78.1)

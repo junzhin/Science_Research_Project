@@ -1,0 +1,13 @@
+Namespace(arch='alexnet_cdan', batch_size=32, bottleneck_dim=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_CDANmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/ALEX_office31masked2/D_A', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='D', target='A', trade_off=1.0, weight_decay=0.001, workers=8)
+Loading the local alexnet pretrained model weights!
+the number of classes are in the alexnet cdan 958
+odict_keys(['module.features.0.weight', 'module.features.0.bias', 'module.features.4.weight', 'module.features.4.bias', 'module.features.8.weight', 'module.features.8.bias', 'module.features.10.weight', 'module.features.10.bias', 'module.features.12.weight', 'module.features.12.bias', 'module.classifier.0.weight', 'module.classifier.0.bias', 'module.classifier.3.weight', 'module.classifier.3.bias', 'module.classifier.6.weight', 'module.classifier.6.bias'])
+odict_keys(['features.0.weight', 'features.0.bias', 'features.4.weight', 'features.4.bias', 'features.8.weight', 'features.8.bias', 'features.10.weight', 'features.10.bias', 'features.12.weight', 'features.12.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.3.weight', 'classifier.3.bias', 'classifier.6.weight', 'classifier.6.bias'])
+Epoch: [0][   0/1000]	Time  0.54 ( 0.54)	Data  0.03 ( 0.03)	Loss   4.24 (  4.24)	Cls Acc 3.1 (3.1)	Domain Acc 42.2 (42.2)
+Epoch: [0][ 100/1000]	Time  0.07 ( 0.16)	Data  0.05 ( 0.13)	Loss   0.18 (  1.07)	Cls Acc 100.0 (81.8)	Domain Acc 96.9 (95.7)
+Epoch: [0][ 200/1000]	Time  0.07 ( 0.17)	Data  0.05 ( 0.14)	Loss   0.04 (  0.58)	Cls Acc 100.0 (90.8)	Domain Acc 100.0 (97.5)
+Epoch: [0][ 300/1000]	Time  1.12 ( 0.17)	Data  1.09 ( 0.14)	Loss   0.04 (  0.40)	Cls Acc 100.0 (93.9)	Domain Acc 100.0 (98.2)
+Epoch: [0][ 400/1000]	Time  0.07 ( 0.17)	Data  0.05 ( 0.14)	Loss   0.04 (  0.31)	Cls Acc 100.0 (95.4)	Domain Acc 100.0 (98.5)
+Epoch: [0][ 500/1000]	Time  0.08 ( 0.17)	Data  0.05 ( 0.14)	Loss   0.08 (  0.26)	Cls Acc 100.0 (96.3)	Domain Acc 98.4 (98.4)
+Epoch: [0][ 600/1000]	Time  1.10 ( 0.17)	Data  1.07 ( 0.14)	Loss   0.18 (  0.32)	Cls Acc 100.0 (96.9)	Domain Acc 96.9 (95.4)
+Epoch: [0][ 700/1000]	Time  0.07 ( 0.17)	Data  0.05 ( 0.14)	Loss   0.37 (  0.32)	Cls Acc 100.0 (97.3)	Domain Acc 85.9 (94.5)
