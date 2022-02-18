@@ -1,0 +1,512 @@
+Called with args:
+Namespace(T=1.0, base_lr=0.01, batchsize=128, bottleneck_dim=256, calculate_a_dis_only=False, category_mean=False, datapath='../../../../data/', dataset='Office31', dist_backend='nccl', dist_url='tcp://127.0.0.1:10027', ema_m=0.999, entropy_cdan=False, epochs=50, exp_name='log_Office31_PseudoLabel_alexnet_cdan_A2D', gpu=None, iters_per_epoch=500, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_CDANmodel_best.pth.tar', local_rank=0, log_interval=100, lr_schedule='inv', margin=4.0, mcdalnet_dis='L1', method='PseudoLabel', momentum=0.9, mu=1, multiprocessing_distributed=True, net='alexnet_cdan', num_class=31, num_k=4, num_workers=2, onlyT=False, p_cutoff=0.95, port='12355', pretrained=True, rank=0, regular_only_feature=True, resume='', save_dir='/home/junzhin/Project/Summer_project/code/version3.0/training_results/self_training/ALEX_office31masked2/A_D', saving=False, seed=1, source='A', strongaug=False, target='D', test_only=False, trade_off=1.0, transform_type='randomcrop', use_ema=False, vat_eps=1.0, wd=0.0001, world_size=1)
+Output will be saved to /home/junzhin/Project/Summer_project/code/version3.0/training_results/self_training/ALEX_office31masked2/A_D/log_Office31_PseudoLabel_alexnet_cdan_A2D.
+Use GPU: 0 for training
+batch size on each gpu is: 128
+Loading the local alexnet pretrained model weights!
+the number of classes are in the alexnet cdan 958
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 96, 62, 62]          34,944
+              ReLU-2           [-1, 96, 62, 62]               0
+         AvgPool3d-3        [-1, 1, 96, 62, 62]               0
+               LRN-4           [-1, 96, 62, 62]               0
+         MaxPool2d-5           [-1, 96, 30, 30]               0
+            Conv2d-6          [-1, 256, 30, 30]         307,456
+              ReLU-7          [-1, 256, 30, 30]               0
+         AvgPool3d-8       [-1, 1, 256, 30, 30]               0
+               LRN-9          [-1, 256, 30, 30]               0
+        MaxPool2d-10          [-1, 256, 14, 14]               0
+           Conv2d-11          [-1, 384, 14, 14]         885,120
+             ReLU-12          [-1, 384, 14, 14]               0
+           Conv2d-13          [-1, 384, 14, 14]         663,936
+             ReLU-14          [-1, 384, 14, 14]               0
+           Conv2d-15          [-1, 256, 14, 14]         442,624
+             ReLU-16          [-1, 256, 14, 14]               0
+        MaxPool2d-17            [-1, 256, 6, 6]               0
+AdaptiveAvgPool2d-18            [-1, 256, 1, 1]               0
+================================================================
+Total params: 2,334,080
+Trainable params: 2,334,080
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.75
+Forward/backward pass size (MB): 22.47
+Params size (MB): 8.90
+Estimated Total Size (MB): 32.12
+----------------------------------------------------------------
+None
+odict_keys(['module.features.0.weight', 'module.features.0.bias', 'module.features.4.weight', 'module.features.4.bias', 'module.features.8.weight', 'module.features.8.bias', 'module.features.10.weight', 'module.features.10.bias', 'module.features.12.weight', 'module.features.12.bias', 'module.classifier.0.weight', 'module.classifier.0.bias', 'module.classifier.3.weight', 'module.classifier.3.bias', 'module.classifier.6.weight', 'module.classifier.6.bias'])
+odict_keys(['features.0.weight', 'features.0.bias', 'features.4.weight', 'features.4.bias', 'features.8.weight', 'features.8.bias', 'features.10.weight', 'features.10.bias', 'features.12.weight', 'features.12.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.3.weight', 'classifier.3.bias', 'classifier.6.weight', 'classifier.6.bias'])
+the learning rate multiple of the pre-trained feature is: 0.1
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 96, 62, 62]          34,944
+              ReLU-2           [-1, 96, 62, 62]               0
+         AvgPool3d-3        [-1, 1, 96, 62, 62]               0
+               LRN-4           [-1, 96, 62, 62]               0
+         MaxPool2d-5           [-1, 96, 30, 30]               0
+            Conv2d-6          [-1, 256, 30, 30]         307,456
+              ReLU-7          [-1, 256, 30, 30]               0
+         AvgPool3d-8       [-1, 1, 256, 30, 30]               0
+               LRN-9          [-1, 256, 30, 30]               0
+        MaxPool2d-10          [-1, 256, 14, 14]               0
+           Conv2d-11          [-1, 384, 14, 14]         885,120
+             ReLU-12          [-1, 384, 14, 14]               0
+           Conv2d-13          [-1, 384, 14, 14]         663,936
+             ReLU-14          [-1, 384, 14, 14]               0
+           Conv2d-15          [-1, 256, 14, 14]         442,624
+             ReLU-16          [-1, 256, 14, 14]               0
+        MaxPool2d-17            [-1, 256, 6, 6]               0
+AdaptiveAvgPool2d-18            [-1, 256, 1, 1]               0
+          AlexNet-19                  [-1, 256]               0
+         Identity-20                  [-1, 256]               0
+           Linear-21                   [-1, 31]           7,967
+       Classifier-22      [[-1, 31], [-1, 256]]               0
+================================================================
+Total params: 2,342,047
+Trainable params: 2,342,047
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.75
+Forward/backward pass size (MB): 22.41
+Params size (MB): 8.93
+Estimated Total Size (MB): 32.10
+----------------------------------------------------------------
+None
+Begin training!!
+  Train:epoch: 1:[0/50], Tdata: 6.616572, Tbatch: 6.907205, LCls:4.947288, Lssl:0.000318, Acc1:0.000000, SNum: 0.007812, SAcc: 0.000000
+update the random seed of target sample to 1
+update the random seed of target sample to 2
+update the random seed of target sample to 3
+  Train:epoch: 11:[0/50], Tdata: 3.217532, Tbatch: 3.501455, LCls:3.267175, Lssl:0.000029, Acc1:0.000000, SNum: 0.000000, SAcc: 0.000000
+update the random seed of target sample to 4
+update the random seed of target sample to 5
+update the random seed of target sample to 6
+  Train:epoch: 21:[0/50], Tdata: 3.234607, Tbatch: 3.518236, LCls:2.678714, Lssl:0.000211, Acc1:0.000000, SNum: 0.039062, SAcc: 1.000000
+update the random seed of target sample to 7
+update the random seed of source sample to 1
+update the random seed of target sample to 8
+update the random seed of target sample to 9
+update the random seed of target sample to 10
+  Train:epoch: 31:[0/50], Tdata: 3.397611, Tbatch: 3.681331, LCls:2.266588, Lssl:0.000530, Acc1:0.000000, SNum: 0.101562, SAcc: 0.692308
+update the random seed of target sample to 11
+update the random seed of target sample to 12
+update the random seed of target sample to 13
+  Train:epoch: 41:[0/50], Tdata: 3.286006, Tbatch: 3.569737, LCls:2.027079, Lssl:0.000786, Acc1:0.000000, SNum: 0.054688, SAcc: 1.000000
+update the random seed of target sample to 14
+update the random seed of source sample to 2
+update the random seed of target sample to 15
+update the random seed of target sample to 16
+  Train:epoch: 51:[0/50], Tdata: 3.309732, Tbatch: 3.593400, LCls:1.827200, Lssl:0.000990, Acc1:0.000000, SNum: 0.109375, SAcc: 0.857143
+update the random seed of target sample to 17
+update the random seed of target sample to 18
+update the random seed of target sample to 19
+update the random seed of target sample to 20
+  Train:epoch: 61:[0/50], Tdata: 3.360256, Tbatch: 3.644002, LCls:1.688101, Lssl:0.001048, Acc1:0.000000, SNum: 0.093750, SAcc: 0.916667
+update the random seed of target sample to 21
+update the random seed of source sample to 3
+update the random seed of target sample to 22
+update the random seed of target sample to 23
+  Train:epoch: 71:[0/50], Tdata: 3.379615, Tbatch: 3.663395, LCls:1.558803, Lssl:0.001167, Acc1:0.000000, SNum: 0.093750, SAcc: 0.750000
+update the random seed of target sample to 24
+update the random seed of target sample to 25
+update the random seed of target sample to 26
+  Train:epoch: 81:[0/50], Tdata: 3.354757, Tbatch: 3.638509, LCls:1.461590, Lssl:0.001284, Acc1:0.000000, SNum: 0.125000, SAcc: 0.937500
+update the random seed of target sample to 27
+update the random seed of target sample to 28
+update the random seed of target sample to 29
+update the random seed of source sample to 4
+update the random seed of target sample to 30
+  Train:epoch: 91:[0/50], Tdata: 3.409425, Tbatch: 3.693156, LCls:1.385597, Lssl:0.001355, Acc1:0.000000, SNum: 0.125000, SAcc: 1.000000
+update the random seed of target sample to 31
+update the random seed of target sample to 32
+update the random seed of target sample to 33
+  Train:epoch: 101:[0/50], Tdata: 3.352803, Tbatch: 3.636481, LCls:1.307480, Lssl:0.001420, Acc1:0.000000, SNum: 0.156250, SAcc: 0.900000
+update the random seed of target sample to 34
+update the random seed of target sample to 35
+update the random seed of target sample to 36
+update the random seed of source sample to 5
+  Train:epoch: 111:[0/50], Tdata: 3.364199, Tbatch: 3.647909, LCls:1.249408, Lssl:0.001508, Acc1:0.000000, SNum: 0.156250, SAcc: 0.950000
+update the random seed of target sample to 37
+update the random seed of target sample to 38
+update the random seed of target sample to 39
+update the random seed of target sample to 40
+  Train:epoch: 121:[0/50], Tdata: 3.374936, Tbatch: 3.658687, LCls:1.189904, Lssl:0.001550, Acc1:0.000000, SNum: 0.171875, SAcc: 0.954545
+update the random seed of target sample to 41
+update the random seed of target sample to 42
+update the random seed of target sample to 43
+  Train:epoch: 131:[0/50], Tdata: 3.341893, Tbatch: 3.625593, LCls:1.142390, Lssl:0.001587, Acc1:0.000000, SNum: 0.203125, SAcc: 0.884615
+update the random seed of source sample to 6
+update the random seed of target sample to 44
+update the random seed of target sample to 45
+update the random seed of target sample to 46
+  Train:epoch: 141:[0/50], Tdata: 3.373218, Tbatch: 3.656887, LCls:1.095874, Lssl:0.001653, Acc1:0.000000, SNum: 0.179688, SAcc: 0.869565
+update the random seed of target sample to 47
+update the random seed of target sample to 48
+update the random seed of target sample to 49
+update the random seed of target sample to 50
+  Train:epoch: 151:[0/50], Tdata: 3.386429, Tbatch: 3.670054, LCls:1.052933, Lssl:0.001706, Acc1:0.000000, SNum: 0.109375, SAcc: 0.928571
+update the random seed of target sample to 51
+update the random seed of source sample to 7
+update the random seed of target sample to 52
+update the random seed of target sample to 53
+  Train:epoch: 161:[0/50], Tdata: 3.375724, Tbatch: 3.659350, LCls:1.010436, Lssl:0.001735, Acc1:0.000000, SNum: 0.195312, SAcc: 0.880000
+update the random seed of target sample to 54
+update the random seed of target sample to 55
+update the random seed of target sample to 56
+  Train:epoch: 171:[0/50], Tdata: 3.362300, Tbatch: 3.645911, LCls:0.975230, Lssl:0.001768, Acc1:0.000000, SNum: 0.140625, SAcc: 0.888889
+update the random seed of target sample to 57
+update the random seed of target sample to 58
+update the random seed of source sample to 8
+update the random seed of target sample to 59
+update the random seed of target sample to 60
+  Train:epoch: 181:[0/50], Tdata: 3.385291, Tbatch: 3.668885, LCls:0.940144, Lssl:0.001809, Acc1:0.000000, SNum: 0.210938, SAcc: 0.888889
+update the random seed of target sample to 61
+update the random seed of target sample to 62
+update the random seed of target sample to 63
+  Train:epoch: 191:[0/50], Tdata: 3.356315, Tbatch: 3.639888, LCls:0.908503, Lssl:0.001838, Acc1:0.000000, SNum: 0.203125, SAcc: 0.884615
+update the random seed of target sample to 64
+update the random seed of target sample to 65
+update the random seed of source sample to 9
+update the random seed of target sample to 66
+  Train:epoch: 201:[0/50], Tdata: 3.378974, Tbatch: 3.662548, LCls:0.879912, Lssl:0.001877, Acc1:0.000000, SNum: 0.179688, SAcc: 0.826087
+update the random seed of target sample to 67
+update the random seed of target sample to 68
+update the random seed of target sample to 69
+update the random seed of target sample to 70
+  Train:epoch: 211:[0/50], Tdata: 3.384490, Tbatch: 3.668052, LCls:0.852475, Lssl:0.001917, Acc1:0.000000, SNum: 0.164062, SAcc: 0.952381
+update the random seed of target sample to 71
+update the random seed of target sample to 72
+update the random seed of target sample to 73
+update the random seed of source sample to 10
+  Train:epoch: 221:[0/50], Tdata: 3.389943, Tbatch: 3.673506, LCls:0.828534, Lssl:0.001966, Acc1:0.000000, SNum: 0.218750, SAcc: 0.857143
+update the random seed of target sample to 74
+update the random seed of target sample to 75
+update the random seed of target sample to 76
+  Train:epoch: 231:[0/50], Tdata: 3.369144, Tbatch: 3.652717, LCls:0.802822, Lssl:0.002006, Acc1:0.000000, SNum: 0.234375, SAcc: 0.833333
+update the random seed of target sample to 77
+update the random seed of target sample to 78
+update the random seed of target sample to 79
+update the random seed of target sample to 80
+  Train:epoch: 241:[0/50], Tdata: 3.377429, Tbatch: 3.660967, LCls:0.780027, Lssl:0.002041, Acc1:0.000000, SNum: 0.234375, SAcc: 0.866667
+update the random seed of source sample to 11
+update the random seed of target sample to 81
+update the random seed of target sample to 82
+update the random seed of target sample to 83
+  Train:epoch: 251:[0/50], Tdata: 3.370716, Tbatch: 3.654271, LCls:0.756399, Lssl:0.002072, Acc1:0.000000, SNum: 0.218750, SAcc: 0.785714
+update the random seed of target sample to 84
+update the random seed of target sample to 85
+update the random seed of target sample to 86
+  Train:epoch: 261:[0/50], Tdata: 3.362073, Tbatch: 3.645618, LCls:0.736716, Lssl:0.002100, Acc1:0.000000, SNum: 0.210938, SAcc: 0.851852
+update the random seed of target sample to 87
+update the random seed of source sample to 12
+update the random seed of target sample to 88
+update the random seed of target sample to 89
+update the random seed of target sample to 90
+  Train:epoch: 271:[0/50], Tdata: 3.390205, Tbatch: 3.673750, LCls:0.715785, Lssl:0.002130, Acc1:0.000000, SNum: 0.234375, SAcc: 0.766667
+update the random seed of target sample to 91
+update the random seed of target sample to 92
+update the random seed of target sample to 93
+  Train:epoch: 281:[0/50], Tdata: 3.370273, Tbatch: 3.653815, LCls:0.697221, Lssl:0.002161, Acc1:0.000000, SNum: 0.242188, SAcc: 0.870968
+update the random seed of target sample to 94
+update the random seed of target sample to 95
+update the random seed of source sample to 13
+update the random seed of target sample to 96
+  Train:epoch: 291:[0/50], Tdata: 3.375773, Tbatch: 3.659297, LCls:0.678692, Lssl:0.002189, Acc1:0.000000, SNum: 0.234375, SAcc: 0.833333
+update the random seed of target sample to 97
+update the random seed of target sample to 98
+update the random seed of target sample to 99
+update the random seed of target sample to 100
+  Train:epoch: 301:[0/50], Tdata: 3.378461, Tbatch: 3.661993, LCls:0.661788, Lssl:0.002229, Acc1:0.000000, SNum: 0.281250, SAcc: 0.805556
+update the random seed of target sample to 101
+update the random seed of target sample to 102
+update the random seed of source sample to 14
+update the random seed of target sample to 103
+  Train:epoch: 311:[0/50], Tdata: 3.371592, Tbatch: 3.655154, LCls:0.645337, Lssl:0.002261, Acc1:0.000000, SNum: 0.250000, SAcc: 0.843750
+update the random seed of target sample to 104
+update the random seed of target sample to 105
+update the random seed of target sample to 106
+  Train:epoch: 321:[0/50], Tdata: 3.363398, Tbatch: 3.646970, LCls:0.629631, Lssl:0.002284, Acc1:0.000000, SNum: 0.203125, SAcc: 0.923077
+update the random seed of target sample to 107
+update the random seed of target sample to 108
+update the random seed of target sample to 109
+update the random seed of source sample to 15
+update the random seed of target sample to 110
+  Train:epoch: 331:[0/50], Tdata: 3.384361, Tbatch: 3.667942, LCls:0.615015, Lssl:0.002305, Acc1:0.000000, SNum: 0.242188, SAcc: 0.677419
+update the random seed of target sample to 111
+update the random seed of target sample to 112
+update the random seed of target sample to 113
+  Train:epoch: 341:[0/50], Tdata: 3.370395, Tbatch: 3.653962, LCls:0.600644, Lssl:0.002327, Acc1:0.000000, SNum: 0.234375, SAcc: 0.733333
+update the random seed of target sample to 114
+update the random seed of target sample to 115
+update the random seed of target sample to 116
+  Train:epoch: 351:[0/50], Tdata: 3.363940, Tbatch: 3.647494, LCls:0.587107, Lssl:0.002353, Acc1:0.000000, SNum: 0.273438, SAcc: 0.828571
+update the random seed of target sample to 117
+update the random seed of source sample to 16
+update the random seed of target sample to 118
+update the random seed of target sample to 119
+update the random seed of target sample to 120
+  Train:epoch: 361:[0/50], Tdata: 3.375144, Tbatch: 3.658697, LCls:0.573439, Lssl:0.002384, Acc1:0.000000, SNum: 0.296875, SAcc: 0.842105
+update the random seed of target sample to 121
+update the random seed of target sample to 122
+update the random seed of target sample to 123
+  Train:epoch: 371:[0/50], Tdata: 3.360577, Tbatch: 3.644142, LCls:0.561179, Lssl:0.002416, Acc1:0.000000, SNum: 0.296875, SAcc: 0.684211
+update the random seed of target sample to 124
+update the random seed of source sample to 17
+update the random seed of target sample to 125
+update the random seed of target sample to 126
+  Train:epoch: 381:[0/50], Tdata: 3.362714, Tbatch: 3.646262, LCls:0.548941, Lssl:0.002434, Acc1:0.000000, SNum: 0.281250, SAcc: 0.638889
+update the random seed of target sample to 127
+update the random seed of target sample to 128
+update the random seed of target sample to 129
+update the random seed of target sample to 130
+  Train:epoch: 391:[0/50], Tdata: 3.365427, Tbatch: 3.648981, LCls:0.536978, Lssl:0.002462, Acc1:0.000000, SNum: 0.289062, SAcc: 0.837838
+update the random seed of target sample to 131
+update the random seed of source sample to 18
+update the random seed of target sample to 132
+update the random seed of target sample to 133
+  Train:epoch: 401:[0/50], Tdata: 3.368550, Tbatch: 3.652103, LCls:0.525952, Lssl:0.002477, Acc1:0.000000, SNum: 0.335938, SAcc: 0.813953
+update the random seed of target sample to 134
+update the random seed of target sample to 135
+update the random seed of target sample to 136
+  Train:epoch: 411:[0/50], Tdata: 3.363095, Tbatch: 3.646653, LCls:0.515192, Lssl:0.002498, Acc1:0.000000, SNum: 0.328125, SAcc: 0.619048
+update the random seed of target sample to 137
+update the random seed of target sample to 138
+update the random seed of target sample to 139
+update the random seed of source sample to 19
+update the random seed of target sample to 140
+  Train:epoch: 421:[0/50], Tdata: 3.372999, Tbatch: 3.656558, LCls:0.504824, Lssl:0.002529, Acc1:0.000000, SNum: 0.289062, SAcc: 0.810811
+update the random seed of target sample to 141
+update the random seed of target sample to 142
+update the random seed of target sample to 143
+  Train:epoch: 431:[0/50], Tdata: 3.362139, Tbatch: 3.645687, LCls:0.494926, Lssl:0.002542, Acc1:0.000000, SNum: 0.312500, SAcc: 0.850000
+update the random seed of target sample to 144
+update the random seed of target sample to 145
+update the random seed of target sample to 146
+update the random seed of source sample to 20
+  Train:epoch: 441:[0/50], Tdata: 3.361787, Tbatch: 3.645337, LCls:0.485499, Lssl:0.002569, Acc1:0.000000, SNum: 0.312500, SAcc: 0.850000
+update the random seed of target sample to 147
+update the random seed of target sample to 148
+update the random seed of target sample to 149
+update the random seed of target sample to 150
+  Train:epoch: 451:[0/50], Tdata: 3.365625, Tbatch: 3.649241, LCls:0.475988, Lssl:0.002592, Acc1:0.000000, SNum: 0.359375, SAcc: 0.673913
+update the random seed of target sample to 151
+update the random seed of target sample to 152
+update the random seed of target sample to 153
+  Train:epoch: 461:[0/50], Tdata: 3.353012, Tbatch: 3.636628, LCls:0.467161, Lssl:0.002606, Acc1:0.000000, SNum: 0.335938, SAcc: 0.767442
+update the random seed of source sample to 21
+update the random seed of target sample to 154
+update the random seed of target sample to 155
+update the random seed of target sample to 156
+  Train:epoch: 471:[0/50], Tdata: 3.362035, Tbatch: 3.645629, LCls:0.458492, Lssl:0.002617, Acc1:0.000000, SNum: 0.375000, SAcc: 0.708333
+update the random seed of target sample to 157
+update the random seed of target sample to 158
+update the random seed of target sample to 159
+update the random seed of target sample to 160
+  Train:epoch: 481:[0/50], Tdata: 3.363319, Tbatch: 3.646911, LCls:0.450424, Lssl:0.002629, Acc1:0.000000, SNum: 0.296875, SAcc: 0.631579
+update the random seed of target sample to 161
+update the random seed of source sample to 22
+update the random seed of target sample to 162
+update the random seed of target sample to 163
+  Train:epoch: 491:[0/50], Tdata: 3.359281, Tbatch: 3.642890, LCls:0.442353, Lssl:0.002639, Acc1:0.000000, SNum: 0.359375, SAcc: 0.739130
+update the random seed of target sample to 164
+update the random seed of target sample to 165
+update the random seed of target sample to 166
+----------------------------------------------------------------------------------------------------
+begin testing
+----------------------------------------------------------------------------------------------------
+                       TracnTest:epoch: 0, iter: 500, MeanSampleAcc: 40.963856
+  Train:epoch: 501:[1/50], Tdata: 0.023087, Tbatch: 0.305904, LCls:0.035955, Lssl:0.003056, Acc1:0.000000, SNum: 0.304688, SAcc: 0.794872
+update the random seed of target sample to 167
+update the random seed of target sample to 168
+update the random seed of source sample to 23
+update the random seed of target sample to 169
+update the random seed of target sample to 170
+  Train:epoch: 511:[1/50], Tdata: 3.369412, Tbatch: 3.658116, LCls:0.047150, Lssl:0.003196, Acc1:0.000000, SNum: 0.289062, SAcc: 0.783784
+update the random seed of target sample to 171
+update the random seed of target sample to 172
+update the random seed of target sample to 173
+  Train:epoch: 521:[1/50], Tdata: 3.170180, Tbatch: 3.461275, LCls:0.050248, Lssl:0.003335, Acc1:0.000000, SNum: 0.367188, SAcc: 0.744681
+update the random seed of target sample to 174
+update the random seed of target sample to 175
+update the random seed of source sample to 24
+update the random seed of target sample to 176
+  Train:epoch: 531:[1/50], Tdata: 3.348667, Tbatch: 3.640037, LCls:0.051707, Lssl:0.003443, Acc1:0.000000, SNum: 0.320312, SAcc: 0.682927
+update the random seed of target sample to 177
+update the random seed of target sample to 178
+update the random seed of target sample to 179
+update the random seed of target sample to 180
+  Train:epoch: 541:[1/50], Tdata: 3.408491, Tbatch: 3.700010, LCls:0.048359, Lssl:0.003590, Acc1:0.000000, SNum: 0.351562, SAcc: 0.733333
+update the random seed of target sample to 181
+update the random seed of target sample to 182
+update the random seed of target sample to 183
+update the random seed of source sample to 25
+  Train:epoch: 551:[1/50], Tdata: 3.418943, Tbatch: 3.711164, LCls:0.047157, Lssl:0.003575, Acc1:0.000000, SNum: 0.320312, SAcc: 0.756098
+update the random seed of target sample to 184
+update the random seed of target sample to 185
+update the random seed of target sample to 186
+  Train:epoch: 561:[1/50], Tdata: 3.337899, Tbatch: 3.630312, LCls:0.046879, Lssl:0.003583, Acc1:0.000000, SNum: 0.351562, SAcc: 0.688889
+update the random seed of target sample to 187
+update the random seed of target sample to 188
+update the random seed of target sample to 189
+update the random seed of target sample to 190
+  Train:epoch: 571:[1/50], Tdata: 3.370126, Tbatch: 3.662738, LCls:0.048473, Lssl:0.003692, Acc1:0.000000, SNum: 0.414062, SAcc: 0.660377
+update the random seed of source sample to 26
+update the random seed of target sample to 191
+update the random seed of target sample to 192
+update the random seed of target sample to 193
+  Train:epoch: 581:[1/50], Tdata: 3.338668, Tbatch: 3.631347, LCls:0.046838, Lssl:0.003649, Acc1:0.000000, SNum: 0.398438, SAcc: 0.823529
+update the random seed of target sample to 194
+update the random seed of target sample to 195
+update the random seed of target sample to 196
+  Train:epoch: 591:[1/50], Tdata: 3.331743, Tbatch: 3.624504, LCls:0.045338, Lssl:0.003605, Acc1:0.000000, SNum: 0.312500, SAcc: 0.725000
+update the random seed of target sample to 197
+update the random seed of source sample to 27
+update the random seed of target sample to 198
+update the random seed of target sample to 199
+update the random seed of target sample to 200
+  Train:epoch: 601:[1/50], Tdata: 3.399314, Tbatch: 3.692213, LCls:0.044323, Lssl:0.003622, Acc1:0.000000, SNum: 0.437500, SAcc: 0.785714
+update the random seed of target sample to 201
+update the random seed of target sample to 202
+update the random seed of target sample to 203
+  Train:epoch: 611:[1/50], Tdata: 3.379712, Tbatch: 3.672670, LCls:0.043089, Lssl:0.003655, Acc1:0.000000, SNum: 0.375000, SAcc: 0.687500
+update the random seed of target sample to 204
+update the random seed of target sample to 205
+update the random seed of source sample to 28
+update the random seed of target sample to 206
+  Train:epoch: 621:[1/50], Tdata: 3.383626, Tbatch: 3.676716, LCls:0.042590, Lssl:0.003672, Acc1:0.000000, SNum: 0.437500, SAcc: 0.696429
+update the random seed of target sample to 207
+update the random seed of target sample to 208
+update the random seed of target sample to 209
+update the random seed of target sample to 210
+  Train:epoch: 631:[1/50], Tdata: 3.397241, Tbatch: 3.690336, LCls:0.042065, Lssl:0.003678, Acc1:0.000000, SNum: 0.398438, SAcc: 0.705882
+update the random seed of target sample to 211
+update the random seed of target sample to 212
+update the random seed of source sample to 29
+update the random seed of target sample to 213
+  Train:epoch: 641:[1/50], Tdata: 3.382836, Tbatch: 3.675975, LCls:0.041774, Lssl:0.003699, Acc1:0.000000, SNum: 0.367188, SAcc: 0.702128
+update the random seed of target sample to 214
+update the random seed of target sample to 215
+update the random seed of target sample to 216
+  Train:epoch: 651:[1/50], Tdata: 3.370754, Tbatch: 3.663930, LCls:0.041368, Lssl:0.003729, Acc1:0.000000, SNum: 0.367188, SAcc: 0.617021
+update the random seed of target sample to 217
+update the random seed of target sample to 218
+update the random seed of target sample to 219
+update the random seed of source sample to 30
+update the random seed of target sample to 220
+  Train:epoch: 661:[1/50], Tdata: 3.413614, Tbatch: 3.706848, LCls:0.041839, Lssl:0.003753, Acc1:0.000000, SNum: 0.390625, SAcc: 0.620000
+update the random seed of target sample to 221
+update the random seed of target sample to 222
+update the random seed of target sample to 223
+  Train:epoch: 671:[1/50], Tdata: 3.380118, Tbatch: 3.673336, LCls:0.041180, Lssl:0.003731, Acc1:0.000000, SNum: 0.414062, SAcc: 0.622642
+update the random seed of target sample to 224
+update the random seed of target sample to 225
+update the random seed of target sample to 226
+  Train:epoch: 681:[1/50], Tdata: 3.371380, Tbatch: 3.664570, LCls:0.040883, Lssl:0.003749, Acc1:0.000000, SNum: 0.367188, SAcc: 0.553191
+update the random seed of target sample to 227
+update the random seed of source sample to 31
+update the random seed of target sample to 228
+update the random seed of target sample to 229
+update the random seed of target sample to 230
+  Train:epoch: 691:[1/50], Tdata: 3.387406, Tbatch: 3.680630, LCls:0.040498, Lssl:0.003752, Acc1:0.000000, SNum: 0.382812, SAcc: 0.714286
+update the random seed of target sample to 231
+update the random seed of target sample to 232
+update the random seed of target sample to 233
+  Train:epoch: 701:[1/50], Tdata: 3.362603, Tbatch: 3.655805, LCls:0.040165, Lssl:0.003730, Acc1:0.000000, SNum: 0.429688, SAcc: 0.745455
+update the random seed of target sample to 234
+update the random seed of source sample to 32
+update the random seed of target sample to 235
+update the random seed of target sample to 236
+  Train:epoch: 711:[1/50], Tdata: 3.361267, Tbatch: 3.654519, LCls:0.039917, Lssl:0.003748, Acc1:0.000000, SNum: 0.359375, SAcc: 0.673913
+update the random seed of target sample to 237
+update the random seed of target sample to 238
+update the random seed of target sample to 239
+update the random seed of target sample to 240
+  Train:epoch: 721:[1/50], Tdata: 3.367375, Tbatch: 3.660587, LCls:0.039170, Lssl:0.003751, Acc1:0.000000, SNum: 0.453125, SAcc: 0.706897
+update the random seed of target sample to 241
+update the random seed of source sample to 33
+update the random seed of target sample to 242
+update the random seed of target sample to 243
+  Train:epoch: 731:[1/50], Tdata: 3.367956, Tbatch: 3.661225, LCls:0.038413, Lssl:0.003755, Acc1:0.000000, SNum: 0.382812, SAcc: 0.693878
+update the random seed of target sample to 244
+update the random seed of target sample to 245
+update the random seed of target sample to 246
+  Train:epoch: 741:[1/50], Tdata: 3.357890, Tbatch: 3.651211, LCls:0.037719, Lssl:0.003759, Acc1:0.000000, SNum: 0.406250, SAcc: 0.730769
+update the random seed of target sample to 247
+update the random seed of target sample to 248
+update the random seed of target sample to 249
+update the random seed of source sample to 34
+update the random seed of target sample to 250
+  Train:epoch: 751:[1/50], Tdata: 3.372779, Tbatch: 3.666183, LCls:0.037050, Lssl:0.003743, Acc1:0.000000, SNum: 0.296875, SAcc: 0.710526
+update the random seed of target sample to 251
+update the random seed of target sample to 252
+update the random seed of target sample to 253
+  Train:epoch: 761:[1/50], Tdata: 3.351418, Tbatch: 3.644890, LCls:0.036517, Lssl:0.003731, Acc1:0.000000, SNum: 0.289062, SAcc: 0.702703
+update the random seed of target sample to 254
+update the random seed of target sample to 255
+update the random seed of target sample to 256
+update the random seed of source sample to 35
+  Train:epoch: 771:[1/50], Tdata: 3.352565, Tbatch: 3.646071, LCls:0.036237, Lssl:0.003715, Acc1:0.000000, SNum: 0.390625, SAcc: 0.720000
+update the random seed of target sample to 257
+update the random seed of target sample to 258
+update the random seed of target sample to 259
+update the random seed of target sample to 260
+  Train:epoch: 781:[1/50], Tdata: 3.356450, Tbatch: 3.649974, LCls:0.035624, Lssl:0.003710, Acc1:0.000000, SNum: 0.414062, SAcc: 0.641509
+update the random seed of target sample to 261
+update the random seed of target sample to 262
+update the random seed of target sample to 263
+  Train:epoch: 791:[1/50], Tdata: 3.339834, Tbatch: 3.633358, LCls:0.035173, Lssl:0.003715, Acc1:0.000000, SNum: 0.445312, SAcc: 0.614035
+update the random seed of source sample to 36
+update the random seed of target sample to 264
+update the random seed of target sample to 265
+update the random seed of target sample to 266
+  Train:epoch: 801:[1/50], Tdata: 3.350783, Tbatch: 3.644317, LCls:0.034736, Lssl:0.003721, Acc1:0.000000, SNum: 0.445312, SAcc: 0.649123
+update the random seed of target sample to 267
+update the random seed of target sample to 268
+update the random seed of target sample to 269
+update the random seed of target sample to 270
+  Train:epoch: 811:[1/50], Tdata: 3.356688, Tbatch: 3.650264, LCls:0.034288, Lssl:0.003719, Acc1:0.000000, SNum: 0.375000, SAcc: 0.625000
+update the random seed of target sample to 271
+update the random seed of source sample to 37
+update the random seed of target sample to 272
+update the random seed of target sample to 273
+  Train:epoch: 821:[1/50], Tdata: 3.350930, Tbatch: 3.644527, LCls:0.033777, Lssl:0.003710, Acc1:0.000000, SNum: 0.484375, SAcc: 0.790323
+update the random seed of target sample to 274
+update the random seed of target sample to 275
+update the random seed of target sample to 276
+  Train:epoch: 831:[1/50], Tdata: 3.345383, Tbatch: 3.638954, LCls:0.033326, Lssl:0.003706, Acc1:0.000000, SNum: 0.375000, SAcc: 0.770833
+update the random seed of target sample to 277
+update the random seed of target sample to 278
+update the random seed of source sample to 38
+update the random seed of target sample to 279
+update the random seed of target sample to 280
+  Train:epoch: 841:[1/50], Tdata: 3.357812, Tbatch: 3.651405, LCls:0.032834, Lssl:0.003721, Acc1:0.000000, SNum: 0.437500, SAcc: 0.660714
+update the random seed of target sample to 281
+update the random seed of target sample to 282
+update the random seed of target sample to 283
+  Train:epoch: 851:[1/50], Tdata: 3.343125, Tbatch: 3.636705, LCls:0.032370, Lssl:0.003721, Acc1:0.000000, SNum: 0.375000, SAcc: 0.708333
+update the random seed of target sample to 284
+update the random seed of target sample to 285
+update the random seed of source sample to 39
+update the random seed of target sample to 286
+  Train:epoch: 861:[1/50], Tdata: 3.354279, Tbatch: 3.647861, LCls:0.031891, Lssl:0.003736, Acc1:0.000000, SNum: 0.445312, SAcc: 0.684211
+update the random seed of target sample to 287
+update the random seed of target sample to 288
+update the random seed of target sample to 289
+update the random seed of target sample to 290
+  Train:epoch: 871:[1/50], Tdata: 3.356990, Tbatch: 3.650594, LCls:0.031456, Lssl:0.003731, Acc1:0.000000, SNum: 0.421875, SAcc: 0.685185
+update the random seed of target sample to 291
+update the random seed of target sample to 292
+update the random seed of target sample to 293
+update the random seed of source sample to 40
+  Train:epoch: 881:[1/50], Tdata: 3.358804, Tbatch: 3.652449, LCls:0.031058, Lssl:0.003728, Acc1:0.000000, SNum: 0.398438, SAcc: 0.529412
+update the random seed of target sample to 294
+update the random seed of target sample to 295
+update the random seed of target sample to 296
+  Train:epoch: 891:[1/50], Tdata: 3.347381, Tbatch: 3.641054, LCls:0.030701, Lssl:0.003727, Acc1:0.000000, SNum: 0.382812, SAcc: 0.734694
+update the random seed of target sample to 297
+update the random seed of target sample to 298
+update the random seed of target sample to 299

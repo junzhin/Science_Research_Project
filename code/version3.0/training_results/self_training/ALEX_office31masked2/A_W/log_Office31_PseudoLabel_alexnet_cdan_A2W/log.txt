@@ -1,0 +1,13 @@
+
+
+------------ training start ------------------
+Sat Feb 19 03:39:36 2022
+-------------------------------------------
+{"T": 1.0, "base_lr": 0.01, "batchsize": 128, "bottleneck_dim": 256, "calculate_a_dis_only": false, "category_mean": false, "datapath": "../../../../data/", "dataset": "Office31", "dist_backend": "nccl", "dist_url": "tcp://127.0.0.1:10026", "ema_m": 0.999, "entropy_cdan": false, "epochs": 50, "exp_name": "log_Office31_PseudoLabel_alexnet_cdan_A2W", "gpu": null, "iters_per_epoch": 500, "local": true, "local_pretrained_path": "/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_CDANmodel_best.pth.tar", "local_rank": 0, "log_interval": 100, "lr_schedule": "inv", "margin": 4.0, "mcdalnet_dis": "L1", "method": "PseudoLabel", "momentum": 0.9, "mu": 1, "multiprocessing_distributed": true, "net": "alexnet_cdan", "num_class": 31, "num_k": 4, "num_workers": 2, "onlyT": false, "p_cutoff": 0.95, "port": "12355", "pretrained": true, "rank": 0, "regular_only_feature": true, "resume": "", "save_dir": "/home/junzhin/Project/Summer_project/code/version3.0/training_results/self_training/ALEX_office31masked2/A_W/log_Office31_PseudoLabel_alexnet_cdan_A2W", "saving": false, "seed": 1, "source": "A", "strongaug": false, "target": "W", "test_only": false, "trade_off": 1.0, "transform_type": "randomcrop", "use_ema": false, "vat_eps": 1.0, "wd": 0.0001, "world_size": 1}
+
+  Train:epoch: 500:[0/50], Tdata: 1.665290, Tbatch: 1.958924, LCls:0.452777, Lssl:0.002447, Acc1:0.000000, SNum: 0.335938, SAcc: 0.627907
+                                                                                                                                                                                                                                TracnTest:epoch: 0, iter: 500, MeanSampleAcc: 41.886791
+  Train:epoch: 1000:[1/50], Tdata: 1.626931, Tbatch: 1.920300, LCls:0.026416, Lssl:0.004187, Acc1:0.000000, SNum: 0.375000, SAcc: 0.708333
+                                                                                                                                                                                                                                TracnTest:epoch: 1, iter: 1000, MeanSampleAcc: 41.761005
+  Train:epoch: 1500:[2/50], Tdata: 1.575824, Tbatch: 1.868959, LCls:0.009577, Lssl:0.004473, Acc1:0.000000, SNum: 0.507812, SAcc: 0.630769
+                                                                                                                                                                                                                                TracnTest:epoch: 2, iter: 1500, MeanSampleAcc: 42.767296

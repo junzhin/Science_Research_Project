@@ -1,0 +1,10 @@
+Namespace(arch='alexnet_cdan', batch_size=32, bottleneck_dim=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=50, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/ALEX_office31masked2_CDANmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/ALEX_office31masked2/A_D', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='A', target='D', trade_off=1.0, weight_decay=0.001, workers=8)
+Loading the local alexnet pretrained model weights!
+the number of classes are in the alexnet cdan 958
+odict_keys(['module.features.0.weight', 'module.features.0.bias', 'module.features.4.weight', 'module.features.4.bias', 'module.features.8.weight', 'module.features.8.bias', 'module.features.10.weight', 'module.features.10.bias', 'module.features.12.weight', 'module.features.12.bias', 'module.classifier.0.weight', 'module.classifier.0.bias', 'module.classifier.3.weight', 'module.classifier.3.bias', 'module.classifier.6.weight', 'module.classifier.6.bias'])
+Traceback (most recent call last):
+  File "../../../../dann_modified.py", line 427, in <module>
+    main(args)
+  File "../../../../dann_modified.py", line 124, in main
+    state = OD([(key.split("module.")[-1], state_dict[key]) for key in state_dict])
+NameError: name 'OD' is not defined
