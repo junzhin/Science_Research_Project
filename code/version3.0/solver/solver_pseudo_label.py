@@ -58,11 +58,19 @@ class Solver(BaseSolver):
             ##
             source_data = source_data.cuda(self.args.gpu, non_blocking=True)
             target_data_weak = target_data_weak.cuda(self.args.gpu, non_blocking=True)
+            # print("the size of target data weak")
+            # print(target_data_weak.size())
             source_gt = source_gt.cuda(self.args.gpu, non_blocking=True)
+            # print("the size of target_gt_for_visual before GPU")
+            # print(target_gt_for_visual.size())
             target_gt_for_visual = target_gt_for_visual.cuda(self.args.gpu, non_blocking=True)
+            # print("the size of target_gt_for_visual")
+            # print(target_gt_for_visual.size())
 
             if self.args.regular_only_feature:  ###
-                logit_t_F1, _ = self.classifier(target_data_weak)
+                logit_t_F1, useless = self.classifier(target_data_weak)
+                # print("the size of logit_t_F1")
+                # print(logit_t_F1.size())
                 ssl_loss, mask, acc_selected = self.consistency_loss(logit_t_F1, logit_t_F1, target_gt_for_visual,
                                                             'ce', 1.0, self.args.p_cutoff,
                                                             use_hard_labels=True)
@@ -153,6 +161,13 @@ class Solver(BaseSolver):
             if mask.mean().item() == 0:
                 acc_selected = 0
             else:
+                # print(target_gt_for_visual)
+                # print("+"*20)
+                # print(max_idx)
+                # print(max_probs)
+                # print("-"*50)
+                # mask 代表的是其中大雨prob 大cutoff 在每个batch size 中百分比
+                # acc_selected 这里统计的是其中对应在大于prob cut off 情况下的正确预测的classes的数量的平均值
                 acc_selected = (target_gt_for_visual[mask_binary] == max_idx[mask_binary]).float().mean().item()
 
             if use_hard_labels:

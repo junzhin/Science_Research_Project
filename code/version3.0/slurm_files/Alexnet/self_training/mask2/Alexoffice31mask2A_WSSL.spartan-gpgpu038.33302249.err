@@ -1,0 +1,3 @@
+../../../../main_SSL.py:157: UserWarning: You have chosen to seed training. This will turn on the CUDNN deterministic setting, which can slow down your training considerably! You may see unexpected behavior when restarting from checkpoints.
+  warnings.warn('You have chosen to seed training. '
+slurmstepd: error: *** JOB 33302249 ON spartan-gpgpu038 CANCELLED AT 2022-02-19T15:39:40 DUE TO TIME LIMIT ***

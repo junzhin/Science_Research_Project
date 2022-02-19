@@ -1,0 +1,9 @@
+Namespace(arch='alexnet_cdan', batch_size=32, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=80, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/AlEX_office31full2model_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/log/baseline/ALEX_office31masked2_/D_A', lr=0.0001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=None, source='eed', target='A', wd=0.0005, workers=8)
+Traceback (most recent call last):
+  File "source_only.py", line 403, in <module>
+    main(args)
+  File "source_only.py", line 87, in main
+    train_source_dataset = dataset(root=args.root, task=args.source, download=True, transform=train_transform)
+  File "/home/junzhin/Project/Summer_project/code/version2.0/common/vision/datasets/office31.py", line 51, in __init__
+    assert task in self.image_list
+AssertionError

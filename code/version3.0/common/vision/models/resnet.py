@@ -8,6 +8,7 @@ from torchvision import models
 from torch.hub import load_state_dict_from_url
 from torchvision.models.resnet import BasicBlock, Bottleneck, model_urls
 import copy
+from torchsummary import summary
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
            'resnet152', 'resnext50_32x4d', 'resnext101_32x8d',
@@ -63,6 +64,7 @@ def _resnet(arch, block, layers, pretrained, progress, local: bool = False, loca
             # 可能会报错 遇到过dict keys 包含格外的module 的样式 
             pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
         model.load_state_dict(pretrained_dict, strict=False)
+        print(summary(model.cuda(), (3,256,256)))
     return model
 
 

@@ -8,6 +8,8 @@ import time
 import torch.distributed as dist
 import torch.multiprocessing as mp
 import warnings
+from torchsummary import summary
+from collections import OrderedDict as OD
 
 def opts():
     parser = argparse.ArgumentParser(description='Train script.')
@@ -202,7 +204,37 @@ def main_worker(gpu, ngpus_per_node, args):
 
 
     import common.vision.models as models
-    backbone = models.__dict__[args.net](pretrained=args.pretrained, local = args.local, local_pretrained_path = args.local_pretrained_path)
+
+     ##########################################
+    # create model
+    if args.local:
+        print("Loading the local alexnet pretrained model weights!")
+        state = torch.load(args.local_pretrained_path)
+        state_dict = state['state_dict']
+
+        if "num_classes" in state.keys():
+            num_classes_backbone = state["num_classes"]
+        else:
+            # default value of number of classes
+            num_classes_backbone = 1000
+
+        backbone = models.__dict__[args.net](pretrained=True, num_classes = num_classes_backbone)
+
+        print(state_dict.keys())
+        # 处理不同 pretrained model weights 的前缀,使其兼容
+        state = OD([(key.split("module.")[-1], state_dict[key]) for key in state_dict])
+        print(state.keys())
+
+        backbone.load_state_dict(state, strict = False)
+    else:
+        print("=> using pre-trained model from pytorch website '{}'".format(args.net))
+        backbone = models.__dict__[args.net](pretrained=True)
+
+    ##########################################
+
+
+
+    # backbone = models.__dict__[args.net](pretrained=args.pretrained, local = args.local, local_pretrained_path = args.local_pretrained_path)
     pre_trained_feature = True
 
     from common.modules.classifier import Classifier
@@ -219,6 +251,7 @@ def main_worker(gpu, ngpus_per_node, args):
         from solver.solver_entropy_minimization import Solver as Solver
     elif args.method == 'PseudoLabel':
         classifier = Classifier(backbone, num_classes, pre_trained=pre_trained_feature)
+
         from solver.solver_pseudo_label import Solver as Solver
     elif args.method == 'PiModel':
         args.strongaug = False
@@ -247,12 +280,13 @@ def main_worker(gpu, ngpus_per_node, args):
             classifier = torch.nn.SyncBatchNorm.convert_sync_batchnorm(classifier)
             classifier.cuda(args.gpu)
             ## broadcast_buffers=False --> to enable twice forward before a backward !!! e.g., M(S-data), M(T-data), loss.backward().
-            classifier = torch.nn.parallel.DistributedDataParallel(classifier, device_ids=[args.gpu], broadcast_buffers=False)
+            classifier = torch.nn.parallel.DistributedDataParallel(classifier, device_ids=[args.gpu], broadcast_buffers=False, find_unused_parameters=True)
         else:
             raise NotImplementedError
     else:
         classifier.cuda(args.gpu)
-
+        
+    print(summary(classifier.cuda(), (3,256,256)))
     from data.prepare_data_da import generate_dataloader as Dataloader
     dataloaders = Dataloader(args)
     train_solver = Solver(classifier, dataloaders, args)

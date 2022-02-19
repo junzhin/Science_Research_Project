@@ -1,5 +1,6 @@
 from typing import Tuple, Optional, List, Dict
 import torch.nn as nn
+from torchsummary import summary
 import torch
 
 __all__ = ['Classifier']
@@ -61,7 +62,7 @@ class Classifier(nn.Module):
         else:
             self.lr_feature = 1.0
         print('the learning rate multiple of the pre-trained feature is:', self.lr_feature)
-
+      
     @property
     def features_dim(self) -> int:
         """The dimension of features before the final `head` layer"""

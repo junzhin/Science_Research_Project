@@ -97,5 +97,4 @@ def alexnet_cdan(pretrained=False, **kwargs):
         model.load_state_dict(state_dict, strict = False)
 
     print(summary(model.cuda(), (3,256,256)))
-    # print(summary(model, (3,256,256)))
     return model

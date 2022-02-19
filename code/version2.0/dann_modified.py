@@ -15,6 +15,7 @@ from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data import DataLoader
 import torchvision.transforms as T
 import torch.nn.functional as F
+from collections import OrderedDict as OD
 
 sys.path.append('../../..')
 from dalib.modules.domain_discriminator import DomainDiscriminator
@@ -420,9 +421,6 @@ if __name__ == '__main__':
     parser.add_argument('--checkmodel_logsave', default=False, action = 'store_true', help = "indicate if the training will save the best model and the checkpoint weights in case of limited storage space.")
     ######################################
     args = parser.parse_args()
-
-
-
 
     main(args)
 
