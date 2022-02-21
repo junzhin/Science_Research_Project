@@ -36,7 +36,6 @@
   -  `version2.0`: Designed for UDA fine tuning on pretraind models
   -  `version3.0`: Designed for SSL fine tuning on pretraind models
 -  `reports` : Storing the old versions of report for achrived purposes
--  
 # References:
 See the references in the report link
 
