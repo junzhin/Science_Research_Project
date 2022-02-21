@@ -20,29 +20,22 @@
   - tqdm
   - scikit-learn
   - webcolors  
-
+  - matplotlib
 
 # Datasets
 - External dataset 1: Face-blurred ILSVRC2012–2017 classification -> https://image-net.org/download-images.php
 - External dataset 2: Office31 Dataset -> https://faculty.cc.gatech.edu/~judy/domainadapt/#datasets_code
-- External dataset 3: OfficeHome Dataset -> https://www.hemanthdv.org/officeHomeDataset.html
 ### PS: Some datasets are not used in the report.
 
 # Directory
-- `data`: Contain All preprocessed files and small external datasets supporting the analysis.
-- `plots_results`: All plots and ouputresults both for model training and reporting writting.
+- `data`: Contain All preprocessed files and small external datasets supporting the analysis.Usually Store on the local machine to avoid occupying the online storage
+- `plots_results`: All plots and outputresults both for model training and reporting writting. This file also contains the storing excel files for data outputing used in the report.
 - `code`: Contain all code implementations in this project
-  - `testing`: designed for initial debugging purposes
-  -  `version1.0`:designed for Alexnet and Resnet18 models pretraining with selected classes and labels masked
-  -  `version2.0`: designed for UDA fine tuning on pretraind models
-  -  `version3.0`: designed for SSL fine tuning on pretraind models
-- `pytorch_imagenet_example`: copied from https://github.com/pytorch/examples/tree/master/imagenet
-
-
-# Other Descriptions:
--     
--  
-
-
+  - `testing`: Designed for initial debugging purposes
+  -  `version1.0`:Designed for Alexnet model pretraining with selected classes and labels masked
+  -  `version2.0`: Designed for UDA fine tuning on pretraind models
+  -  `version3.0`: Designed for SSL fine tuning on pretraind models
+-  `reports` : Storing the old versions of report for achrived purposes
 # References:
+See the references in the report link
 
