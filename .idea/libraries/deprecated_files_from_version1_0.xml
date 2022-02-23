@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="deprecated_files_from_version1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deprecated/deprecated_files_from_version1.0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

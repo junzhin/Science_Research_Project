@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="image_list">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/code/version3.0/data/Office31/image_list.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
