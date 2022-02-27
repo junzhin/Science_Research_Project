@@ -16,7 +16,7 @@ Epoch: [0][ 900/1000]	Time 0.038 (0.069)	Data 0.025 (0.055)	Loss 0.35 (1.28)	Cls
 Test: [ 0/89]	Time  0.558 ( 0.558)	Loss 9.6426e-01 (9.6426e-01)	Acc@1  68.75 ( 68.75)	Acc@5  96.88 ( 96.88)
  * Acc@1 25.772 Acc@5 57.863
 global correct: 25.8
-mean correct:25.5
+mean correct    
 mean IoU: 15.8
 +------------------+--------------------+--------------------+
 |      class       |        acc         |        iou         |
