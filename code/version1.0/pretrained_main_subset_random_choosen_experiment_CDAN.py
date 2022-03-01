@@ -289,12 +289,27 @@ def main_worker(gpu, ngpus_per_node, args):
     print(train_dataset_initial)
     print("--"*20)
     
+
     ######################################################################################################################
     # extend the functionality to include the subset model training_filename
     # notice here we apply the different transformation to the validation set of images
+    def five_croping_processing(crop):
+        return torch.stack([transforms.ToTensor()(crop) for crop in crops])
+    def normalizing_five_croping_processing(tensors):
+        return torch.stack([transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])(t) for t in tensors])
+    
     valid_dataset_initial = datasets.ImageFolder(valdir, 
     transforms.Compose([
+
+            # transforms.Resize(256),
+            # transforms.CenterCrop(input_size),
+            # transforms.ToTensor(),
+            # normalize,
+            
+            # 这是一种与training set一直的data augmentation，这种更为标准的做法， 可能会让evaluation 的表现变差， 注意这里的transformation
+             # modified
             transforms.Resize(256),
+            transforms.RandomHorizontalFlip(),
             transforms.CenterCrop(input_size),
             transforms.ToTensor(),
             normalize,

@@ -1,0 +1,16 @@
+Namespace(arch='resnet50', batch_size=32, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=30, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked2_newmodel_best.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/baseline/Resnet50_office31/D_W', lr=0.0001, lr_decay=0.75, lr_gamma=0.0003, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=2, source='D', target='W', wd=0.0005, workers=4)
+../../../source_only.py:45: UserWarning: You have chosen to seed training. This will turn on the CUDNN deterministic setting, which can slow down your training considerably! You may see unexpected behavior when restarting from checkpoints.
+  warnings.warn('You have chosen to seed training. '
+Loading the local alexnet pretrained model weights!
+Traceback (most recent call last):
+  File "../../../source_only.py", line 403, in <module>
+    main(args)
+  File "../../../source_only.py", line 106, in main
+    state = torch.load(args.local_pretrained_path)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/serialization.py", line 594, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/serialization.py", line 230, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/junzhin/anaconda3/lib/python3.7/site-packages/torch/serialization.py", line 211, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/Resnet18_office31masked2_newmodel_best.pth.tar'
