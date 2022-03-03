@@ -1,0 +1,1619 @@
+Namespace(arch='resnet50', batch_size=32, bottleneck_dim=256, center_crop=False, checkmodel_logsave=False, data='Office31', data_processing='ours', epochs=30, iters_per_epoch=1000, local=True, local_pretrained_path='/home/junzhin/Project/Summer_project/code/version1.0/pretrained_model_results/moco_v2_800ep_pretrain.pth.tar', log='/home/junzhin/Project/Summer_project/code/version2.0/training_results/dann/Resnet50_office31masked2/W_A', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, per_class_eval=True, phase='train', pretrained=True, print_freq=100, root='/home/junzhin/Project/Summer_project/code/version2.0/data/office31', seed=1, source='W', target='A', trade_off=1.0, weight_decay=0.001, workers=4)
+../../../dann_modified.py:47: UserWarning: You have chosen to seed training. This will turn on the CUDNN deterministic setting, which can slow down your training considerably! You may see unexpected behavior when restarting from checkpoints.
+  warnings.warn('You have chosen to seed training. '
+Loading the local alexnet pretrained model weights!
+dict_keys(['module.encoder_q.conv1.weight', 'module.encoder_q.bn1.weight', 'module.encoder_q.bn1.bias', 'module.encoder_q.bn1.running_mean', 'module.encoder_q.bn1.running_var', 'module.encoder_q.bn1.num_batches_tracked', 'module.encoder_q.layer1.0.conv1.weight', 'module.encoder_q.layer1.0.bn1.weight', 'module.encoder_q.layer1.0.bn1.bias', 'module.encoder_q.layer1.0.bn1.running_mean', 'module.encoder_q.layer1.0.bn1.running_var', 'module.encoder_q.layer1.0.bn1.num_batches_tracked', 'module.encoder_q.layer1.0.conv2.weight', 'module.encoder_q.layer1.0.bn2.weight', 'module.encoder_q.layer1.0.bn2.bias', 'module.encoder_q.layer1.0.bn2.running_mean', 'module.encoder_q.layer1.0.bn2.running_var', 'module.encoder_q.layer1.0.bn2.num_batches_tracked', 'module.encoder_q.layer1.0.conv3.weight', 'module.encoder_q.layer1.0.bn3.weight', 'module.encoder_q.layer1.0.bn3.bias', 'module.encoder_q.layer1.0.bn3.running_mean', 'module.encoder_q.layer1.0.bn3.running_var', 'module.encoder_q.layer1.0.bn3.num_batches_tracked', 'module.encoder_q.layer1.0.downsample.0.weight', 'module.encoder_q.layer1.0.downsample.1.weight', 'module.encoder_q.layer1.0.downsample.1.bias', 'module.encoder_q.layer1.0.downsample.1.running_mean', 'module.encoder_q.layer1.0.downsample.1.running_var', 'module.encoder_q.layer1.0.downsample.1.num_batches_tracked', 'module.encoder_q.layer1.1.conv1.weight', 'module.encoder_q.layer1.1.bn1.weight', 'module.encoder_q.layer1.1.bn1.bias', 'module.encoder_q.layer1.1.bn1.running_mean', 'module.encoder_q.layer1.1.bn1.running_var', 'module.encoder_q.layer1.1.bn1.num_batches_tracked', 'module.encoder_q.layer1.1.conv2.weight', 'module.encoder_q.layer1.1.bn2.weight', 'module.encoder_q.layer1.1.bn2.bias', 'module.encoder_q.layer1.1.bn2.running_mean', 'module.encoder_q.layer1.1.bn2.running_var', 'module.encoder_q.layer1.1.bn2.num_batches_tracked', 'module.encoder_q.layer1.1.conv3.weight', 'module.encoder_q.layer1.1.bn3.weight', 'module.encoder_q.layer1.1.bn3.bias', 'module.encoder_q.layer1.1.bn3.running_mean', 'module.encoder_q.layer1.1.bn3.running_var', 'module.encoder_q.layer1.1.bn3.num_batches_tracked', 'module.encoder_q.layer1.2.conv1.weight', 'module.encoder_q.layer1.2.bn1.weight', 'module.encoder_q.layer1.2.bn1.bias', 'module.encoder_q.layer1.2.bn1.running_mean', 'module.encoder_q.layer1.2.bn1.running_var', 'module.encoder_q.layer1.2.bn1.num_batches_tracked', 'module.encoder_q.layer1.2.conv2.weight', 'module.encoder_q.layer1.2.bn2.weight', 'module.encoder_q.layer1.2.bn2.bias', 'module.encoder_q.layer1.2.bn2.running_mean', 'module.encoder_q.layer1.2.bn2.running_var', 'module.encoder_q.layer1.2.bn2.num_batches_tracked', 'module.encoder_q.layer1.2.conv3.weight', 'module.encoder_q.layer1.2.bn3.weight', 'module.encoder_q.layer1.2.bn3.bias', 'module.encoder_q.layer1.2.bn3.running_mean', 'module.encoder_q.layer1.2.bn3.running_var', 'module.encoder_q.layer1.2.bn3.num_batches_tracked', 'module.encoder_q.layer2.0.conv1.weight', 'module.encoder_q.layer2.0.bn1.weight', 'module.encoder_q.layer2.0.bn1.bias', 'module.encoder_q.layer2.0.bn1.running_mean', 'module.encoder_q.layer2.0.bn1.running_var', 'module.encoder_q.layer2.0.bn1.num_batches_tracked', 'module.encoder_q.layer2.0.conv2.weight', 'module.encoder_q.layer2.0.bn2.weight', 'module.encoder_q.layer2.0.bn2.bias', 'module.encoder_q.layer2.0.bn2.running_mean', 'module.encoder_q.layer2.0.bn2.running_var', 'module.encoder_q.layer2.0.bn2.num_batches_tracked', 'module.encoder_q.layer2.0.conv3.weight', 'module.encoder_q.layer2.0.bn3.weight', 'module.encoder_q.layer2.0.bn3.bias', 'module.encoder_q.layer2.0.bn3.running_mean', 'module.encoder_q.layer2.0.bn3.running_var', 'module.encoder_q.layer2.0.bn3.num_batches_tracked', 'module.encoder_q.layer2.0.downsample.0.weight', 'module.encoder_q.layer2.0.downsample.1.weight', 'module.encoder_q.layer2.0.downsample.1.bias', 'module.encoder_q.layer2.0.downsample.1.running_mean', 'module.encoder_q.layer2.0.downsample.1.running_var', 'module.encoder_q.layer2.0.downsample.1.num_batches_tracked', 'module.encoder_q.layer2.1.conv1.weight', 'module.encoder_q.layer2.1.bn1.weight', 'module.encoder_q.layer2.1.bn1.bias', 'module.encoder_q.layer2.1.bn1.running_mean', 'module.encoder_q.layer2.1.bn1.running_var', 'module.encoder_q.layer2.1.bn1.num_batches_tracked', 'module.encoder_q.layer2.1.conv2.weight', 'module.encoder_q.layer2.1.bn2.weight', 'module.encoder_q.layer2.1.bn2.bias', 'module.encoder_q.layer2.1.bn2.running_mean', 'module.encoder_q.layer2.1.bn2.running_var', 'module.encoder_q.layer2.1.bn2.num_batches_tracked', 'module.encoder_q.layer2.1.conv3.weight', 'module.encoder_q.layer2.1.bn3.weight', 'module.encoder_q.layer2.1.bn3.bias', 'module.encoder_q.layer2.1.bn3.running_mean', 'module.encoder_q.layer2.1.bn3.running_var', 'module.encoder_q.layer2.1.bn3.num_batches_tracked', 'module.encoder_q.layer2.2.conv1.weight', 'module.encoder_q.layer2.2.bn1.weight', 'module.encoder_q.layer2.2.bn1.bias', 'module.encoder_q.layer2.2.bn1.running_mean', 'module.encoder_q.layer2.2.bn1.running_var', 'module.encoder_q.layer2.2.bn1.num_batches_tracked', 'module.encoder_q.layer2.2.conv2.weight', 'module.encoder_q.layer2.2.bn2.weight', 'module.encoder_q.layer2.2.bn2.bias', 'module.encoder_q.layer2.2.bn2.running_mean', 'module.encoder_q.layer2.2.bn2.running_var', 'module.encoder_q.layer2.2.bn2.num_batches_tracked', 'module.encoder_q.layer2.2.conv3.weight', 'module.encoder_q.layer2.2.bn3.weight', 'module.encoder_q.layer2.2.bn3.bias', 'module.encoder_q.layer2.2.bn3.running_mean', 'module.encoder_q.layer2.2.bn3.running_var', 'module.encoder_q.layer2.2.bn3.num_batches_tracked', 'module.encoder_q.layer2.3.conv1.weight', 'module.encoder_q.layer2.3.bn1.weight', 'module.encoder_q.layer2.3.bn1.bias', 'module.encoder_q.layer2.3.bn1.running_mean', 'module.encoder_q.layer2.3.bn1.running_var', 'module.encoder_q.layer2.3.bn1.num_batches_tracked', 'module.encoder_q.layer2.3.conv2.weight', 'module.encoder_q.layer2.3.bn2.weight', 'module.encoder_q.layer2.3.bn2.bias', 'module.encoder_q.layer2.3.bn2.running_mean', 'module.encoder_q.layer2.3.bn2.running_var', 'module.encoder_q.layer2.3.bn2.num_batches_tracked', 'module.encoder_q.layer2.3.conv3.weight', 'module.encoder_q.layer2.3.bn3.weight', 'module.encoder_q.layer2.3.bn3.bias', 'module.encoder_q.layer2.3.bn3.running_mean', 'module.encoder_q.layer2.3.bn3.running_var', 'module.encoder_q.layer2.3.bn3.num_batches_tracked', 'module.encoder_q.layer3.0.conv1.weight', 'module.encoder_q.layer3.0.bn1.weight', 'module.encoder_q.layer3.0.bn1.bias', 'module.encoder_q.layer3.0.bn1.running_mean', 'module.encoder_q.layer3.0.bn1.running_var', 'module.encoder_q.layer3.0.bn1.num_batches_tracked', 'module.encoder_q.layer3.0.conv2.weight', 'module.encoder_q.layer3.0.bn2.weight', 'module.encoder_q.layer3.0.bn2.bias', 'module.encoder_q.layer3.0.bn2.running_mean', 'module.encoder_q.layer3.0.bn2.running_var', 'module.encoder_q.layer3.0.bn2.num_batches_tracked', 'module.encoder_q.layer3.0.conv3.weight', 'module.encoder_q.layer3.0.bn3.weight', 'module.encoder_q.layer3.0.bn3.bias', 'module.encoder_q.layer3.0.bn3.running_mean', 'module.encoder_q.layer3.0.bn3.running_var', 'module.encoder_q.layer3.0.bn3.num_batches_tracked', 'module.encoder_q.layer3.0.downsample.0.weight', 'module.encoder_q.layer3.0.downsample.1.weight', 'module.encoder_q.layer3.0.downsample.1.bias', 'module.encoder_q.layer3.0.downsample.1.running_mean', 'module.encoder_q.layer3.0.downsample.1.running_var', 'module.encoder_q.layer3.0.downsample.1.num_batches_tracked', 'module.encoder_q.layer3.1.conv1.weight', 'module.encoder_q.layer3.1.bn1.weight', 'module.encoder_q.layer3.1.bn1.bias', 'module.encoder_q.layer3.1.bn1.running_mean', 'module.encoder_q.layer3.1.bn1.running_var', 'module.encoder_q.layer3.1.bn1.num_batches_tracked', 'module.encoder_q.layer3.1.conv2.weight', 'module.encoder_q.layer3.1.bn2.weight', 'module.encoder_q.layer3.1.bn2.bias', 'module.encoder_q.layer3.1.bn2.running_mean', 'module.encoder_q.layer3.1.bn2.running_var', 'module.encoder_q.layer3.1.bn2.num_batches_tracked', 'module.encoder_q.layer3.1.conv3.weight', 'module.encoder_q.layer3.1.bn3.weight', 'module.encoder_q.layer3.1.bn3.bias', 'module.encoder_q.layer3.1.bn3.running_mean', 'module.encoder_q.layer3.1.bn3.running_var', 'module.encoder_q.layer3.1.bn3.num_batches_tracked', 'module.encoder_q.layer3.2.conv1.weight', 'module.encoder_q.layer3.2.bn1.weight', 'module.encoder_q.layer3.2.bn1.bias', 'module.encoder_q.layer3.2.bn1.running_mean', 'module.encoder_q.layer3.2.bn1.running_var', 'module.encoder_q.layer3.2.bn1.num_batches_tracked', 'module.encoder_q.layer3.2.conv2.weight', 'module.encoder_q.layer3.2.bn2.weight', 'module.encoder_q.layer3.2.bn2.bias', 'module.encoder_q.layer3.2.bn2.running_mean', 'module.encoder_q.layer3.2.bn2.running_var', 'module.encoder_q.layer3.2.bn2.num_batches_tracked', 'module.encoder_q.layer3.2.conv3.weight', 'module.encoder_q.layer3.2.bn3.weight', 'module.encoder_q.layer3.2.bn3.bias', 'module.encoder_q.layer3.2.bn3.running_mean', 'module.encoder_q.layer3.2.bn3.running_var', 'module.encoder_q.layer3.2.bn3.num_batches_tracked', 'module.encoder_q.layer3.3.conv1.weight', 'module.encoder_q.layer3.3.bn1.weight', 'module.encoder_q.layer3.3.bn1.bias', 'module.encoder_q.layer3.3.bn1.running_mean', 'module.encoder_q.layer3.3.bn1.running_var', 'module.encoder_q.layer3.3.bn1.num_batches_tracked', 'module.encoder_q.layer3.3.conv2.weight', 'module.encoder_q.layer3.3.bn2.weight', 'module.encoder_q.layer3.3.bn2.bias', 'module.encoder_q.layer3.3.bn2.running_mean', 'module.encoder_q.layer3.3.bn2.running_var', 'module.encoder_q.layer3.3.bn2.num_batches_tracked', 'module.encoder_q.layer3.3.conv3.weight', 'module.encoder_q.layer3.3.bn3.weight', 'module.encoder_q.layer3.3.bn3.bias', 'module.encoder_q.layer3.3.bn3.running_mean', 'module.encoder_q.layer3.3.bn3.running_var', 'module.encoder_q.layer3.3.bn3.num_batches_tracked', 'module.encoder_q.layer3.4.conv1.weight', 'module.encoder_q.layer3.4.bn1.weight', 'module.encoder_q.layer3.4.bn1.bias', 'module.encoder_q.layer3.4.bn1.running_mean', 'module.encoder_q.layer3.4.bn1.running_var', 'module.encoder_q.layer3.4.bn1.num_batches_tracked', 'module.encoder_q.layer3.4.conv2.weight', 'module.encoder_q.layer3.4.bn2.weight', 'module.encoder_q.layer3.4.bn2.bias', 'module.encoder_q.layer3.4.bn2.running_mean', 'module.encoder_q.layer3.4.bn2.running_var', 'module.encoder_q.layer3.4.bn2.num_batches_tracked', 'module.encoder_q.layer3.4.conv3.weight', 'module.encoder_q.layer3.4.bn3.weight', 'module.encoder_q.layer3.4.bn3.bias', 'module.encoder_q.layer3.4.bn3.running_mean', 'module.encoder_q.layer3.4.bn3.running_var', 'module.encoder_q.layer3.4.bn3.num_batches_tracked', 'module.encoder_q.layer3.5.conv1.weight', 'module.encoder_q.layer3.5.bn1.weight', 'module.encoder_q.layer3.5.bn1.bias', 'module.encoder_q.layer3.5.bn1.running_mean', 'module.encoder_q.layer3.5.bn1.running_var', 'module.encoder_q.layer3.5.bn1.num_batches_tracked', 'module.encoder_q.layer3.5.conv2.weight', 'module.encoder_q.layer3.5.bn2.weight', 'module.encoder_q.layer3.5.bn2.bias', 'module.encoder_q.layer3.5.bn2.running_mean', 'module.encoder_q.layer3.5.bn2.running_var', 'module.encoder_q.layer3.5.bn2.num_batches_tracked', 'module.encoder_q.layer3.5.conv3.weight', 'module.encoder_q.layer3.5.bn3.weight', 'module.encoder_q.layer3.5.bn3.bias', 'module.encoder_q.layer3.5.bn3.running_mean', 'module.encoder_q.layer3.5.bn3.running_var', 'module.encoder_q.layer3.5.bn3.num_batches_tracked', 'module.encoder_q.layer4.0.conv1.weight', 'module.encoder_q.layer4.0.bn1.weight', 'module.encoder_q.layer4.0.bn1.bias', 'module.encoder_q.layer4.0.bn1.running_mean', 'module.encoder_q.layer4.0.bn1.running_var', 'module.encoder_q.layer4.0.bn1.num_batches_tracked', 'module.encoder_q.layer4.0.conv2.weight', 'module.encoder_q.layer4.0.bn2.weight', 'module.encoder_q.layer4.0.bn2.bias', 'module.encoder_q.layer4.0.bn2.running_mean', 'module.encoder_q.layer4.0.bn2.running_var', 'module.encoder_q.layer4.0.bn2.num_batches_tracked', 'module.encoder_q.layer4.0.conv3.weight', 'module.encoder_q.layer4.0.bn3.weight', 'module.encoder_q.layer4.0.bn3.bias', 'module.encoder_q.layer4.0.bn3.running_mean', 'module.encoder_q.layer4.0.bn3.running_var', 'module.encoder_q.layer4.0.bn3.num_batches_tracked', 'module.encoder_q.layer4.0.downsample.0.weight', 'module.encoder_q.layer4.0.downsample.1.weight', 'module.encoder_q.layer4.0.downsample.1.bias', 'module.encoder_q.layer4.0.downsample.1.running_mean', 'module.encoder_q.layer4.0.downsample.1.running_var', 'module.encoder_q.layer4.0.downsample.1.num_batches_tracked', 'module.encoder_q.layer4.1.conv1.weight', 'module.encoder_q.layer4.1.bn1.weight', 'module.encoder_q.layer4.1.bn1.bias', 'module.encoder_q.layer4.1.bn1.running_mean', 'module.encoder_q.layer4.1.bn1.running_var', 'module.encoder_q.layer4.1.bn1.num_batches_tracked', 'module.encoder_q.layer4.1.conv2.weight', 'module.encoder_q.layer4.1.bn2.weight', 'module.encoder_q.layer4.1.bn2.bias', 'module.encoder_q.layer4.1.bn2.running_mean', 'module.encoder_q.layer4.1.bn2.running_var', 'module.encoder_q.layer4.1.bn2.num_batches_tracked', 'module.encoder_q.layer4.1.conv3.weight', 'module.encoder_q.layer4.1.bn3.weight', 'module.encoder_q.layer4.1.bn3.bias', 'module.encoder_q.layer4.1.bn3.running_mean', 'module.encoder_q.layer4.1.bn3.running_var', 'module.encoder_q.layer4.1.bn3.num_batches_tracked', 'module.encoder_q.layer4.2.conv1.weight', 'module.encoder_q.layer4.2.bn1.weight', 'module.encoder_q.layer4.2.bn1.bias', 'module.encoder_q.layer4.2.bn1.running_mean', 'module.encoder_q.layer4.2.bn1.running_var', 'module.encoder_q.layer4.2.bn1.num_batches_tracked', 'module.encoder_q.layer4.2.conv2.weight', 'module.encoder_q.layer4.2.bn2.weight', 'module.encoder_q.layer4.2.bn2.bias', 'module.encoder_q.layer4.2.bn2.running_mean', 'module.encoder_q.layer4.2.bn2.running_var', 'module.encoder_q.layer4.2.bn2.num_batches_tracked', 'module.encoder_q.layer4.2.conv3.weight', 'module.encoder_q.layer4.2.bn3.weight', 'module.encoder_q.layer4.2.bn3.bias', 'module.encoder_q.layer4.2.bn3.running_mean', 'module.encoder_q.layer4.2.bn3.running_var', 'module.encoder_q.layer4.2.bn3.num_batches_tracked', 'module.encoder_q.fc.0.weight', 'module.encoder_q.fc.0.bias', 'module.encoder_q.fc.2.weight', 'module.encoder_q.fc.2.bias'])
+odict_keys(['encoder_q.conv1.weight', 'encoder_q.bn1.weight', 'encoder_q.bn1.bias', 'encoder_q.bn1.running_mean', 'encoder_q.bn1.running_var', 'encoder_q.bn1.num_batches_tracked', 'encoder_q.layer1.0.conv1.weight', 'encoder_q.layer1.0.bn1.weight', 'encoder_q.layer1.0.bn1.bias', 'encoder_q.layer1.0.bn1.running_mean', 'encoder_q.layer1.0.bn1.running_var', 'encoder_q.layer1.0.bn1.num_batches_tracked', 'encoder_q.layer1.0.conv2.weight', 'encoder_q.layer1.0.bn2.weight', 'encoder_q.layer1.0.bn2.bias', 'encoder_q.layer1.0.bn2.running_mean', 'encoder_q.layer1.0.bn2.running_var', 'encoder_q.layer1.0.bn2.num_batches_tracked', 'encoder_q.layer1.0.conv3.weight', 'encoder_q.layer1.0.bn3.weight', 'encoder_q.layer1.0.bn3.bias', 'encoder_q.layer1.0.bn3.running_mean', 'encoder_q.layer1.0.bn3.running_var', 'encoder_q.layer1.0.bn3.num_batches_tracked', 'encoder_q.layer1.0.downsample.0.weight', 'encoder_q.layer1.0.downsample.1.weight', 'encoder_q.layer1.0.downsample.1.bias', 'encoder_q.layer1.0.downsample.1.running_mean', 'encoder_q.layer1.0.downsample.1.running_var', 'encoder_q.layer1.0.downsample.1.num_batches_tracked', 'encoder_q.layer1.1.conv1.weight', 'encoder_q.layer1.1.bn1.weight', 'encoder_q.layer1.1.bn1.bias', 'encoder_q.layer1.1.bn1.running_mean', 'encoder_q.layer1.1.bn1.running_var', 'encoder_q.layer1.1.bn1.num_batches_tracked', 'encoder_q.layer1.1.conv2.weight', 'encoder_q.layer1.1.bn2.weight', 'encoder_q.layer1.1.bn2.bias', 'encoder_q.layer1.1.bn2.running_mean', 'encoder_q.layer1.1.bn2.running_var', 'encoder_q.layer1.1.bn2.num_batches_tracked', 'encoder_q.layer1.1.conv3.weight', 'encoder_q.layer1.1.bn3.weight', 'encoder_q.layer1.1.bn3.bias', 'encoder_q.layer1.1.bn3.running_mean', 'encoder_q.layer1.1.bn3.running_var', 'encoder_q.layer1.1.bn3.num_batches_tracked', 'encoder_q.layer1.2.conv1.weight', 'encoder_q.layer1.2.bn1.weight', 'encoder_q.layer1.2.bn1.bias', 'encoder_q.layer1.2.bn1.running_mean', 'encoder_q.layer1.2.bn1.running_var', 'encoder_q.layer1.2.bn1.num_batches_tracked', 'encoder_q.layer1.2.conv2.weight', 'encoder_q.layer1.2.bn2.weight', 'encoder_q.layer1.2.bn2.bias', 'encoder_q.layer1.2.bn2.running_mean', 'encoder_q.layer1.2.bn2.running_var', 'encoder_q.layer1.2.bn2.num_batches_tracked', 'encoder_q.layer1.2.conv3.weight', 'encoder_q.layer1.2.bn3.weight', 'encoder_q.layer1.2.bn3.bias', 'encoder_q.layer1.2.bn3.running_mean', 'encoder_q.layer1.2.bn3.running_var', 'encoder_q.layer1.2.bn3.num_batches_tracked', 'encoder_q.layer2.0.conv1.weight', 'encoder_q.layer2.0.bn1.weight', 'encoder_q.layer2.0.bn1.bias', 'encoder_q.layer2.0.bn1.running_mean', 'encoder_q.layer2.0.bn1.running_var', 'encoder_q.layer2.0.bn1.num_batches_tracked', 'encoder_q.layer2.0.conv2.weight', 'encoder_q.layer2.0.bn2.weight', 'encoder_q.layer2.0.bn2.bias', 'encoder_q.layer2.0.bn2.running_mean', 'encoder_q.layer2.0.bn2.running_var', 'encoder_q.layer2.0.bn2.num_batches_tracked', 'encoder_q.layer2.0.conv3.weight', 'encoder_q.layer2.0.bn3.weight', 'encoder_q.layer2.0.bn3.bias', 'encoder_q.layer2.0.bn3.running_mean', 'encoder_q.layer2.0.bn3.running_var', 'encoder_q.layer2.0.bn3.num_batches_tracked', 'encoder_q.layer2.0.downsample.0.weight', 'encoder_q.layer2.0.downsample.1.weight', 'encoder_q.layer2.0.downsample.1.bias', 'encoder_q.layer2.0.downsample.1.running_mean', 'encoder_q.layer2.0.downsample.1.running_var', 'encoder_q.layer2.0.downsample.1.num_batches_tracked', 'encoder_q.layer2.1.conv1.weight', 'encoder_q.layer2.1.bn1.weight', 'encoder_q.layer2.1.bn1.bias', 'encoder_q.layer2.1.bn1.running_mean', 'encoder_q.layer2.1.bn1.running_var', 'encoder_q.layer2.1.bn1.num_batches_tracked', 'encoder_q.layer2.1.conv2.weight', 'encoder_q.layer2.1.bn2.weight', 'encoder_q.layer2.1.bn2.bias', 'encoder_q.layer2.1.bn2.running_mean', 'encoder_q.layer2.1.bn2.running_var', 'encoder_q.layer2.1.bn2.num_batches_tracked', 'encoder_q.layer2.1.conv3.weight', 'encoder_q.layer2.1.bn3.weight', 'encoder_q.layer2.1.bn3.bias', 'encoder_q.layer2.1.bn3.running_mean', 'encoder_q.layer2.1.bn3.running_var', 'encoder_q.layer2.1.bn3.num_batches_tracked', 'encoder_q.layer2.2.conv1.weight', 'encoder_q.layer2.2.bn1.weight', 'encoder_q.layer2.2.bn1.bias', 'encoder_q.layer2.2.bn1.running_mean', 'encoder_q.layer2.2.bn1.running_var', 'encoder_q.layer2.2.bn1.num_batches_tracked', 'encoder_q.layer2.2.conv2.weight', 'encoder_q.layer2.2.bn2.weight', 'encoder_q.layer2.2.bn2.bias', 'encoder_q.layer2.2.bn2.running_mean', 'encoder_q.layer2.2.bn2.running_var', 'encoder_q.layer2.2.bn2.num_batches_tracked', 'encoder_q.layer2.2.conv3.weight', 'encoder_q.layer2.2.bn3.weight', 'encoder_q.layer2.2.bn3.bias', 'encoder_q.layer2.2.bn3.running_mean', 'encoder_q.layer2.2.bn3.running_var', 'encoder_q.layer2.2.bn3.num_batches_tracked', 'encoder_q.layer2.3.conv1.weight', 'encoder_q.layer2.3.bn1.weight', 'encoder_q.layer2.3.bn1.bias', 'encoder_q.layer2.3.bn1.running_mean', 'encoder_q.layer2.3.bn1.running_var', 'encoder_q.layer2.3.bn1.num_batches_tracked', 'encoder_q.layer2.3.conv2.weight', 'encoder_q.layer2.3.bn2.weight', 'encoder_q.layer2.3.bn2.bias', 'encoder_q.layer2.3.bn2.running_mean', 'encoder_q.layer2.3.bn2.running_var', 'encoder_q.layer2.3.bn2.num_batches_tracked', 'encoder_q.layer2.3.conv3.weight', 'encoder_q.layer2.3.bn3.weight', 'encoder_q.layer2.3.bn3.bias', 'encoder_q.layer2.3.bn3.running_mean', 'encoder_q.layer2.3.bn3.running_var', 'encoder_q.layer2.3.bn3.num_batches_tracked', 'encoder_q.layer3.0.conv1.weight', 'encoder_q.layer3.0.bn1.weight', 'encoder_q.layer3.0.bn1.bias', 'encoder_q.layer3.0.bn1.running_mean', 'encoder_q.layer3.0.bn1.running_var', 'encoder_q.layer3.0.bn1.num_batches_tracked', 'encoder_q.layer3.0.conv2.weight', 'encoder_q.layer3.0.bn2.weight', 'encoder_q.layer3.0.bn2.bias', 'encoder_q.layer3.0.bn2.running_mean', 'encoder_q.layer3.0.bn2.running_var', 'encoder_q.layer3.0.bn2.num_batches_tracked', 'encoder_q.layer3.0.conv3.weight', 'encoder_q.layer3.0.bn3.weight', 'encoder_q.layer3.0.bn3.bias', 'encoder_q.layer3.0.bn3.running_mean', 'encoder_q.layer3.0.bn3.running_var', 'encoder_q.layer3.0.bn3.num_batches_tracked', 'encoder_q.layer3.0.downsample.0.weight', 'encoder_q.layer3.0.downsample.1.weight', 'encoder_q.layer3.0.downsample.1.bias', 'encoder_q.layer3.0.downsample.1.running_mean', 'encoder_q.layer3.0.downsample.1.running_var', 'encoder_q.layer3.0.downsample.1.num_batches_tracked', 'encoder_q.layer3.1.conv1.weight', 'encoder_q.layer3.1.bn1.weight', 'encoder_q.layer3.1.bn1.bias', 'encoder_q.layer3.1.bn1.running_mean', 'encoder_q.layer3.1.bn1.running_var', 'encoder_q.layer3.1.bn1.num_batches_tracked', 'encoder_q.layer3.1.conv2.weight', 'encoder_q.layer3.1.bn2.weight', 'encoder_q.layer3.1.bn2.bias', 'encoder_q.layer3.1.bn2.running_mean', 'encoder_q.layer3.1.bn2.running_var', 'encoder_q.layer3.1.bn2.num_batches_tracked', 'encoder_q.layer3.1.conv3.weight', 'encoder_q.layer3.1.bn3.weight', 'encoder_q.layer3.1.bn3.bias', 'encoder_q.layer3.1.bn3.running_mean', 'encoder_q.layer3.1.bn3.running_var', 'encoder_q.layer3.1.bn3.num_batches_tracked', 'encoder_q.layer3.2.conv1.weight', 'encoder_q.layer3.2.bn1.weight', 'encoder_q.layer3.2.bn1.bias', 'encoder_q.layer3.2.bn1.running_mean', 'encoder_q.layer3.2.bn1.running_var', 'encoder_q.layer3.2.bn1.num_batches_tracked', 'encoder_q.layer3.2.conv2.weight', 'encoder_q.layer3.2.bn2.weight', 'encoder_q.layer3.2.bn2.bias', 'encoder_q.layer3.2.bn2.running_mean', 'encoder_q.layer3.2.bn2.running_var', 'encoder_q.layer3.2.bn2.num_batches_tracked', 'encoder_q.layer3.2.conv3.weight', 'encoder_q.layer3.2.bn3.weight', 'encoder_q.layer3.2.bn3.bias', 'encoder_q.layer3.2.bn3.running_mean', 'encoder_q.layer3.2.bn3.running_var', 'encoder_q.layer3.2.bn3.num_batches_tracked', 'encoder_q.layer3.3.conv1.weight', 'encoder_q.layer3.3.bn1.weight', 'encoder_q.layer3.3.bn1.bias', 'encoder_q.layer3.3.bn1.running_mean', 'encoder_q.layer3.3.bn1.running_var', 'encoder_q.layer3.3.bn1.num_batches_tracked', 'encoder_q.layer3.3.conv2.weight', 'encoder_q.layer3.3.bn2.weight', 'encoder_q.layer3.3.bn2.bias', 'encoder_q.layer3.3.bn2.running_mean', 'encoder_q.layer3.3.bn2.running_var', 'encoder_q.layer3.3.bn2.num_batches_tracked', 'encoder_q.layer3.3.conv3.weight', 'encoder_q.layer3.3.bn3.weight', 'encoder_q.layer3.3.bn3.bias', 'encoder_q.layer3.3.bn3.running_mean', 'encoder_q.layer3.3.bn3.running_var', 'encoder_q.layer3.3.bn3.num_batches_tracked', 'encoder_q.layer3.4.conv1.weight', 'encoder_q.layer3.4.bn1.weight', 'encoder_q.layer3.4.bn1.bias', 'encoder_q.layer3.4.bn1.running_mean', 'encoder_q.layer3.4.bn1.running_var', 'encoder_q.layer3.4.bn1.num_batches_tracked', 'encoder_q.layer3.4.conv2.weight', 'encoder_q.layer3.4.bn2.weight', 'encoder_q.layer3.4.bn2.bias', 'encoder_q.layer3.4.bn2.running_mean', 'encoder_q.layer3.4.bn2.running_var', 'encoder_q.layer3.4.bn2.num_batches_tracked', 'encoder_q.layer3.4.conv3.weight', 'encoder_q.layer3.4.bn3.weight', 'encoder_q.layer3.4.bn3.bias', 'encoder_q.layer3.4.bn3.running_mean', 'encoder_q.layer3.4.bn3.running_var', 'encoder_q.layer3.4.bn3.num_batches_tracked', 'encoder_q.layer3.5.conv1.weight', 'encoder_q.layer3.5.bn1.weight', 'encoder_q.layer3.5.bn1.bias', 'encoder_q.layer3.5.bn1.running_mean', 'encoder_q.layer3.5.bn1.running_var', 'encoder_q.layer3.5.bn1.num_batches_tracked', 'encoder_q.layer3.5.conv2.weight', 'encoder_q.layer3.5.bn2.weight', 'encoder_q.layer3.5.bn2.bias', 'encoder_q.layer3.5.bn2.running_mean', 'encoder_q.layer3.5.bn2.running_var', 'encoder_q.layer3.5.bn2.num_batches_tracked', 'encoder_q.layer3.5.conv3.weight', 'encoder_q.layer3.5.bn3.weight', 'encoder_q.layer3.5.bn3.bias', 'encoder_q.layer3.5.bn3.running_mean', 'encoder_q.layer3.5.bn3.running_var', 'encoder_q.layer3.5.bn3.num_batches_tracked', 'encoder_q.layer4.0.conv1.weight', 'encoder_q.layer4.0.bn1.weight', 'encoder_q.layer4.0.bn1.bias', 'encoder_q.layer4.0.bn1.running_mean', 'encoder_q.layer4.0.bn1.running_var', 'encoder_q.layer4.0.bn1.num_batches_tracked', 'encoder_q.layer4.0.conv2.weight', 'encoder_q.layer4.0.bn2.weight', 'encoder_q.layer4.0.bn2.bias', 'encoder_q.layer4.0.bn2.running_mean', 'encoder_q.layer4.0.bn2.running_var', 'encoder_q.layer4.0.bn2.num_batches_tracked', 'encoder_q.layer4.0.conv3.weight', 'encoder_q.layer4.0.bn3.weight', 'encoder_q.layer4.0.bn3.bias', 'encoder_q.layer4.0.bn3.running_mean', 'encoder_q.layer4.0.bn3.running_var', 'encoder_q.layer4.0.bn3.num_batches_tracked', 'encoder_q.layer4.0.downsample.0.weight', 'encoder_q.layer4.0.downsample.1.weight', 'encoder_q.layer4.0.downsample.1.bias', 'encoder_q.layer4.0.downsample.1.running_mean', 'encoder_q.layer4.0.downsample.1.running_var', 'encoder_q.layer4.0.downsample.1.num_batches_tracked', 'encoder_q.layer4.1.conv1.weight', 'encoder_q.layer4.1.bn1.weight', 'encoder_q.layer4.1.bn1.bias', 'encoder_q.layer4.1.bn1.running_mean', 'encoder_q.layer4.1.bn1.running_var', 'encoder_q.layer4.1.bn1.num_batches_tracked', 'encoder_q.layer4.1.conv2.weight', 'encoder_q.layer4.1.bn2.weight', 'encoder_q.layer4.1.bn2.bias', 'encoder_q.layer4.1.bn2.running_mean', 'encoder_q.layer4.1.bn2.running_var', 'encoder_q.layer4.1.bn2.num_batches_tracked', 'encoder_q.layer4.1.conv3.weight', 'encoder_q.layer4.1.bn3.weight', 'encoder_q.layer4.1.bn3.bias', 'encoder_q.layer4.1.bn3.running_mean', 'encoder_q.layer4.1.bn3.running_var', 'encoder_q.layer4.1.bn3.num_batches_tracked', 'encoder_q.layer4.2.conv1.weight', 'encoder_q.layer4.2.bn1.weight', 'encoder_q.layer4.2.bn1.bias', 'encoder_q.layer4.2.bn1.running_mean', 'encoder_q.layer4.2.bn1.running_var', 'encoder_q.layer4.2.bn1.num_batches_tracked', 'encoder_q.layer4.2.conv2.weight', 'encoder_q.layer4.2.bn2.weight', 'encoder_q.layer4.2.bn2.bias', 'encoder_q.layer4.2.bn2.running_mean', 'encoder_q.layer4.2.bn2.running_var', 'encoder_q.layer4.2.bn2.num_batches_tracked', 'encoder_q.layer4.2.conv3.weight', 'encoder_q.layer4.2.bn3.weight', 'encoder_q.layer4.2.bn3.bias', 'encoder_q.layer4.2.bn3.running_mean', 'encoder_q.layer4.2.bn3.running_var', 'encoder_q.layer4.2.bn3.num_batches_tracked', 'encoder_q.fc.0.weight', 'encoder_q.fc.0.bias', 'encoder_q.fc.2.weight', 'encoder_q.fc.2.bias'])
+Epoch: [0][   0/1000]	Time  0.43 ( 0.43)	Data  0.03 ( 0.03)	Loss   4.13 (  4.13)	Cls Acc 6.2 (6.2)	Domain Acc 48.4 (48.4)
+Epoch: [0][ 100/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.13)	Loss   0.04 (  0.48)	Cls Acc 100.0 (92.9)	Domain Acc 100.0 (97.2)
+Epoch: [0][ 200/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.02 (  0.25)	Cls Acc 100.0 (96.4)	Domain Acc 100.0 (98.5)
+Epoch: [0][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.01 (  0.17)	Cls Acc 100.0 (97.6)	Domain Acc 100.0 (99.0)
+Epoch: [0][ 400/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.01 (  0.13)	Cls Acc 100.0 (98.2)	Domain Acc 100.0 (99.2)
+Epoch: [0][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.01 (  0.11)	Cls Acc 100.0 (98.6)	Domain Acc 100.0 (99.3)
+Epoch: [0][ 600/1000]	Time  0.88 ( 0.45)	Data  0.56 ( 0.14)	Loss   0.11 (  0.10)	Cls Acc 100.0 (98.8)	Domain Acc 98.4 (99.3)
+Epoch: [0][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.83 (  0.14)	Cls Acc 100.0 (99.0)	Domain Acc 73.4 (97.7)
+Epoch: [0][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.41 (  0.20)	Cls Acc 100.0 (99.1)	Domain Acc 81.2 (95.1)
+Epoch: [0][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.86 (  0.24)	Cls Acc 100.0 (99.2)	Domain Acc 59.4 (93.1)
+Test: [ 0/89]	Time  0.444 ( 0.444)	Loss 1.6628e-01 (1.6628e-01)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 66.241 Acc@5 84.949
+global correct: 66.2
+mean correct:66.0
+mean IoU: 51.9
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     |  86.9565200805664  | 84.21052551269531  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    | 93.05555725097656  | 84.81012725830078  |
+|     bookcase     | 59.756099700927734 | 54.44444274902344  |
+|      bottle      | 55.55555725097656  |  36.3636360168457  |
+|    calculator    | 91.48936462402344  | 66.15384674072266  |
+|    desk_chair    |  93.4065933227539  | 70.24794006347656  |
+|    desk_lamp     | 56.701026916503906 | 42.30769348144531  |
+| desktop_computer | 22.68041229248047  | 18.644067764282227 |
+|   file_cabinet   | 50.61728286743164  | 48.235294342041016 |
+|    headphones    | 90.90909576416016  |  68.7022933959961  |
+|     keyboard     |        88.0        | 73.33333587646484  |
+| laptop_computer  |        80.0        |  62.0155029296875  |
+|   letter_tray    | 31.632652282714844 | 18.787878036499023 |
+|   mobile_phone   |        73.0        | 57.93650817871094  |
+|     monitor      | 90.90909576416016  | 64.28571319580078  |
+|      mouse       |        87.0        | 63.50364685058594  |
+|       mug        | 93.61701965332031  | 79.27928161621094  |
+|  paper_notebook  | 60.41666793823242  | 35.15151596069336  |
+|       pen        | 70.52631378173828  | 59.29203796386719  |
+|      phone       | 64.51612854003906  |  58.2524299621582  |
+|     printer      |        61.0        | 57.00934600830078  |
+|    projector     | 91.83673095703125  |  59.6026496887207  |
+|     punchers     | 28.571430206298828 | 17.610063552856445 |
+|   ring_binder    | 65.55555725097656  | 28.502416610717773 |
+|      ruler       | 65.33332824707031  | 59.756099700927734 |
+|     scissors     |        46.0        |      35.9375       |
+|     speaker      | 47.47474670410156  | 29.374998092651367 |
+|     stapler      | 34.34343338012695  | 22.077922821044922 |
+|  tape_dispenser  |        37.5        | 31.034481048583984 |
+|    trash_can     |      29.6875       | 24.35897445678711  |
++------------------+--------------------+--------------------+
+acc1 = 66.2, best_acc1 = 66.2
+Epoch: [1][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.55 (  0.55)	Cls Acc 100.0 (100.0)	Domain Acc 71.9 (71.9)
+Epoch: [1][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.57 (  0.64)	Cls Acc 100.0 (100.0)	Domain Acc 73.4 (71.3)
+Epoch: [1][ 200/1000]	Time  0.87 ( 0.46)	Data  0.55 ( 0.14)	Loss   0.72 (  0.63)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (70.5)
+Epoch: [1][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.61 (  0.62)	Cls Acc 100.0 (100.0)	Domain Acc 76.6 (70.6)
+Epoch: [1][ 400/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.80 (  0.63)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (69.7)
+Epoch: [1][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.64)	Cls Acc 100.0 (100.0)	Domain Acc 70.3 (69.2)
+Epoch: [1][ 600/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.57 (  0.64)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (68.7)
+Epoch: [1][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.65 (  0.64)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (68.4)
+Epoch: [1][ 800/1000]	Time  0.91 ( 0.45)	Data  0.59 ( 0.14)	Loss   0.60 (  0.64)	Cls Acc 100.0 (100.0)	Domain Acc 70.3 (68.0)
+Epoch: [1][ 900/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.71 (  0.64)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (67.4)
+Test: [ 0/89]	Time  0.451 ( 0.451)	Loss 2.3765e-02 (2.3765e-02)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 70.962 Acc@5 86.226
+global correct: 71.0
+mean correct:70.7
+mean IoU: 57.7
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 92.39130401611328  | 89.47368621826172  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    | 95.83332824707031  | 81.17646789550781  |
+|     bookcase     | 57.317073822021484 | 52.22222137451172  |
+|      bottle      | 58.33333206176758  | 41.17647171020508  |
+|    calculator    | 92.55319213867188  | 74.35897827148438  |
+|    desk_chair    | 92.30769348144531  | 73.68421173095703  |
+|    desk_lamp     | 61.85566711425781  | 49.180328369140625 |
+| desktop_computer | 30.927833557128906 | 26.54867172241211  |
+|   file_cabinet   |  61.7283935546875  |  61.7283935546875  |
+|    headphones    | 89.89899444580078  | 77.39130401611328  |
+|     keyboard     |        87.0        | 82.85714721679688  |
+| laptop_computer  |        90.0        |  68.7022933959961  |
+|   letter_tray    | 41.836734771728516 | 27.70270347595215  |
+|   mobile_phone   |        84.0        | 67.74193572998047  |
+|     monitor      |  91.919189453125   | 68.42105102539062  |
+|      mouse       |        92.0        | 72.44094848632812  |
+|       mug        | 94.68085479736328  | 89.89899444580078  |
+|  paper_notebook  |       71.875       |  38.5474853515625  |
+|       pen        | 75.78947448730469  | 64.86486053466797  |
+|      phone       | 66.66667175292969  | 63.26530456542969  |
+|     printer      |        79.0        | 72.47706604003906  |
+|    projector     | 89.79591369628906  | 66.66667175292969  |
+|     punchers     | 21.428571701049805 | 15.789472579956055 |
+|   ring_binder    | 71.11111450195312  | 39.02438735961914  |
+|      ruler       |        68.0        | 64.55696105957031  |
+|     scissors     |        46.0        | 36.79999923706055  |
+|     speaker      | 47.47474670410156  | 27.485380172729492 |
+|     stapler      | 49.49494934082031  | 28.994083404541016 |
+|  tape_dispenser  | 45.833335876464844 | 27.848100662231445 |
+|    trash_can     |      48.4375       | 41.33333206176758  |
++------------------+--------------------+--------------------+
+acc1 = 71.0, best_acc1 = 71.0
+Epoch: [2][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.52 (  0.52)	Cls Acc 100.0 (100.0)	Domain Acc 76.6 (76.6)
+Epoch: [2][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (99.9)	Domain Acc 65.6 (63.6)
+Epoch: [2][ 200/1000]	Time  0.76 ( 0.45)	Data  0.44 ( 0.14)	Loss   0.69 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (63.8)
+Epoch: [2][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (62.5)
+Epoch: [2][ 400/1000]	Time  0.91 ( 0.46)	Data  0.59 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (62.1)
+Epoch: [2][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.58 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (62.0)
+Epoch: [2][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.79 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (61.2)
+Epoch: [2][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.55 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 76.6 (61.0)
+Epoch: [2][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.74 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 46.9 (60.9)
+Epoch: [2][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.66 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (60.9)
+Test: [ 0/89]	Time  0.463 ( 0.463)	Loss 1.4086e-02 (1.4086e-02)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 71.636 Acc@5 85.907
+global correct: 71.6
+mean correct:71.7
+mean IoU: 58.4
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 92.39130401611328  | 86.73469543457031  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    | 97.22222137451172  | 86.41975402832031  |
+|     bookcase     | 56.09756088256836  | 53.488372802734375 |
+|      bottle      | 63.88888931274414  | 44.23076629638672  |
+|    calculator    | 94.68085479736328  |  75.4237289428711  |
+|    desk_chair    |  93.4065933227539  | 67.46031951904297  |
+|    desk_lamp     |  59.7938117980957  | 51.78571319580078  |
+| desktop_computer |  34.0206184387207  | 27.966102600097656 |
+|   file_cabinet   | 62.96295928955078  | 61.44578552246094  |
+|    headphones    | 92.92929077148438  | 75.40983581542969  |
+|     keyboard     |        89.0        | 86.40776824951172  |
+| laptop_computer  |        86.0        | 68.25396728515625  |
+|   letter_tray    | 31.632652282714844 | 23.134328842163086 |
+|   mobile_phone   |        85.0        | 68.54838562011719  |
+|     monitor      | 90.90909576416016  | 63.38028335571289  |
+|      mouse       |        91.0        |      71.09375      |
+|       mug        | 93.61701965332031  |  86.2745132446289  |
+|  paper_notebook  | 70.83332824707031  | 36.17021179199219  |
+|       pen        | 78.94737243652344  | 66.96428680419922  |
+|      phone       | 66.66667175292969  | 63.26530456542969  |
+|     printer      |        81.0        | 75.70093536376953  |
+|    projector     | 89.79591369628906  | 69.84127044677734  |
+|     punchers     | 29.59183692932129  | 18.589744567871094 |
+|   ring_binder    | 74.44444274902344  | 38.72832489013672  |
+|      ruler       | 65.33332824707031  | 62.02531433105469  |
+|     scissors     |        48.0        | 36.92307662963867  |
+|     speaker      | 58.58585739135742  |       36.25        |
+|     stapler      | 41.41414260864258  | 29.496400833129883 |
+|  tape_dispenser  |       40.625       | 29.32330894470215  |
+|    trash_can     |      64.0625       | 52.56410217285156  |
++------------------+--------------------+--------------------+
+acc1 = 71.6, best_acc1 = 71.6
+Epoch: [3][   0/1000]	Time  0.91 ( 0.91)	Data  0.60 ( 0.60)	Loss   0.64 (  0.64)	Cls Acc 100.0 (100.0)	Domain Acc 70.3 (70.3)
+Epoch: [3][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (61.2)
+Epoch: [3][ 200/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.73 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (60.8)
+Epoch: [3][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.67)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (61.9)
+Epoch: [3][ 400/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.70 (  0.67)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (62.0)
+Epoch: [3][ 500/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.65 (  0.67)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (61.5)
+Epoch: [3][ 600/1000]	Time  0.87 ( 0.45)	Data  0.55 ( 0.14)	Loss   0.71 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (60.8)
+Epoch: [3][ 700/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.71 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (60.3)
+Epoch: [3][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.63 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (60.1)
+Epoch: [3][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.64 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 71.9 (59.8)
+Test: [ 0/89]	Time  0.508 ( 0.508)	Loss 8.6875e-03 (8.6875e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.234 Acc@5 87.220
+global correct: 73.2
+mean correct:73.1
+mean IoU: 60.5
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 93.47826385498047  | 89.58332824707031  |
+|       bike       | 98.78048706054688  | 96.42857360839844  |
+|   bike_helmet    | 97.22222137451172  | 94.59458923339844  |
+|     bookcase     | 58.536582946777344 |  56.4705924987793  |
+|      bottle      | 58.33333206176758  |        42.0        |
+|    calculator    | 94.68085479736328  | 76.06837463378906  |
+|    desk_chair    | 92.30769348144531  | 71.79487609863281  |
+|    desk_lamp     |  68.0412368774414  | 52.79999923706055  |
+| desktop_computer | 37.113399505615234 | 29.268291473388672 |
+|   file_cabinet   | 67.90123748779297  | 64.70588684082031  |
+|    headphones    | 89.89899444580078  | 78.07017517089844  |
+|     keyboard     |        89.0        | 87.25489807128906  |
+| laptop_computer  |        87.0        |  69.5999984741211  |
+|   letter_tray    | 39.79591751098633  | 28.260868072509766 |
+|   mobile_phone   |        85.0        |        68.0        |
+|     monitor      | 90.90909576416016  |        62.5        |
+|      mouse       |        93.0        | 76.85950469970703  |
+|       mug        | 90.42552947998047  | 86.73469543457031  |
+|  paper_notebook  | 72.91667175292969  | 41.17647171020508  |
+|       pen        | 81.05262756347656  | 68.14159393310547  |
+|      phone       | 63.440860748291016 | 60.20408248901367  |
+|     printer      |        86.0        | 78.89908599853516  |
+|    projector     | 90.81632232666016  | 78.07017517089844  |
+|     punchers     |  27.5510196685791  |       16.875       |
+|   ring_binder    | 75.55555725097656  | 42.23602294921875  |
+|      ruler       | 62.66666793823242  | 60.25640869140625  |
+|     scissors     |        50.0        | 38.46154022216797  |
+|     speaker      |  59.5959587097168  |  34.9112434387207  |
+|     stapler      | 47.47474670410156  | 35.60606002807617  |
+|  tape_dispenser  | 48.958335876464844 | 35.33834457397461  |
+|    trash_can     |       68.75        | 54.32098388671875  |
++------------------+--------------------+--------------------+
+acc1 = 73.2, best_acc1 = 73.2
+Epoch: [4][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.68 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (60.9)
+Epoch: [4][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.62 (  0.70)	Cls Acc 100.0 (99.9)	Domain Acc 73.4 (57.2)
+Epoch: [4][ 200/1000]	Time  0.86 ( 0.45)	Data  0.54 ( 0.14)	Loss   0.57 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 70.3 (58.2)
+Epoch: [4][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.61 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (58.6)
+Epoch: [4][ 400/1000]	Time  0.83 ( 0.45)	Data  0.51 ( 0.14)	Loss   0.65 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 68.8 (58.3)
+Epoch: [4][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (58.4)
+Epoch: [4][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (58.4)
+Epoch: [4][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.76 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (58.6)
+Epoch: [4][ 800/1000]	Time  0.87 ( 0.45)	Data  0.55 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (58.7)
+Epoch: [4][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (58.9)
+Test: [ 0/89]	Time  0.450 ( 0.450)	Loss 6.2483e-03 (6.2483e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.553 Acc@5 87.256
+global correct: 73.6
+mean correct:73.4
+mean IoU: 61.3
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 92.39130401611328  | 89.47368621826172  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        | 97.29730224609375  |
+|     bookcase     |  54.8780517578125  | 52.325584411621094 |
+|      bottle      | 61.11111068725586  | 43.13725662231445  |
+|    calculator    | 94.68085479736328  | 79.46428680419922  |
+|    desk_chair    | 92.30769348144531  | 71.79487609863281  |
+|    desk_lamp     | 65.97937774658203  | 56.140350341796875 |
+| desktop_computer | 38.14432907104492  | 30.57851219177246  |
+|   file_cabinet   | 70.37036895751953  | 68.67469787597656  |
+|    headphones    | 89.89899444580078  | 78.76106262207031  |
+|     keyboard     |        91.0        | 89.21568298339844  |
+| laptop_computer  |        87.0        |        75.0        |
+|   letter_tray    | 39.79591751098633  | 28.260868072509766 |
+|   mobile_phone   |        85.0        | 75.22123718261719  |
+|     monitor      |  91.919189453125   | 61.904762268066406 |
+|      mouse       |        92.0        | 81.41592407226562  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  | 72.91667175292969  | 39.325843811035156 |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 67.74193572998047  |  63.6363639831543  |
+|     printer      |        87.0        | 81.30841064453125  |
+|    projector     | 91.83673095703125  | 76.27118682861328  |
+|     punchers     | 29.59183692932129  | 17.05882453918457  |
+|   ring_binder    |        80.0        | 42.352943420410156 |
+|      ruler       | 61.333335876464844 | 58.974361419677734 |
+|     scissors     |        48.0        | 37.20930099487305  |
+|     speaker      | 62.626258850097656 | 36.046512603759766 |
+|     stapler      | 45.45454788208008  | 34.09090805053711  |
+|  tape_dispenser  | 45.833335876464844 | 33.082706451416016 |
+|    trash_can     |       65.625       | 53.16455841064453  |
++------------------+--------------------+--------------------+
+acc1 = 73.6, best_acc1 = 73.6
+Epoch: [5][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.65 (  0.65)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (64.1)
+Epoch: [5][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (58.4)
+Epoch: [5][ 200/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.74 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (58.3)
+Epoch: [5][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (59.2)
+Epoch: [5][ 400/1000]	Time  0.89 ( 0.45)	Data  0.57 ( 0.14)	Loss   0.74 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (58.9)
+Epoch: [5][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (59.0)
+Epoch: [5][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.63 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 70.3 (58.9)
+Epoch: [5][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.76 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 40.6 (58.7)
+Epoch: [5][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.63 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (58.6)
+Epoch: [5][ 900/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (58.7)
+Test: [ 0/89]	Time  0.477 ( 0.477)	Loss 1.9906e-03 (1.9906e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.482 Acc@5 86.368
+global correct: 73.5
+mean correct:73.4
+mean IoU: 61.0
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 91.30435180664062  | 89.36170196533203  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        | 98.63013458251953  |
+|     bookcase     | 58.536582946777344 | 55.17241287231445  |
+|      bottle      | 63.88888931274414  | 44.23076629638672  |
+|    calculator    | 94.68085479736328  | 78.07017517089844  |
+|    desk_chair    |  94.5054931640625  | 71.66666412353516  |
+|    desk_lamp     | 64.94844818115234  | 55.26315689086914  |
+| desktop_computer | 38.14432907104492  | 32.45614242553711  |
+|   file_cabinet   | 69.13580322265625  | 66.66667175292969  |
+|    headphones    | 90.90909576416016  | 75.63025665283203  |
+|     keyboard     |        89.0        | 85.57691955566406  |
+| laptop_computer  |        88.0        |  74.5762710571289  |
+|   letter_tray    | 33.67346954345703  | 24.264705657958984 |
+|   mobile_phone   |        86.0        |  69.3548355102539  |
+|     monitor      |  91.919189453125   | 62.328765869140625 |
+|      mouse       |        93.0        |  82.3008804321289  |
+|       mug        | 93.61701965332031  | 90.72164916992188  |
+|  paper_notebook  | 72.91667175292969  | 41.916168212890625 |
+|       pen        | 82.10526275634766  | 61.904762268066406 |
+|      phone       | 66.66667175292969  | 62.626258850097656 |
+|     printer      |        83.0        |   80.58251953125   |
+|    projector     | 90.81632232666016  |  75.4237289428711  |
+|     punchers     | 29.59183692932129  | 17.15976333618164  |
+|   ring_binder    | 77.77777862548828  | 42.42424392700195  |
+|      ruler       | 58.666664123535156 | 56.41025924682617  |
+|     scissors     |        48.0        | 35.036495208740234 |
+|     speaker      |  68.6868667602539  |  40.9638557434082  |
+|     stapler      |  44.4444465637207  | 32.352943420410156 |
+|  tape_dispenser  | 48.958335876464844 | 35.87786102294922  |
+|    trash_can     |       65.625       | 54.54545593261719  |
++------------------+--------------------+--------------------+
+acc1 = 73.5, best_acc1 = 73.6
+Epoch: [6][   0/1000]	Time  0.91 ( 0.91)	Data  0.60 ( 0.60)	Loss   0.70 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.1)
+Epoch: [6][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.15)	Loss   0.71 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (59.7)
+Epoch: [6][ 200/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (58.1)
+Epoch: [6][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.74 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (57.7)
+Epoch: [6][ 400/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.75 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 43.8 (57.4)
+Epoch: [6][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (56.9)
+Epoch: [6][ 600/1000]	Time  1.57 ( 0.46)	Data  1.25 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (57.2)
+Epoch: [6][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.61 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 68.8 (57.5)
+Epoch: [6][ 800/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.60 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 68.8 (57.3)
+Epoch: [6][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (57.3)
+Test: [ 0/89]	Time  0.480 ( 0.480)	Loss 1.2163e-02 (1.2163e-02)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.553 Acc@5 87.078
+global correct: 73.6
+mean correct:73.5
+mean IoU: 61.0
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 94.56521606445312  |       90.625       |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     |  54.8780517578125  | 53.57142639160156  |
+|      bottle      | 63.88888931274414  | 45.09803771972656  |
+|    calculator    | 94.68085479736328  | 78.07017517089844  |
+|    desk_chair    |  94.5054931640625  | 71.07437896728516  |
+|    desk_lamp     | 64.94844818115234  |       56.25        |
+| desktop_computer | 38.14432907104492  | 30.081302642822266 |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    | 89.89899444580078  | 76.06837463378906  |
+|     keyboard     |        91.0        |        87.5        |
+| laptop_computer  |        87.0        | 76.31578826904297  |
+|   letter_tray    | 34.693878173828125 | 26.153846740722656 |
+|   mobile_phone   |        87.0        |        75.0        |
+|     monitor      |  91.919189453125   | 61.486488342285156 |
+|      mouse       |        93.0        | 78.15126037597656  |
+|       mug        | 92.55319213867188  | 89.69071960449219  |
+|  paper_notebook  | 70.83332824707031  | 40.718563079833984 |
+|       pen        | 82.10526275634766  | 62.90322494506836  |
+|      phone       | 65.59139251708984  |  62.8865966796875  |
+|     printer      |        85.0        | 80.95238494873047  |
+|    projector     | 90.81632232666016  | 76.72413635253906  |
+|     punchers     | 29.59183692932129  | 17.57575798034668  |
+|   ring_binder    | 76.66666412353516  | 40.82840347290039  |
+|      ruler       | 60.000003814697266 | 58.44155502319336  |
+|     scissors     |        48.0        | 34.53237533569336  |
+|     speaker      | 67.67676544189453  |  42.6751594543457  |
+|     stapler      | 48.48484802246094  | 35.55555725097656  |
+|  tape_dispenser  | 44.791664123535156 | 31.851852416992188 |
+|    trash_can     |       68.75        | 53.01205062866211  |
++------------------+--------------------+--------------------+
+acc1 = 73.6, best_acc1 = 73.6
+Epoch: [7][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.65 (  0.65)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (65.6)
+Epoch: [7][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.60 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 73.4 (60.9)
+Epoch: [7][ 200/1000]	Time  0.91 ( 0.46)	Data  0.59 ( 0.14)	Loss   0.62 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (57.2)
+Epoch: [7][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (57.9)
+Epoch: [7][ 400/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (57.5)
+Epoch: [7][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (58.5)
+Epoch: [7][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (57.9)
+Epoch: [7][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.65 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (57.8)
+Epoch: [7][ 800/1000]	Time  0.86 ( 0.45)	Data  0.54 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (57.8)
+Epoch: [7][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (57.6)
+Test: [ 0/89]	Time  0.468 ( 0.468)	Loss 3.7626e-03 (3.7626e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.127 Acc@5 87.114
+global correct: 73.1
+mean correct:73.1
+mean IoU: 60.5
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 94.56521606445312  | 93.54838562011719  |
+|       bike       | 98.78048706054688  | 98.78048706054688  |
+|   bike_helmet    |  98.6111068725586  | 97.26026916503906  |
+|     bookcase     | 52.439022064208984 | 50.58823776245117  |
+|      bottle      | 63.88888931274414  | 45.09803771972656  |
+|    calculator    | 95.74468231201172  |        72.0        |
+|    desk_chair    |  94.5054931640625  | 68.80000305175781  |
+|    desk_lamp     | 63.91752243041992  | 53.44827651977539  |
+| desktop_computer | 35.051544189453125 | 28.33333396911621  |
+|   file_cabinet   | 70.37036895751953  | 61.956520080566406 |
+|    headphones    |  88.8888931274414  | 77.19297790527344  |
+|     keyboard     |        91.0        | 86.66666412353516  |
+| laptop_computer  |        87.0        | 76.31578826904297  |
+|   letter_tray    | 34.693878173828125 | 25.75757598876953  |
+|   mobile_phone   |        80.0        | 68.37606811523438  |
+|     monitor      | 92.92929077148438  | 63.013694763183594 |
+|      mouse       |        95.0        | 84.07079315185547  |
+|       mug        | 92.55319213867188  |       90.625       |
+|  paper_notebook  | 70.83332824707031  | 41.71779251098633  |
+|       pen        | 83.15789794921875  | 60.769229888916016 |
+|      phone       | 63.440860748291016 | 60.20408248901367  |
+|     printer      |        83.0        |   80.58251953125   |
+|    projector     | 90.81632232666016  | 76.72413635253906  |
+|     punchers     | 30.612245559692383 | 17.751480102539062 |
+|   ring_binder    | 78.88888549804688  | 41.52046585083008  |
+|      ruler       | 58.666664123535156 | 56.41025924682617  |
+|     scissors     |        46.0        | 34.84848403930664  |
+|     speaker      |  68.6868667602539  | 41.46341323852539  |
+|     stapler      |  44.4444465637207  | 33.082706451416016 |
+|  tape_dispenser  | 48.958335876464844 | 35.07462692260742  |
+|    trash_can     |       68.75        | 52.38095474243164  |
++------------------+--------------------+--------------------+
+acc1 = 73.1, best_acc1 = 73.6
+Epoch: [8][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.67 (  0.67)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (56.2)
+Epoch: [8][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.62 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 75.0 (58.3)
+Epoch: [8][ 200/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (56.9)
+Epoch: [8][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.74 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (58.2)
+Epoch: [8][ 400/1000]	Time  0.87 ( 0.45)	Data  0.56 ( 0.14)	Loss   0.67 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (57.9)
+Epoch: [8][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.64 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 71.9 (57.6)
+Epoch: [8][ 600/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.72 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (58.0)
+Epoch: [8][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.65 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 73.4 (57.9)
+Epoch: [8][ 800/1000]	Time  0.78 ( 0.45)	Data  0.47 ( 0.14)	Loss   0.68 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (57.9)
+Epoch: [8][ 900/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.69 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (57.7)
+Test: [ 0/89]	Time  0.478 ( 0.478)	Loss 2.2687e-03 (2.2687e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.269 Acc@5 87.185
+global correct: 73.3
+mean correct:73.2
+mean IoU: 60.6
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 94.56521606445312  | 92.55319213867188  |
+|       bike       | 98.78048706054688  | 97.59036254882812  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     | 53.658538818359375 | 51.16279220581055  |
+|      bottle      | 63.88888931274414  | 44.23076629638672  |
+|    calculator    | 95.74468231201172  |        72.0        |
+|    desk_chair    |  93.4065933227539  | 70.24794006347656  |
+|    desk_lamp     | 63.91752243041992  | 54.38596725463867  |
+| desktop_computer | 37.113399505615234 | 30.000001907348633 |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    |  91.919189453125   | 77.77777862548828  |
+|     keyboard     |        89.0        | 85.57691955566406  |
+| laptop_computer  |        88.0        | 76.52173614501953  |
+|   letter_tray    | 32.65306091308594  | 24.060150146484375 |
+|   mobile_phone   |        81.0        | 68.06723022460938  |
+|     monitor      | 93.93939208984375  | 64.58332824707031  |
+|      mouse       |        96.0        | 83.47825622558594  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 70.83332824707031  | 40.23668670654297  |
+|       pen        |        80.0        | 63.33333206176758  |
+|      phone       | 63.440860748291016 |  59.5959587097168  |
+|     printer      |        85.0        |  82.5242691040039  |
+|    projector     | 91.83673095703125  | 77.58621215820312  |
+|     punchers     | 29.59183692932129  | 17.05882453918457  |
+|   ring_binder    | 76.66666412353516  | 41.31736373901367  |
+|      ruler       | 60.000003814697266 | 57.69230651855469  |
+|     scissors     |        48.0        | 36.09022521972656  |
+|     speaker      | 69.69696807861328  | 42.85714340209961  |
+|     stapler      | 43.43434143066406  | 32.33082580566406  |
+|  tape_dispenser  | 47.916664123535156 | 33.57664489746094  |
+|    trash_can     |       68.75        | 53.658538818359375 |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [9][   0/1000]	Time  0.88 ( 0.88)	Data  0.56 ( 0.56)	Loss   0.66 (  0.66)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (62.5)
+Epoch: [9][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.66 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (57.2)
+Epoch: [9][ 200/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.65 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (56.6)
+Epoch: [9][ 300/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.66 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (57.3)
+Epoch: [9][ 400/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (57.1)
+Epoch: [9][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.65 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (56.9)
+Epoch: [9][ 600/1000]	Time  0.87 ( 0.46)	Data  0.56 ( 0.14)	Loss   0.71 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (56.9)
+Epoch: [9][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (56.9)
+Epoch: [9][ 800/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.75 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (57.0)
+Epoch: [9][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (57.0)
+Test: [ 0/89]	Time  0.477 ( 0.477)	Loss 9.3255e-04 (9.3255e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 72.808 Acc@5 87.043
+global correct: 72.8
+mean correct:72.8
+mean IoU: 60.0
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 92.63157653808594  |
+|       bike       | 98.78048706054688  | 97.59036254882812  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 51.219512939453125 | 48.83720779418945  |
+|      bottle      | 63.88888931274414  | 42.592594146728516 |
+|    calculator    | 95.74468231201172  |        72.0        |
+|    desk_chair    |  94.5054931640625  |  69.918701171875   |
+|    desk_lamp     | 60.82474136352539  | 52.21238708496094  |
+| desktop_computer | 37.113399505615234 | 28.799999237060547 |
+|   file_cabinet   | 70.37036895751953  |  64.7727279663086  |
+|    headphones    |  91.919189453125   | 77.77777862548828  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.31578826904297  |
+|   letter_tray    | 33.67346954345703  | 25.190839767456055 |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      |  91.919189453125   | 60.66666793823242  |
+|      mouse       |        94.0        | 82.45613861083984  |
+|       mug        | 92.55319213867188  |       90.625       |
+|  paper_notebook  | 73.95832824707031  | 42.01183319091797  |
+|       pen        | 81.05262756347656  |  63.1147575378418  |
+|      phone       | 63.440860748291016 | 60.82474136352539  |
+|     printer      |        83.0        |   80.58251953125   |
+|    projector     | 91.83673095703125  | 75.63025665283203  |
+|     punchers     | 29.59183692932129  | 16.959064483642578 |
+|   ring_binder    | 75.55555725097656  | 41.71779251098633  |
+|      ruler       | 58.666664123535156 | 55.69620132446289  |
+|     scissors     |        48.0        | 35.29411697387695  |
+|     speaker      |  64.6464614868164  |        40.0        |
+|     stapler      | 43.43434143066406  | 32.08955383300781  |
+|  tape_dispenser  | 44.791664123535156 | 32.57575607299805  |
+|    trash_can     |       68.75        | 53.658538818359375 |
++------------------+--------------------+--------------------+
+acc1 = 72.8, best_acc1 = 73.6
+Epoch: [10][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.71 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.1)
+Epoch: [10][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.64 (  0.68)	Cls Acc 100.0 (99.9)	Domain Acc 62.5 (57.6)
+Epoch: [10][ 200/1000]	Time  0.90 ( 0.46)	Data  0.58 ( 0.14)	Loss   0.69 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (57.3)
+Epoch: [10][ 300/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.68 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (57.4)
+Epoch: [10][ 400/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (57.1)
+Epoch: [10][ 500/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (56.8)
+Epoch: [10][ 600/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (57.0)
+Epoch: [10][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 42.2 (56.9)
+Epoch: [10][ 800/1000]	Time  0.95 ( 0.45)	Data  0.64 ( 0.14)	Loss   0.73 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (56.9)
+Epoch: [10][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (56.8)
+Test: [ 0/89]	Time  0.485 ( 0.485)	Loss 4.7092e-04 (4.7092e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 72.985 Acc@5 87.114
+global correct: 73.0
+mean correct:73.0
+mean IoU: 60.2
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 92.63157653808594  |
+|       bike       | 98.78048706054688  | 98.78048706054688  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     | 51.219512939453125 | 48.83720779418945  |
+|      bottle      | 63.88888931274414  | 42.592594146728516 |
+|    calculator    | 95.74468231201172  | 71.42857360839844  |
+|    desk_chair    |  94.5054931640625  |  69.3548355102539  |
+|    desk_lamp     | 60.82474136352539  | 52.21238708496094  |
+| desktop_computer | 37.113399505615234 | 29.268291473388672 |
+|   file_cabinet   | 70.37036895751953  |  64.7727279663086  |
+|    headphones    | 90.90909576416016  | 76.92308044433594  |
+|     keyboard     |        88.0        | 83.80952453613281  |
+| laptop_computer  |        86.0        | 76.78571319580078  |
+|   letter_tray    | 35.71428680419922  | 26.923078536987305 |
+|   mobile_phone   |        80.0        |  65.0406494140625  |
+|     monitor      |  91.919189453125   | 61.486488342285156 |
+|      mouse       |        95.0        | 84.07079315185547  |
+|       mug        | 92.55319213867188  |       90.625       |
+|  paper_notebook  |       71.875       | 41.07143020629883  |
+|       pen        | 81.05262756347656  | 62.601627349853516 |
+|      phone       | 63.440860748291016 | 60.82474136352539  |
+|     printer      |        85.0        |  82.5242691040039  |
+|    projector     | 91.83673095703125  | 75.63025665283203  |
+|     punchers     | 29.59183692932129  | 17.261903762817383 |
+|   ring_binder    | 78.88888549804688  | 43.030303955078125 |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        |  36.3636360168457  |
+|     speaker      | 67.67676544189453  | 41.614906311035156 |
+|     stapler      |  44.4444465637207  | 32.11678695678711  |
+|  tape_dispenser  | 45.833335876464844 | 33.082706451416016 |
+|    trash_can     |       68.75        | 52.38095474243164  |
++------------------+--------------------+--------------------+
+acc1 = 73.0, best_acc1 = 73.6
+Epoch: [11][   0/1000]	Time  0.88 ( 0.88)	Data  0.56 ( 0.56)	Loss   0.66 (  0.66)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (60.9)
+Epoch: [11][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.15)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (57.3)
+Epoch: [11][ 200/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.66 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (57.4)
+Epoch: [11][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (56.6)
+Epoch: [11][ 400/1000]	Time  0.88 ( 0.46)	Data  0.56 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (56.2)
+Epoch: [11][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (56.5)
+Epoch: [11][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.63 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (56.8)
+Epoch: [11][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (56.6)
+Epoch: [11][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (56.5)
+Epoch: [11][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (56.4)
+Test: [ 0/89]	Time  0.502 ( 0.502)	Loss 1.1898e-03 (1.1898e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.198 Acc@5 86.581
+global correct: 73.2
+mean correct:73.2
+mean IoU: 60.5
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 93.61701965332031  |
+|       bike       | 98.78048706054688  | 97.59036254882812  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     | 52.439022064208984 |        50.0        |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 73.17073059082031  |
+|    desk_chair    |  94.5054931640625  | 70.49180603027344  |
+|    desk_lamp     | 61.85566711425781  | 53.57142639160156  |
+| desktop_computer | 40.20618438720703  | 30.952381134033203 |
+|   file_cabinet   | 70.37036895751953  | 65.51724243164062  |
+|    headphones    | 90.90909576416016  | 76.27118682861328  |
+|     keyboard     |        90.0        | 86.53846740722656  |
+| laptop_computer  |        88.0        | 76.52173614501953  |
+|   letter_tray    | 36.73469543457031  | 27.272727966308594 |
+|   mobile_phone   |        81.0        | 66.39344024658203  |
+|     monitor      |  91.919189453125   | 62.328765869140625 |
+|      mouse       |        94.0        | 82.45613861083984  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  |       68.75        | 39.520957946777344 |
+|       pen        | 81.05262756347656  | 62.601627349853516 |
+|      phone       | 63.440860748291016 | 61.45833206176758  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 76.92308044433594  |
+|     punchers     | 29.59183692932129  | 17.36526870727539  |
+|   ring_binder    | 78.88888549804688  | 42.77108383178711  |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 66.66667175292969  |       41.25        |
+|     stapler      | 46.46464538574219  | 33.333335876464844 |
+|  tape_dispenser  | 45.833335876464844 | 33.082706451416016 |
+|    trash_can     |       68.75        | 52.38095474243164  |
++------------------+--------------------+--------------------+
+acc1 = 73.2, best_acc1 = 73.6
+Epoch: [12][   0/1000]	Time  0.92 ( 0.92)	Data  0.60 ( 0.60)	Loss   0.67 (  0.67)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (65.6)
+Epoch: [12][ 100/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.74 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (56.8)
+Epoch: [12][ 200/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (56.2)
+Epoch: [12][ 300/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.65 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 71.9 (56.6)
+Epoch: [12][ 400/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (55.9)
+Epoch: [12][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (55.7)
+Epoch: [12][ 600/1000]	Time  0.86 ( 0.46)	Data  0.55 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (55.9)
+Epoch: [12][ 700/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (55.9)
+Epoch: [12][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (55.9)
+Epoch: [12][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (55.9)
+Test: [ 0/89]	Time  0.478 ( 0.478)	Loss 8.5670e-04 (8.5670e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.056 Acc@5 86.830
+global correct: 73.1
+mean correct:73.0
+mean IoU: 60.4
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 92.63157653808594  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     | 52.439022064208984 |        50.0        |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 73.17073059082031  |
+|    desk_chair    |  93.4065933227539  | 68.54838562011719  |
+|    desk_lamp     | 61.85566711425781  | 53.57142639160156  |
+| desktop_computer | 40.20618438720703  | 31.200000762939453 |
+|   file_cabinet   | 70.37036895751953  | 65.51724243164062  |
+|    headphones    | 89.89899444580078  | 76.06837463378906  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.31578826904297  |
+|   letter_tray    | 34.693878173828125 | 25.75757598876953  |
+|   mobile_phone   |        80.0        | 67.22689056396484  |
+|     monitor      |  91.919189453125   | 61.486488342285156 |
+|      mouse       |        95.0        | 84.07079315185547  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  |       68.75        | 40.49079895019531  |
+|       pen        | 82.10526275634766  | 61.904762268066406 |
+|      phone       | 63.440860748291016 | 61.45833206176758  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 76.27118682861328  |
+|     punchers     | 28.571430206298828 | 16.666667938232422 |
+|   ring_binder    | 76.66666412353516  | 41.56626510620117  |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 67.67676544189453  |       41.875       |
+|     stapler      | 47.47474670410156  | 33.812950134277344 |
+|  tape_dispenser  | 47.916664123535156 | 33.57664489746094  |
+|    trash_can     |       68.75        | 52.38095474243164  |
++------------------+--------------------+--------------------+
+acc1 = 73.1, best_acc1 = 73.6
+Epoch: [13][   0/1000]	Time  0.34 ( 0.34)	Data  0.03 ( 0.03)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.1)
+Epoch: [13][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.76 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 40.6 (54.6)
+Epoch: [13][ 200/1000]	Time  1.47 ( 0.46)	Data  1.15 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (54.7)
+Epoch: [13][ 300/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (55.1)
+Epoch: [13][ 400/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (55.8)
+Epoch: [13][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (55.8)
+Epoch: [13][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (55.9)
+Epoch: [13][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (55.6)
+Epoch: [13][ 800/1000]	Time  0.92 ( 0.45)	Data  0.60 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (55.7)
+Epoch: [13][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (55.7)
+Test: [ 0/89]	Time  0.468 ( 0.468)	Loss 8.2570e-04 (8.2570e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 72.950 Acc@5 86.652
+global correct: 72.9
+mean correct:72.9
+mean IoU: 60.2
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 92.63157653808594  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     |        50.0        | 47.674415588378906 |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  |        72.0        |
+|    desk_chair    | 92.30769348144531  | 67.19999694824219  |
+|    desk_lamp     | 61.85566711425781  | 53.09734344482422  |
+| desktop_computer | 40.20618438720703  | 31.200000762939453 |
+|   file_cabinet   | 70.37036895751953  | 65.51724243164062  |
+|    headphones    |  91.919189453125   | 78.44828033447266  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 33.67346954345703  | 24.62686538696289  |
+|   mobile_phone   |        80.0        | 65.57376861572266  |
+|     monitor      |  91.919189453125   | 61.486488342285156 |
+|      mouse       |        95.0        | 82.60869598388672  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 69.79167175292969  | 40.60606002807617  |
+|       pen        | 83.15789794921875  |  64.2276382446289  |
+|      phone       | 62.36559295654297  | 60.41666793823242  |
+|     printer      |        85.0        | 84.15841674804688  |
+|    projector     | 91.83673095703125  | 78.26087188720703  |
+|     punchers     | 29.59183692932129  | 16.959064483642578 |
+|   ring_binder    | 77.77777862548828  | 42.16867446899414  |
+|      ruler       |        56.0        | 53.16455841064453  |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 67.67676544189453  | 42.13836669921875  |
+|     stapler      | 45.45454788208008  | 33.088233947753906 |
+|  tape_dispenser  | 45.833335876464844 | 32.835819244384766 |
+|    trash_can     |       68.75        | 52.38095474243164  |
++------------------+--------------------+--------------------+
+acc1 = 72.9, best_acc1 = 73.6
+Epoch: [14][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.7)
+Epoch: [14][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 42.2 (55.8)
+Epoch: [14][ 200/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (55.9)
+Epoch: [14][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (55.5)
+Epoch: [14][ 400/1000]	Time  0.91 ( 0.45)	Data  0.59 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (55.3)
+Epoch: [14][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (55.4)
+Epoch: [14][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (55.4)
+Epoch: [14][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (55.3)
+Epoch: [14][ 800/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (55.3)
+Epoch: [14][ 900/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (55.3)
+Test: [ 0/89]	Time  0.452 ( 0.452)	Loss 1.1257e-03 (1.1257e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 72.950 Acc@5 86.262
+global correct: 72.9
+mean correct:72.9
+mean IoU: 60.3
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 95.65217590332031  |
+|       bike       | 98.78048706054688  | 97.59036254882812  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 51.219512939453125 | 48.83720779418945  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 73.17073059082031  |
+|    desk_chair    | 92.30769348144531  | 66.66667175292969  |
+|    desk_lamp     | 60.82474136352539  | 52.67857360839844  |
+| desktop_computer | 40.20618438720703  | 30.952381134033203 |
+|   file_cabinet   | 70.37036895751953  | 63.33333206176758  |
+|    headphones    |  91.919189453125   |  79.8245620727539  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        86.0        | 74.78260803222656  |
+|   letter_tray    | 33.67346954345703  | 24.812030792236328 |
+|   mobile_phone   |        81.0        | 66.39344024658203  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        94.0        | 82.45613861083984  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 69.79167175292969  |  40.1197624206543  |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 63.440860748291016 | 61.45833206176758  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 77.58621215820312  |
+|     punchers     | 29.59183692932129  | 17.36526870727539  |
+|   ring_binder    | 76.66666412353516  | 40.588233947753906 |
+|      ruler       |        56.0        | 53.84615707397461  |
+|     scissors     |        48.0        |  36.3636360168457  |
+|     speaker      | 66.66667175292969  | 40.99378967285156  |
+|     stapler      | 45.45454788208008  | 32.846717834472656 |
+|  tape_dispenser  | 45.833335876464844 | 33.333335876464844 |
+|    trash_can     |      70.3125       | 53.57142639160156  |
++------------------+--------------------+--------------------+
+acc1 = 72.9, best_acc1 = 73.6
+Epoch: [15][   0/1000]	Time  0.90 ( 0.90)	Data  0.58 ( 0.58)	Loss   0.65 (  0.65)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (62.5)
+Epoch: [15][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (55.3)
+Epoch: [15][ 200/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (54.9)
+Epoch: [15][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (55.3)
+Epoch: [15][ 400/1000]	Time  0.79 ( 0.46)	Data  0.47 ( 0.14)	Loss   0.64 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (55.3)
+Epoch: [15][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (55.4)
+Epoch: [15][ 600/1000]	Time  0.90 ( 0.46)	Data  0.59 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (55.4)
+Epoch: [15][ 700/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.75 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (55.2)
+Epoch: [15][ 800/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.65 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (55.1)
+Epoch: [15][ 900/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (55.2)
+Test: [ 0/89]	Time  0.476 ( 0.476)	Loss 1.2090e-03 (1.2090e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 72.950 Acc@5 86.404
+global correct: 72.9
+mean correct:72.9
+mean IoU: 60.3
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 98.78048706054688  | 97.59036254882812  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     |        50.0        | 47.674415588378906 |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 73.77049255371094  |
+|    desk_chair    | 92.30769348144531  | 67.19999694824219  |
+|    desk_lamp     | 61.85566711425781  |  52.6315803527832  |
+| desktop_computer | 41.23711395263672  | 32.25806427001953  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    |  91.919189453125   | 77.11864471435547  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 75.65217590332031  |
+|   letter_tray    | 33.67346954345703  | 24.812030792236328 |
+|   mobile_phone   |        81.0        | 66.39344024658203  |
+|     monitor      | 92.92929077148438  | 61.744964599609375 |
+|      mouse       |        94.0        | 82.45613861083984  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  |       68.75        | 40.49079895019531  |
+|       pen        | 83.15789794921875  |  64.2276382446289  |
+|      phone       | 63.440860748291016 | 61.45833206176758  |
+|     printer      |        85.0        | 84.15841674804688  |
+|    projector     | 91.83673095703125  | 78.26087188720703  |
+|     punchers     | 29.59183692932129  | 17.05882453918457  |
+|   ring_binder    | 76.66666412353516  | 41.07143020629883  |
+|      ruler       |        56.0        | 53.84615707397461  |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 66.66667175292969  | 40.99378967285156  |
+|     stapler      | 43.43434143066406  | 31.851852416992188 |
+|  tape_dispenser  | 45.833335876464844 | 32.59259033203125  |
+|    trash_can     |      70.3125       | 53.57142639160156  |
++------------------+--------------------+--------------------+
+acc1 = 72.9, best_acc1 = 73.6
+Epoch: [16][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.70 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.7)
+Epoch: [16][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.65 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (54.7)
+Epoch: [16][ 200/1000]	Time  0.88 ( 0.46)	Data  0.55 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.4)
+Epoch: [16][ 300/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.73 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (54.8)
+Epoch: [16][ 400/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (54.9)
+Epoch: [16][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (55.0)
+Epoch: [16][ 600/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (55.0)
+Epoch: [16][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (54.8)
+Epoch: [16][ 800/1000]	Time  0.89 ( 0.45)	Data  0.58 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (54.9)
+Epoch: [16][ 900/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (55.1)
+Test: [ 0/89]	Time  0.513 ( 0.513)	Loss 1.2982e-03 (1.2982e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.127 Acc@5 86.510
+global correct: 73.1
+mean correct:73.1
+mean IoU: 60.5
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 93.61701965332031  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        | 97.29730224609375  |
+|     bookcase     | 52.439022064208984 |        50.0        |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 72.58065032958984  |
+|    desk_chair    |  93.4065933227539  | 69.67213439941406  |
+|    desk_lamp     | 61.85566711425781  | 54.05405044555664  |
+| desktop_computer | 41.23711395263672  | 31.74603271484375  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    | 92.92929077148438  | 77.96610260009766  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 33.67346954345703  | 24.812030792236328 |
+|   mobile_phone   |        80.0        |  66.1156997680664  |
+|     monitor      | 92.92929077148438  | 61.744964599609375 |
+|      mouse       |        95.0        | 83.33332824707031  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  |       68.75        | 40.49079895019531  |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 63.440860748291016 | 61.45833206176758  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 90.81632232666016  | 77.39130401611328  |
+|     punchers     | 29.59183692932129  | 16.959064483642578 |
+|   ring_binder    | 77.77777862548828  | 41.42011642456055  |
+|      ruler       |        56.0        | 53.84615707397461  |
+|     scissors     |        48.0        | 35.55555725097656  |
+|     speaker      | 65.65657043457031  |  40.8805046081543  |
+|     stapler      | 46.46464538574219  | 34.074073791503906 |
+|  tape_dispenser  | 45.833335876464844 | 32.835819244384766 |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.1, best_acc1 = 73.6
+Epoch: [17][   0/1000]	Time  0.34 ( 0.34)	Data  0.03 ( 0.03)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.1)
+Epoch: [17][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (54.5)
+Epoch: [17][ 200/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (54.4)
+Epoch: [17][ 300/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (54.7)
+Epoch: [17][ 400/1000]	Time  0.94 ( 0.45)	Data  0.62 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (54.7)
+Epoch: [17][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (54.5)
+Epoch: [17][ 600/1000]	Time  0.88 ( 0.45)	Data  0.57 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.6)
+Epoch: [17][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (54.9)
+Epoch: [17][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (54.9)
+Epoch: [17][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 46.9 (54.8)
+Test: [ 0/89]	Time  0.455 ( 0.455)	Loss 8.8083e-04 (8.8083e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.127 Acc@5 86.191
+global correct: 73.1
+mean correct:73.1
+mean IoU: 60.5
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 92.63157653808594  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        | 97.29730224609375  |
+|     bookcase     | 53.658538818359375 | 51.16279220581055  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 72.58065032958984  |
+|    desk_chair    |  93.4065933227539  | 68.54838562011719  |
+|    desk_lamp     |  62.8865966796875  | 54.954952239990234 |
+| desktop_computer | 42.26803970336914  | 32.28346252441406  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    | 90.90909576416016  | 78.26087188720703  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        88.0        | 77.19297790527344  |
+|   letter_tray    | 33.67346954345703  | 24.812030792236328 |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      |  91.919189453125   | 61.073829650878906 |
+|      mouse       |        95.0        | 82.60869598388672  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  |       68.75        |       41.25        |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 62.36559295654297  | 60.41666793823242  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 90.81632232666016  | 79.46428680419922  |
+|     punchers     | 29.59183692932129  | 17.05882453918457  |
+|   ring_binder    | 76.66666412353516  | 40.82840347290039  |
+|      ruler       |        56.0        | 53.84615707397461  |
+|     scissors     |        48.0        | 35.036495208740234 |
+|     speaker      | 66.66667175292969  | 40.99378967285156  |
+|     stapler      | 46.46464538574219  | 33.57664489746094  |
+|  tape_dispenser  | 45.833335876464844 | 32.835819244384766 |
+|    trash_can     |      70.3125       | 54.21686935424805  |
++------------------+--------------------+--------------------+
+acc1 = 73.1, best_acc1 = 73.6
+Epoch: [18][   0/1000]	Time  0.86 ( 0.86)	Data  0.54 ( 0.54)	Loss   0.68 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (56.2)
+Epoch: [18][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (55.6)
+Epoch: [18][ 200/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (56.0)
+Epoch: [18][ 300/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (55.5)
+Epoch: [18][ 400/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (55.5)
+Epoch: [18][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (55.4)
+Epoch: [18][ 600/1000]	Time  0.91 ( 0.46)	Data  0.58 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (55.3)
+Epoch: [18][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.73 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 42.2 (55.2)
+Epoch: [18][ 800/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (55.0)
+Epoch: [18][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (54.9)
+Test: [ 0/89]	Time  0.510 ( 0.510)	Loss 9.2005e-04 (9.2005e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.269 Acc@5 86.368
+global correct: 73.3
+mean correct:73.3
+mean IoU: 60.7
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 92.63157653808594  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        | 97.29730224609375  |
+|     bookcase     | 52.439022064208984 | 50.58823776245117  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 72.58065032958984  |
+|    desk_chair    |  93.4065933227539  | 69.67213439941406  |
+|    desk_lamp     | 61.85566711425781  | 54.54545593261719  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    |  91.919189453125   | 77.77777862548828  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 33.67346954345703  | 25.190839767456055 |
+|   mobile_phone   |        81.0        | 66.39344024658203  |
+|     monitor      |  91.919189453125   | 61.904762268066406 |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 69.79167175292969  | 42.13836669921875  |
+|       pen        | 83.15789794921875  | 63.70967483520508  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 90.81632232666016  | 79.46428680419922  |
+|     punchers     | 30.612245559692383 | 17.341039657592773 |
+|   ring_binder    | 77.77777862548828  | 41.42011642456055  |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        | 35.55555725097656  |
+|     speaker      | 67.67676544189453  | 41.614906311035156 |
+|     stapler      | 45.45454788208008  | 32.846717834472656 |
+|  tape_dispenser  | 45.833335876464844 | 32.835819244384766 |
+|    trash_can     |       71.875       | 54.761905670166016 |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [19][   0/1000]	Time  0.34 ( 0.34)	Data  0.03 ( 0.03)	Loss   0.71 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (50.0)
+Epoch: [19][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.71 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (52.6)
+Epoch: [19][ 200/1000]	Time  0.94 ( 0.46)	Data  0.62 ( 0.14)	Loss   0.70 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (52.7)
+Epoch: [19][ 300/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.0)
+Epoch: [19][ 400/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (53.5)
+Epoch: [19][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (53.8)
+Epoch: [19][ 600/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (53.7)
+Epoch: [19][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.8)
+Epoch: [19][ 800/1000]	Time  1.54 ( 0.46)	Data  1.22 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (53.8)
+Epoch: [19][ 900/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.9)
+Test: [ 0/89]	Time  0.507 ( 0.507)	Loss 1.4237e-03 (1.4237e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.376 Acc@5 86.510
+global correct: 73.4
+mean correct:73.4
+mean IoU: 60.8
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 93.61701965332031  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     |  54.8780517578125  | 52.94117736816406  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 72.58065032958984  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     |  62.8865966796875  | 54.954952239990234 |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    | 92.92929077148438  | 79.31034851074219  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        86.0        | 76.10619354248047  |
+|   letter_tray    | 32.65306091308594  | 24.24242401123047  |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      | 92.92929077148438  | 61.744964599609375 |
+|      mouse       |        95.0        | 82.60869598388672  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 69.79167175292969  | 42.13836669921875  |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 90.81632232666016  | 79.46428680419922  |
+|     punchers     | 30.612245559692383 | 17.647058486938477 |
+|   ring_binder    | 77.77777862548828  | 40.69767379760742  |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 67.67676544189453  | 42.13836669921875  |
+|     stapler      | 46.46464538574219  | 33.09352493286133  |
+|  tape_dispenser  | 45.833335876464844 | 33.333335876464844 |
+|    trash_can     |      70.3125       | 53.57142639160156  |
++------------------+--------------------+--------------------+
+acc1 = 73.4, best_acc1 = 73.6
+Epoch: [20][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.67 (  0.67)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (67.2)
+Epoch: [20][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (54.8)
+Epoch: [20][ 200/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (54.6)
+Epoch: [20][ 300/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.6)
+Epoch: [20][ 400/1000]	Time  0.90 ( 0.45)	Data  0.59 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (54.6)
+Epoch: [20][ 500/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (54.4)
+Epoch: [20][ 600/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (54.3)
+Epoch: [20][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (54.3)
+Epoch: [20][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (54.4)
+Epoch: [20][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (54.4)
+Test: [ 0/89]	Time  0.482 ( 0.482)	Loss 1.1308e-03 (1.1308e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.269 Acc@5 86.581
+global correct: 73.3
+mean correct:73.3
+mean IoU: 60.7
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     |  54.8780517578125  | 52.325584411621094 |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 72.58065032958984  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     |  62.8865966796875  | 54.46428680419922  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    |  91.919189453125   | 79.13043212890625  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        86.0        | 76.10619354248047  |
+|   letter_tray    | 32.65306091308594  | 24.427480697631836 |
+|   mobile_phone   |        81.0        | 66.39344024658203  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 82.60869598388672  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 69.79167175292969  |       41.875       |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 62.36559295654297  | 61.05263137817383  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 80.35713958740234  |
+|     punchers     | 29.59183692932129  | 17.15976333618164  |
+|   ring_binder    | 77.77777862548828  | 40.46242904663086  |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        | 36.09022521972656  |
+|     speaker      | 66.66667175292969  | 40.99378967285156  |
+|     stapler      | 46.46464538574219  | 33.333335876464844 |
+|  tape_dispenser  | 45.833335876464844 | 33.082706451416016 |
+|    trash_can     |      70.3125       | 52.94117736816406  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [21][   0/1000]	Time  0.88 ( 0.88)	Data  0.56 ( 0.56)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (48.4)
+Epoch: [21][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (54.7)
+Epoch: [21][ 200/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (54.9)
+Epoch: [21][ 300/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (54.7)
+Epoch: [21][ 400/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 43.8 (54.6)
+Epoch: [21][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.4)
+Epoch: [21][ 600/1000]	Time  0.92 ( 0.46)	Data  0.60 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (54.3)
+Epoch: [21][ 700/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (54.4)
+Epoch: [21][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (54.4)
+Epoch: [21][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (54.5)
+Test: [ 0/89]	Time  0.471 ( 0.471)	Loss 1.0240e-03 (1.0240e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.305 Acc@5 86.226
+global correct: 73.3
+mean correct:73.3
+mean IoU: 60.7
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  | 93.61701965332031  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 53.658538818359375 | 51.16279220581055  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 73.17073059082031  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 53.57142639160156  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    |  91.919189453125   | 79.13043212890625  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.427480697631836 |
+|   mobile_phone   |        81.0        | 66.39344024658203  |
+|     monitor      |  91.919189453125   | 60.66666793823242  |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 70.83332824707031  | 42.767295837402344 |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 80.35713958740234  |
+|     punchers     | 29.59183692932129  | 17.261903762817383 |
+|   ring_binder    | 77.77777862548828  | 41.42011642456055  |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        | 35.29411697387695  |
+|     speaker      | 66.66667175292969  |       41.25        |
+|     stapler      | 46.46464538574219  | 33.57664489746094  |
+|  tape_dispenser  | 45.833335876464844 | 32.59259033203125  |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [22][   0/1000]	Time  0.78 ( 0.78)	Data  0.45 ( 0.45)	Loss   0.70 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (51.6)
+Epoch: [22][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (55.2)
+Epoch: [22][ 200/1000]	Time  0.87 ( 0.46)	Data  0.55 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (54.8)
+Epoch: [22][ 300/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.74 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (54.7)
+Epoch: [22][ 400/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (54.2)
+Epoch: [22][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (53.9)
+Epoch: [22][ 600/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 46.9 (53.9)
+Epoch: [22][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.74 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (53.8)
+Epoch: [22][ 800/1000]	Time  0.88 ( 0.46)	Data  0.56 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (54.0)
+Epoch: [22][ 900/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (54.0)
+Test: [ 0/89]	Time  0.475 ( 0.475)	Loss 1.1137e-03 (1.1137e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.269 Acc@5 86.333
+global correct: 73.3
+mean correct:73.2
+mean IoU: 60.7
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        |        96.0        |
+|     bookcase     | 52.439022064208984 | 50.58823776245117  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 73.77049255371094  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 53.57142639160156  |
+| desktop_computer | 42.26803970336914  | 32.28346252441406  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    | 92.92929077148438  |        80.0        |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.24242401123047  |
+|   mobile_phone   |        81.0        | 66.39344024658203  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 70.83332824707031  | 42.767295837402344 |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 79.64601135253906  |
+|     punchers     | 29.59183692932129  | 17.05882453918457  |
+|   ring_binder    | 77.77777862548828  | 41.42011642456055  |
+|      ruler       |        56.0        | 53.84615707397461  |
+|     scissors     |        48.0        | 35.55555725097656  |
+|     speaker      | 67.67676544189453  |       41.875       |
+|     stapler      | 45.45454788208008  | 32.846717834472656 |
+|  tape_dispenser  | 45.833335876464844 | 32.352943420410156 |
+|    trash_can     |      70.3125       | 52.94117736816406  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [23][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.67 (  0.67)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.1)
+Epoch: [23][ 100/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.0)
+Epoch: [23][ 200/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (53.4)
+Epoch: [23][ 300/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.4)
+Epoch: [23][ 400/1000]	Time  0.86 ( 0.45)	Data  0.54 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (53.5)
+Epoch: [23][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.6)
+Epoch: [23][ 600/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (53.5)
+Epoch: [23][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.5)
+Epoch: [23][ 800/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (53.6)
+Epoch: [23][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (53.6)
+Test: [ 0/89]	Time  0.451 ( 0.451)	Loss 1.3591e-03 (1.3591e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.447 Acc@5 86.049
+global correct: 73.4
+mean correct:73.4
+mean IoU: 60.9
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 52.439022064208984 | 50.58823776245117  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 73.77049255371094  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 53.57142639160156  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  |  64.0449447631836  |
+|    headphones    | 92.92929077148438  |        80.0        |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.427480697631836 |
+|   mobile_phone   |        81.0        |        67.5        |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  | 89.58332824707031  |
+|  paper_notebook  | 70.83332824707031  | 43.312103271484375 |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 79.64601135253906  |
+|     punchers     | 29.59183692932129  | 17.261903762817383 |
+|   ring_binder    | 78.88888549804688  | 42.261905670166016 |
+|      ruler       | 57.33333206176758  | 55.128204345703125 |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 67.67676544189453  |       41.875       |
+|     stapler      | 47.47474670410156  | 33.812950134277344 |
+|  tape_dispenser  | 45.833335876464844 | 31.88405990600586  |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.4, best_acc1 = 73.6
+Epoch: [24][   0/1000]	Time  0.87 ( 0.87)	Data  0.56 ( 0.56)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (51.6)
+Epoch: [24][ 100/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (53.9)
+Epoch: [24][ 200/1000]	Time  0.86 ( 0.46)	Data  0.54 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.9)
+Epoch: [24][ 300/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (53.8)
+Epoch: [24][ 400/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.7)
+Epoch: [24][ 500/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.7)
+Epoch: [24][ 600/1000]	Time  0.86 ( 0.46)	Data  0.54 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.7)
+Epoch: [24][ 700/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (53.6)
+Epoch: [24][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.7)
+Epoch: [24][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.8)
+Test: [ 0/89]	Time  0.445 ( 0.445)	Loss 1.4097e-03 (1.4097e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.305 Acc@5 85.659
+global correct: 73.3
+mean correct:73.3
+mean IoU: 60.7
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 52.439022064208984 | 50.58823776245117  |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 72.58065032958984  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 54.54545593261719  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  | 63.33333206176758  |
+|    headphones    | 92.92929077148438  |        80.0        |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.24242401123047  |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  | 69.79167175292969  | 42.40506362915039  |
+|       pen        | 83.15789794921875  |  64.2276382446289  |
+|      phone       | 62.36559295654297  | 61.05263137817383  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 80.35713958740234  |
+|     punchers     | 30.612245559692383 | 17.964073181152344 |
+|   ring_binder    | 77.77777862548828  | 41.42011642456055  |
+|      ruler       |        56.0        | 54.54545593261719  |
+|     scissors     |        48.0        | 35.55555725097656  |
+|     speaker      | 66.66667175292969  |       41.25        |
+|     stapler      | 48.48484802246094  | 34.28571701049805  |
+|  tape_dispenser  | 44.791664123535156 | 31.617647171020508 |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [25][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.71 (  0.71)	Cls Acc 100.0 (100.0)	Domain Acc 42.2 (42.2)
+Epoch: [25][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 37.5 (53.4)
+Epoch: [25][ 200/1000]	Time  0.90 ( 0.46)	Data  0.59 ( 0.14)	Loss   0.72 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 46.9 (52.9)
+Epoch: [25][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.0)
+Epoch: [25][ 400/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.66 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 64.1 (53.3)
+Epoch: [25][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.5)
+Epoch: [25][ 600/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (53.6)
+Epoch: [25][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (53.6)
+Epoch: [25][ 800/1000]	Time  0.90 ( 0.45)	Data  0.58 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (53.8)
+Epoch: [25][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (53.7)
+Test: [ 0/89]	Time  0.480 ( 0.480)	Loss 1.2053e-03 (1.2053e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.340 Acc@5 85.694
+global correct: 73.3
+mean correct:73.3
+mean IoU: 60.6
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 51.219512939453125 | 49.411766052246094 |
+|      bottle      | 63.88888931274414  | 43.39622497558594  |
+|    calculator    | 95.74468231201172  | 72.58065032958984  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 54.05405044555664  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  | 62.63736343383789  |
+|    headphones    |  91.919189453125   | 79.13043212890625  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.24242401123047  |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.19657897949219  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  | 70.83332824707031  | 43.312103271484375 |
+|       pen        | 83.15789794921875  |  64.2276382446289  |
+|      phone       | 62.36559295654297  | 61.05263137817383  |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 80.35713958740234  |
+|     punchers     | 30.612245559692383 | 17.964073181152344 |
+|   ring_binder    | 78.88888549804688  | 42.51497268676758  |
+|      ruler       |        56.0        | 54.54545593261719  |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 66.66667175292969  |       41.25        |
+|     stapler      | 49.49494934082031  |        35.0        |
+|  tape_dispenser  | 44.791664123535156 | 31.617647171020508 |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [26][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.68 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (59.4)
+Epoch: [26][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (54.0)
+Epoch: [26][ 200/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.8)
+Epoch: [26][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.7)
+Epoch: [26][ 400/1000]	Time  1.56 ( 0.46)	Data  1.24 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.9)
+Epoch: [26][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 48.4 (53.9)
+Epoch: [26][ 600/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (53.9)
+Epoch: [26][ 700/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (53.8)
+Epoch: [26][ 800/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.72 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 45.3 (53.8)
+Epoch: [26][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.71 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.9)
+Test: [ 0/89]	Time  0.483 ( 0.483)	Loss 9.8146e-04 (9.8146e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.376 Acc@5 85.836
+global correct: 73.4
+mean correct:73.3
+mean IoU: 60.7
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 51.219512939453125 | 49.411766052246094 |
+|      bottle      | 63.88888931274414  | 42.592594146728516 |
+|    calculator    | 95.74468231201172  | 73.17073059082031  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 54.05405044555664  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  | 63.33333206176758  |
+|    headphones    | 92.92929077148438  |        80.0        |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.24242401123047  |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.19657897949219  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  | 70.83332824707031  | 43.312103271484375 |
+|       pen        | 83.15789794921875  |  64.2276382446289  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 90.81632232666016  | 79.46428680419922  |
+|     punchers     | 30.612245559692383 | 17.964073181152344 |
+|   ring_binder    | 78.88888549804688  | 42.51497268676758  |
+|      ruler       |        56.0        | 54.54545593261719  |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 67.67676544189453  |       41.875       |
+|     stapler      | 48.48484802246094  | 34.04255294799805  |
+|  tape_dispenser  | 44.791664123535156 | 31.851852416992188 |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.4, best_acc1 = 73.6
+Epoch: [27][   0/1000]	Time  0.91 ( 0.91)	Data  0.59 ( 0.59)	Loss   0.68 (  0.68)	Cls Acc 100.0 (100.0)	Domain Acc 67.2 (67.2)
+Epoch: [27][ 100/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 60.9 (55.3)
+Epoch: [27][ 200/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 65.6 (54.7)
+Epoch: [27][ 300/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (54.6)
+Epoch: [27][ 400/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (54.4)
+Epoch: [27][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (54.2)
+Epoch: [27][ 600/1000]	Time  0.91 ( 0.46)	Data  0.59 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (54.2)
+Epoch: [27][ 700/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (54.0)
+Epoch: [27][ 800/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.9)
+Epoch: [27][ 900/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.8)
+Test: [ 0/89]	Time  0.477 ( 0.477)	Loss 9.7745e-04 (9.7745e-04)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.340 Acc@5 85.942
+global correct: 73.3
+mean correct:73.3
+mean IoU: 60.6
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 51.219512939453125 | 49.411766052246094 |
+|      bottle      | 63.88888931274414  | 42.592594146728516 |
+|    calculator    | 95.74468231201172  | 73.17073059082031  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 54.05405044555664  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  | 62.63736343383789  |
+|    headphones    | 92.92929077148438  | 79.31034851074219  |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.24242401123047  |
+|   mobile_phone   |        81.0        |        67.5        |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  | 69.79167175292969  |  42.6751594543457  |
+|       pen        | 83.15789794921875  | 63.70967483520508  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 79.64601135253906  |
+|     punchers     | 30.612245559692383 | 18.072288513183594 |
+|   ring_binder    | 78.88888549804688  | 42.261905670166016 |
+|      ruler       |        56.0        | 54.54545593261719  |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 66.66667175292969  |       41.25        |
+|     stapler      | 48.48484802246094  | 34.28571701049805  |
+|  tape_dispenser  | 44.791664123535156 | 31.851852416992188 |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [28][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (51.6)
+Epoch: [28][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (53.8)
+Epoch: [28][ 200/1000]	Time  0.91 ( 0.45)	Data  0.60 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 62.5 (53.9)
+Epoch: [28][ 300/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (53.4)
+Epoch: [28][ 400/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (53.3)
+Epoch: [28][ 500/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.2)
+Epoch: [28][ 600/1000]	Time  0.75 ( 0.46)	Data  0.44 ( 0.14)	Loss   0.68 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.2)
+Epoch: [28][ 700/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.70 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 50.0 (53.2)
+Epoch: [28][ 800/1000]	Time  0.90 ( 0.46)	Data  0.58 ( 0.14)	Loss   0.67 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 59.4 (53.3)
+Epoch: [28][ 900/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.69 (  0.69)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (53.4)
+Test: [ 0/89]	Time  0.506 ( 0.506)	Loss 1.6589e-03 (1.6589e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.305 Acc@5 86.155
+global correct: 73.3
+mean correct:73.3
+mean IoU: 60.6
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 51.219512939453125 | 49.411766052246094 |
+|      bottle      | 63.88888931274414  | 42.592594146728516 |
+|    calculator    | 95.74468231201172  | 73.77049255371094  |
+|    desk_chair    |  93.4065933227539  |  69.1056900024414  |
+|    desk_lamp     | 61.85566711425781  | 54.05405044555664  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  | 62.63736343383789  |
+|    headphones    | 92.92929077148438  |        80.0        |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.24242401123047  |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  |       68.75        | 42.03821563720703  |
+|       pen        | 83.15789794921875  |  64.2276382446289  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 80.35713958740234  |
+|     punchers     | 30.612245559692383 | 17.964073181152344 |
+|   ring_binder    | 78.88888549804688  | 41.764705657958984 |
+|      ruler       |        56.0        | 54.54545593261719  |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 66.66667175292969  |       41.25        |
+|     stapler      | 48.48484802246094  | 34.28571701049805  |
+|  tape_dispenser  | 44.791664123535156 | 31.617647171020508 |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+Epoch: [29][   0/1000]	Time  0.34 ( 0.34)	Data  0.02 ( 0.02)	Loss   0.70 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (56.2)
+Epoch: [29][ 100/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.0)
+Epoch: [29][ 200/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 53.1 (52.6)
+Epoch: [29][ 300/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (52.6)
+Epoch: [29][ 400/1000]	Time  0.87 ( 0.46)	Data  0.55 ( 0.14)	Loss   0.68 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (52.8)
+Epoch: [29][ 500/1000]	Time  0.43 ( 0.46)	Data  0.12 ( 0.14)	Loss   0.67 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 57.8 (53.0)
+Epoch: [29][ 600/1000]	Time  0.43 ( 0.46)	Data  0.11 ( 0.14)	Loss   0.72 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 51.6 (53.1)
+Epoch: [29][ 700/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.67 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.2)
+Epoch: [29][ 800/1000]	Time  0.43 ( 0.45)	Data  0.11 ( 0.14)	Loss   0.69 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 54.7 (53.2)
+Epoch: [29][ 900/1000]	Time  0.43 ( 0.45)	Data  0.12 ( 0.14)	Loss   0.69 (  0.70)	Cls Acc 100.0 (100.0)	Domain Acc 56.2 (53.2)
+Test: [ 0/89]	Time  0.481 ( 0.481)	Loss 1.5624e-03 (1.5624e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.269 Acc@5 85.800
+global correct: 73.3
+mean correct:73.2
+mean IoU: 60.6
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 95.65217590332031  |  94.6236572265625  |
+|       bike       | 97.56097412109375  | 97.56097412109375  |
+|   bike_helmet    |       100.0        | 94.73684692382812  |
+|     bookcase     | 51.219512939453125 | 49.411766052246094 |
+|      bottle      | 63.88888931274414  | 42.592594146728516 |
+|    calculator    | 95.74468231201172  | 73.77049255371094  |
+|    desk_chair    |  93.4065933227539  | 68.54838562011719  |
+|    desk_lamp     | 61.85566711425781  | 54.05405044555664  |
+| desktop_computer | 42.26803970336914  |  32.5396842956543  |
+|   file_cabinet   | 70.37036895751953  | 62.63736343383789  |
+|    headphones    | 92.92929077148438  |        80.0        |
+|     keyboard     |        90.0        | 85.71428680419922  |
+| laptop_computer  |        87.0        | 76.99114990234375  |
+|   letter_tray    | 32.65306091308594  | 24.427480697631836 |
+|   mobile_phone   |        81.0        | 66.94214630126953  |
+|     monitor      | 92.92929077148438  | 61.333335876464844 |
+|      mouse       |        95.0        | 81.89655303955078  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  |       68.75        | 42.03821563720703  |
+|       pen        | 83.15789794921875  |  64.2276382446289  |
+|      phone       | 63.440860748291016 | 62.105262756347656 |
+|     printer      |        84.0        | 83.16831970214844  |
+|    projector     | 91.83673095703125  | 80.35713958740234  |
+|     punchers     | 29.59183692932129  | 17.36526870727539  |
+|   ring_binder    | 78.88888549804688  | 41.52046585083008  |
+|      ruler       |        56.0        | 54.54545593261719  |
+|     scissors     |        48.0        | 35.82089614868164  |
+|     speaker      | 66.66667175292969  |       41.25        |
+|     stapler      | 48.48484802246094  | 34.53237533569336  |
+|  tape_dispenser  | 44.791664123535156 | 31.38686180114746  |
+|    trash_can     |       71.875       | 54.11764907836914  |
++------------------+--------------------+--------------------+
+acc1 = 73.3, best_acc1 = 73.6
+best_acc1 = 73.6
+Test: [ 0/89]	Time  0.437 ( 0.437)	Loss 6.2483e-03 (6.2483e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.553 Acc@5 87.256
+global correct: 73.6
+mean correct:73.4
+mean IoU: 61.3
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 92.39130401611328  | 89.47368621826172  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        | 97.29730224609375  |
+|     bookcase     |  54.8780517578125  | 52.325584411621094 |
+|      bottle      | 61.11111068725586  | 43.13725662231445  |
+|    calculator    | 94.68085479736328  | 79.46428680419922  |
+|    desk_chair    | 92.30769348144531  | 71.79487609863281  |
+|    desk_lamp     | 65.97937774658203  | 56.140350341796875 |
+| desktop_computer | 38.14432907104492  | 30.57851219177246  |
+|   file_cabinet   | 70.37036895751953  | 68.67469787597656  |
+|    headphones    | 89.89899444580078  | 78.76106262207031  |
+|     keyboard     |        91.0        | 89.21568298339844  |
+| laptop_computer  |        87.0        |        75.0        |
+|   letter_tray    | 39.79591751098633  | 28.260868072509766 |
+|   mobile_phone   |        85.0        | 75.22123718261719  |
+|     monitor      |  91.919189453125   | 61.904762268066406 |
+|      mouse       |        92.0        | 81.41592407226562  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  | 72.91667175292969  | 39.325843811035156 |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 67.74193572998047  |  63.6363639831543  |
+|     printer      |        87.0        | 81.30841064453125  |
+|    projector     | 91.83673095703125  | 76.27118682861328  |
+|     punchers     | 29.59183692932129  | 17.05882453918457  |
+|   ring_binder    |        80.0        | 42.352943420410156 |
+|      ruler       | 61.333335876464844 | 58.974361419677734 |
+|     scissors     |        48.0        | 37.20930099487305  |
+|     speaker      | 62.626258850097656 | 36.046512603759766 |
+|     stapler      | 45.45454788208008  | 34.09090805053711  |
+|  tape_dispenser  | 45.833335876464844 | 33.082706451416016 |
+|    trash_can     |       65.625       | 53.16455841064453  |
++------------------+--------------------+--------------------+
+val_acc1 = 73.6
+Test: [ 0/89]	Time  0.465 ( 0.465)	Loss 6.2483e-03 (6.2483e-03)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+ * Acc@1 73.553 Acc@5 87.256
+global correct: 73.6
+mean correct:73.4
+mean IoU: 61.3
++------------------+--------------------+--------------------+
+|      class       |        acc         |        iou         |
++------------------+--------------------+--------------------+
+|    back_pack     | 92.39130401611328  | 89.47368621826172  |
+|       bike       | 97.56097412109375  | 96.38554382324219  |
+|   bike_helmet    |       100.0        | 97.29730224609375  |
+|     bookcase     |  54.8780517578125  | 52.325584411621094 |
+|      bottle      | 61.11111068725586  | 43.13725662231445  |
+|    calculator    | 94.68085479736328  | 79.46428680419922  |
+|    desk_chair    | 92.30769348144531  | 71.79487609863281  |
+|    desk_lamp     | 65.97937774658203  | 56.140350341796875 |
+| desktop_computer | 38.14432907104492  | 30.57851219177246  |
+|   file_cabinet   | 70.37036895751953  | 68.67469787597656  |
+|    headphones    | 89.89899444580078  | 78.76106262207031  |
+|     keyboard     |        91.0        | 89.21568298339844  |
+| laptop_computer  |        87.0        |        75.0        |
+|   letter_tray    | 39.79591751098633  | 28.260868072509766 |
+|   mobile_phone   |        85.0        | 75.22123718261719  |
+|     monitor      |  91.919189453125   | 61.904762268066406 |
+|      mouse       |        92.0        | 81.41592407226562  |
+|       mug        | 91.48936462402344  |  88.6597900390625  |
+|  paper_notebook  | 72.91667175292969  | 39.325843811035156 |
+|       pen        | 83.15789794921875  | 64.75409698486328  |
+|      phone       | 67.74193572998047  |  63.6363639831543  |
+|     printer      |        87.0        | 81.30841064453125  |
+|    projector     | 91.83673095703125  | 76.27118682861328  |
+|     punchers     | 29.59183692932129  | 17.05882453918457  |
+|   ring_binder    |        80.0        | 42.352943420410156 |
+|      ruler       | 61.333335876464844 | 58.974361419677734 |
+|     scissors     |        48.0        | 37.20930099487305  |
+|     speaker      | 62.626258850097656 | 36.046512603759766 |
+|     stapler      | 45.45454788208008  | 34.09090805053711  |
+|  tape_dispenser  | 45.833335876464844 | 33.082706451416016 |
+|    trash_can     |       65.625       | 53.16455841064453  |
++------------------+--------------------+--------------------+
+test_acc1 = 73.6
