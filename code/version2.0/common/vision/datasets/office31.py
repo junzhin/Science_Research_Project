@@ -61,3 +61,4 @@ class Office31(ImageList):
     @classmethod
     def domains(cls):
         return list(cls.image_list.keys())
+
