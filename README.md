@@ -35,7 +35,7 @@
   -  `version1.0`:Designed for Alexnet model pretraining with selected classes and labels masked
   -  `version2.0`: Designed for UDA fine tuning on pretraind models
   -  `version3.0`: Designed for SSL fine tuning on pretraind models
--  `reports` : Storing the old versions of report for achrived purposes
+-  `reports_and_presentation` : Storing the old versions of report for achrived purposes
 # References:
 See the references in the report link
 
