@@ -31,11 +31,11 @@
 - `data`: Contain All preprocessed files and small external datasets supporting the analysis.Usually Store on the local machine to avoid occupying the online storage
 - `plots_results`: All plots and outputresults both for model training and reporting writting. This file also contains the storing excel files for data outputing used in the report.
 - `code`: Contain all code implementations in this project
-  - `testing`: Designed for initial debugging purposes
+  - `testing3`: Designed for initial debugging purposes
   -  `version1.0`:Designed for Alexnet model pretraining with selected classes and labels masked
   -  `version2.0`: Designed for UDA fine tuning on pretraind models
   -  `version3.0`: Designed for SSL fine tuning on pretraind models
--  `reports_and_presentation` : Storing the old versions of report and presentation slides for achrived purposes
+-  `reports_and_presentation` : Storing the old versions of report and presentation slides for archived purposes.
 # References:
 See the references in the report link
 
