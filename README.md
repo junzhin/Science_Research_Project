@@ -2,8 +2,6 @@
 
 
 **This is a organized github repositories for the Scientific Research Project in SCIE30001 at UOM**
-- Student Name: Junzhi Ning
-- Student ID: 1086241
 - Report Link: https://www.overleaf.com/4282838782zbddtsztqqxx
 
 
