@@ -21,6 +21,7 @@
   - scikit-learn
   - webcolors  
   - matplotlib
+  - Transfer library github from https://github.com/thuml/Transfer-Learning-Library
 
 # Datasets
 - External dataset 1: Face-blurred ILSVRC2012–2017 classification -> https://image-net.org/download-images.php
