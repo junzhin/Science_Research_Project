@@ -21,7 +21,9 @@
   - scikit-learn
   - webcolors  
   - matplotlib
+  - torch>=1.7.0
   - Transfer library github from https://github.com/thuml/Transfer-Learning-Library
+  - libraries from https://github.com/YBZh/Bridging_UDA_SSL and https://github.com/YBZh/Bridging_UDA_SSL
 
 # Datasets
 - External dataset 1: Face-blurred ILSVRC2012–2017 classification -> https://image-net.org/download-images.php
@@ -33,7 +35,7 @@
 - `plots_results`: All plots and outputresults both for model training and reporting writting. This file also contains the storing excel files for data outputing used in the report.
 - `code`: Contain all code implementations in this project
   - `testing3`: Designed for initial debugging purposes
-  -  `version1.0`:Designed for Alexnet model pretraining with selected classes and labels masked
+  -  `version1.0`: Designed for Alexnet model pretraining with selected classes and labels masked
   -  `version2.0`: Designed for UDA fine tuning on pretraind models
   -  `version3.0`: Designed for SSL fine tuning on pretraind models
 -  `reports_and_presentation` : Storing the old versions of report and presentation slides for archived purposes.
