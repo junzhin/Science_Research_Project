@@ -2,7 +2,6 @@
 
 
 **This is a organized github repository for the Scientific Research Project in SCIE30001 at UOM**
-- Report Link: https://www.overleaf.com/4282838782zbddtsztqqxx
 
 
 
