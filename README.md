@@ -33,8 +33,8 @@
 - `code`: Contain all code implementations in this project
   - `testing3`: Designed for initial debugging purposes
   -  `version1.0`: Designed for Alexnet model pretraining with selected classes and labels masked
-  -  `version2.0`: Designed for UDA fine tuning on pretraind models
-  -  `version3.0`: Designed for SSL fine tuning on pretraind models
+  -  `version2.0`: Designed for UDA fine tuning on pretrained models
+  -  `version3.0`: Designed for SSL fine tuning on pretrained models
 -  `reports_and_presentation` : Storing the old versions of report and presentation slides for archived purposes.
 # References:
 See the references in the report link
