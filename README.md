@@ -2,7 +2,8 @@
 
 
 **This is a organized github repository for the Scientific Research Project in SCIE30001 at UOM**
-** 分析半监督与无监督迁移学习计算机视觉算法异同点，提出预训练神经网络对模型影响的可能性
+
+## 项目分析半监督与无监督迁移学习计算机视觉算法异同点，提出预训练神经网络对模型影响的可能性
 
 # Dependencies:
 - Language: i.e Python 3.7.11
